@@ -1,0 +1,12 @@
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Prenom</th>
+        <th>Taille</th>
+    </tr>
+    <tr *ngFor="let wookie of $wookiesList | async">
+        <td>{{ wookie.id }}</td>
+        <td>{{ wookie.name | hurlement }}</td>
+        <td>{{ wookie.height }}</td>
+    </tr>
+</table>
