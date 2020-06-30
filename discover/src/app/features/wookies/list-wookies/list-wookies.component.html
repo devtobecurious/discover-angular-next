@@ -1,12 +1,17 @@
-<table>
+<table *ngIf="$wookiesList | async as wookies; else loading">
     <tr>
         <th>Id</th>
         <th>Prenom</th>
         <th>Taille</th>
     </tr>
-    <tr *ngFor="let wookie of $wookiesList | async">
-        <td>{{ wookie.id }}</td>
+    <tr *ngFor="let wookie of wookies; index as i">
+        <td>{{ i }} : {{ wookie.id }}</td>
         <td>{{ wookie.name | hurlement }}</td>
         <td>{{ wookie.height }}</td>
     </tr>
 </table>
+
+
+<ng-template #loading>
+  loading ....
+</ng-template>
