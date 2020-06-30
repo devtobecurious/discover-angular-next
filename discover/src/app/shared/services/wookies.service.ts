@@ -10,7 +10,7 @@ export class WookiesService {
 
   constructor() { }
 
-  getAll(): Observable<Wookie[]> {
-    return interval(1000).pipe(map(i => [new Wookie(i, 'Name' + i, 100 * i)]))
+  getAll(name: string = ''): Observable<Wookie[]> {
+    return interval(1000).pipe(map(i => [new Wookie(i, 'Name' + name, 100 * i)]));
   }
 }
