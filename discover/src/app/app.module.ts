@@ -6,6 +6,7 @@ import { WookieModule } from './features/wookies/wookie.module';
 import { HurlementPipe } from './shared/pipes/hurlement.pipe';
 import { SearchComponent } from './shared/components/search/search.component';
 import { MenuComponent } from './shared/components/menu/menu.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { MenuComponent } from './shared/components/menu/menu.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    WookieModule
+    WookieModule,
+    BrowserAnimationsModule
   ],
   providers: [
 

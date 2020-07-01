@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of, interval } from 'rxjs';
 import { delay, map } from 'rxjs/operators';
 import { Wookie } from 'src/app/core/models/wookie';
+import { WookieModule } from '../../features/wookies/wookie.module';
 
 @Injectable({
   providedIn: 'root'
