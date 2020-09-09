@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {
   trigger,
   state,
@@ -13,39 +13,32 @@ import {
   styleUrls: ['./first-component.component.css'],
   animations: [
     trigger('openClose', [
-      state('open1', style({
+      state('open', style({
         backgroundColor: 'red',
         height: '200px',
         opacity: 1
       })),
-      state('close1', style({
+      state('close', style({
         backgroundColor: 'blue',
         height: '100px',
         opacity: 0.5
       })),
-      transition('open1 =>  close1',
+      transition('open =>  close',
         animate('1s')
       ),
-      transition('close1 =>    open1',
+      transition('close => open',
         animate('0.5s')
       )
     ])
   ]
 })
 export class FirstComponentComponent implements OnInit {
-  state: 'close1' | 'open1' = 'close1';
+  @Input()
+  state: string = '';
 
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  changeState(): void {
-    if (this.state === 'close1') {
-      this.state = 'open1';
-    } else {
-      this.state = 'close1';
-    }
   }
 
 }

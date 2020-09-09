@@ -1,0 +1,9 @@
+<h1>Leave enter</h1>
+
+<ng-container  *ngFor="let prenom of prenoms">
+    <div @flyInOut>
+        {{prenom}}
+    </div>
+</ng-container>
+
+<button (click)="addOne()">Ajouter</button>

@@ -7,4 +7,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'first-animations';
+  maintState: 'close' | 'open' = 'close';
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  changeState(): void {
+    if (this.maintState === 'close') {
+      this.maintState = 'open';
+    } else {
+      this.maintState = 'close';
+    }
+  }
 }

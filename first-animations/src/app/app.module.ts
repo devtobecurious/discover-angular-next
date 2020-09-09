@@ -5,11 +5,19 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FirstComponentComponent } from './animations/first-component/first-component.component';
+import { WildcardComponent } from './animations/transition-trigger/wildcard/wildcard.component';
+import { ThreeStatesWildcardComponent } from './animations/transition-trigger/three-states-wildcard/three-states-wildcard.component';
+import { LeaveEnterComponent } from './animations/transition-trigger/leave-enter/leave-enter.component';
+import { VoidComponent } from './animations/transition-trigger/void/void.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FirstComponentComponent
+    FirstComponentComponent,
+    WildcardComponent,
+    ThreeStatesWildcardComponent,
+    LeaveEnterComponent,
+    VoidComponent
   ],
   imports: [
     BrowserModule,

@@ -1,1 +1,9 @@
-<app-first-component></app-first-component>
+<app-first-component [state]="maintState"></app-first-component>
+<app-wildcard [state]="maintState"></app-wildcard>
+<app-three-states-wildcard [state]="maintState"></app-three-states-wildcard> 
+
+<button (click)="changeState()">Change</button>
+
+<app-void></app-void> 
+<app-leave-enter></app-leave-enter>
+
