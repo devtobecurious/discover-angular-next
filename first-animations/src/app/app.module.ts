@@ -9,6 +9,8 @@ import { WildcardComponent } from './animations/transition-trigger/wildcard/wild
 import { ThreeStatesWildcardComponent } from './animations/transition-trigger/three-states-wildcard/three-states-wildcard.component';
 import { LeaveEnterComponent } from './animations/transition-trigger/leave-enter/leave-enter.component';
 import { VoidComponent } from './animations/transition-trigger/void/void.component';
+import { WithCallbackComponent } from './animations/with-callback/with-callback.component';
+import { KeyframesComponent } from './animations/keyframes/keyframes.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { VoidComponent } from './animations/transition-trigger/void/void.compone
     WildcardComponent,
     ThreeStatesWildcardComponent,
     LeaveEnterComponent,
-    VoidComponent
+    VoidComponent,
+    WithCallbackComponent,
+    KeyframesComponent
   ],
   imports: [
     BrowserModule,
