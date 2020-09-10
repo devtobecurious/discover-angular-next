@@ -1,0 +1,8 @@
+<input placeholder="Searching ...." #searchInput (input)="search(searchInput.value)">
+
+<ul [@filters]="wookies.length">
+    <li *ngFor="let item of wookies">
+        <span>{{ item.id }}</span>
+        <label>{{ item.surname }}</label>
+    </li>
+</ul>

@@ -11,6 +11,7 @@ import { LeaveEnterComponent } from './animations/transition-trigger/leave-enter
 import { VoidComponent } from './animations/transition-trigger/void/void.component';
 import { WithCallbackComponent } from './animations/with-callback/with-callback.component';
 import { KeyframesComponent } from './animations/keyframes/keyframes.component';
+import { QueryComponent } from './animations/complexs/query/query.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { KeyframesComponent } from './animations/keyframes/keyframes.component';
     LeaveEnterComponent,
     VoidComponent,
     WithCallbackComponent,
-    KeyframesComponent
+    KeyframesComponent,
+    QueryComponent
   ],
   imports: [
     BrowserModule,
