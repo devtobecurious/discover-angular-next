@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -12,6 +13,9 @@ import { VoidComponent } from './animations/transition-trigger/void/void.compone
 import { WithCallbackComponent } from './animations/with-callback/with-callback.component';
 import { KeyframesComponent } from './animations/keyframes/keyframes.component';
 import { QueryComponent } from './animations/complexs/query/query.component';
+import { MenuComponent } from './routes-with-animations/menu/menu.component';
+import { FirstComponent } from './routes-with-animations/first/first.component';
+import { SecondComponent } from './routes-with-animations/second/second.component';
 
 @NgModule({
   declarations: [
@@ -23,12 +27,19 @@ import { QueryComponent } from './animations/complexs/query/query.component';
     VoidComponent,
     WithCallbackComponent,
     KeyframesComponent,
-    QueryComponent
+    QueryComponent,
+    MenuComponent,
+    FirstComponent,
+    SecondComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    RouterModule.forRoot([
+      { path: 'component1', component: FirstComponent, data: { animation: 'Component1' } },
+      { path: 'component2', component: SecondComponent, data: { animation: 'Component2' } }
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
