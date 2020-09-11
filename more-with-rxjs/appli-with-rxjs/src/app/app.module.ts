@@ -8,6 +8,7 @@ import { TakeUntilSubjectComponent } from './shared/components/take-until-subjec
 import { ColdObservableComponent } from './shared/components/cold-observable/cold-observable.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { PublishReplayComponent } from './shared/components/publish-replay/publish-replay.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { CommonModule } from '@angular/common';
     DisplayOneWookieComponent,
     UnsubscribeComponent,
     TakeUntilSubjectComponent,
-    ColdObservableComponent
+    ColdObservableComponent,
+    PublishReplayComponent
   ],
   imports: [
     BrowserModule,

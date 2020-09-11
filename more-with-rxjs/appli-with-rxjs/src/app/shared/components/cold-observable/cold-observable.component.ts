@@ -10,8 +10,8 @@ import { map, shareReplay, publishReplay } from 'rxjs/operators';
   styleUrls: ['./cold-observable.component.css']
 })
 export class ColdObservableComponent implements OnInit {
-  private peoples$: Observable<People[]> = null;
-  private peopleCount$: Observable<number> = null;
+  public peoples$: Observable<People[]> = null;
+  public peopleCount$: Observable<number> = null;
 
   constructor(private swapi: SwapiService) { }
 
