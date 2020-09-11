@@ -9,6 +9,8 @@ import { ColdObservableComponent } from './shared/components/cold-observable/col
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { PublishReplayComponent } from './shared/components/publish-replay/publish-replay.component';
+import { ShareReplayComponent } from './shared/components/share-replay/share-replay.component';
+import { ShareComponent } from './shared/components/share/share.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { PublishReplayComponent } from './shared/components/publish-replay/publi
     UnsubscribeComponent,
     TakeUntilSubjectComponent,
     ColdObservableComponent,
-    PublishReplayComponent
+    PublishReplayComponent,
+    ShareReplayComponent,
+    ShareComponent
   ],
   imports: [
     BrowserModule,
