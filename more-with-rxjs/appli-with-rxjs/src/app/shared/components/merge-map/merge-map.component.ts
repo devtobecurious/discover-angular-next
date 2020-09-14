@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { from, of } from 'rxjs';
-import { delay, map, mergeAll } from 'rxjs/operators';
+import { delay, map, mergeAll, mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-merge-map',
@@ -25,6 +25,9 @@ export class MergeMapComponent implements OnInit {
 
     from([1, 2, 3, 4]).pipe(map(item => getData(item)),
                             mergeAll())
+                      .subscribe(item => console.log('mergemap', item));
+
+    from([1, 2, 3, 4]).pipe(mergeMap(item => getData(item)))
                       .subscribe(item => console.log('mergemap', item));
   }
 

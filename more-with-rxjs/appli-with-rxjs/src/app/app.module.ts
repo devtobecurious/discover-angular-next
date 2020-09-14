@@ -14,6 +14,7 @@ import { ShareComponent } from './shared/components/share/share.component';
 import { ColdOrHotComponent } from './shared/components/cold-or-hot/cold-or-hot.component';
 import { SubjectComponent } from './shared/components/subject/subject.component';
 import { MergeMapComponent } from './shared/components/merge-map/merge-map.component';
+import { SwitchMapComponent } from './shared/components/switch-map/switch-map.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { MergeMapComponent } from './shared/components/merge-map/merge-map.compo
     ShareComponent,
     ColdOrHotComponent,
     SubjectComponent,
-    MergeMapComponent
+    MergeMapComponent,
+    SwitchMapComponent
   ],
   imports: [
     BrowserModule,
