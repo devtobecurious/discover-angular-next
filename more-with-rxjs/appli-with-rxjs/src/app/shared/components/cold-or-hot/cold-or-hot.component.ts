@@ -1,4 +1,6 @@
+import { concatMap, map, mergeMap, switchMap, delay } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
+import { interval, Observable, timer, zip, of, from } from 'rxjs';
 
 @Component({
   selector: 'app-cold-or-hot',
@@ -6,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cold-or-hot.component.css']
 })
 export class ColdOrHotComponent implements OnInit {
+  public obs$: Observable<string>;
+  public obs2$: Observable<string>;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.obs$ = from(['🍕', '🍪', '🍔', '🌭', '🍟'])
+                .pipe(
+                  map(val => {
+                  console.log(val);
+                  return `Miam ${val}!`;
+                }));
+    // this.obs2$ = zip(this.obs$, interval(1000)).pipe(map(item => item[0]));
+    this.obs2$ =  this.obs$.pipe(concatMap(item => of(item).pipe(delay(1000)))); //interval(1000).pipe(concatMap(item => this.obs$));
   }
 
 }
