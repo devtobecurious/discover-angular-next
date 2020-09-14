@@ -12,6 +12,7 @@ import { PublishReplayComponent } from './shared/components/publish-replay/publi
 import { ShareReplayComponent } from './shared/components/share-replay/share-replay.component';
 import { ShareComponent } from './shared/components/share/share.component';
 import { ColdOrHotComponent } from './shared/components/cold-or-hot/cold-or-hot.component';
+import { SubjectComponent } from './shared/components/subject/subject.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ColdOrHotComponent } from './shared/components/cold-or-hot/cold-or-hot.
     PublishReplayComponent,
     ShareReplayComponent,
     ShareComponent,
-    ColdOrHotComponent
+    ColdOrHotComponent,
+    SubjectComponent
   ],
   imports: [
     BrowserModule,
