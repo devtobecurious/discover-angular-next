@@ -19,6 +19,7 @@ import { SwitchMapComponent } from './shared/components/switch-map/switch-map.co
 import { ConcatMapComponent } from './shared/components/concat-map/concat-map.component';
 import { NeverComponent } from './shared/components/never/never.component';import { BehaviorSubjectComponent } from './shared/components/behavior-subject/behavior-subject.component';
 import { ReplaySubjectComponent } from './shared/components/replay-subject/replay-subject.component';
+import { AsyncSubjectComponent } from './shared/components/async-subject/async-subject.component';
 
 @NgModule({
   declarations: [
@@ -32,12 +33,14 @@ import { ReplaySubjectComponent } from './shared/components/replay-subject/repla
     ShareComponent,
     ColdOrHotComponent,
     SubjectComponent,
-    MergeMapComponent,
+ MergeMapComponent,
     SwitchMapComponent,
     ConcatMapComponent,
     NeverComponent,
 BehaviorSubjectComponent,
-    ReplaySubjectComponent  ],
+    ReplaySubjectComponent,
+    AsyncSubjectComponent
+    ReplaySubjectComponent  
   imports: [
     BrowserModule,
     HttpClientModule
