@@ -38,6 +38,8 @@ export class ColdOrHotComponent implements OnInit {
         }));
     // this.obs2$ = zip(this.obs$, interval(1000)).pipe(map(item => item[0]));
     this.obs2$ = this.obs$.pipe(concatMap(item => of(item).pipe(delay(1000)))); //interval(1000).pipe(concatMap(item => this.obs$));
+
+    this.obs2$.subscribe(item => console.log('hot miam', item));
   }
 
 }
