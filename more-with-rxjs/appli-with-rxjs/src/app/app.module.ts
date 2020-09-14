@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { PublishReplayComponent } from './shared/components/publish-replay/publish-replay.component';
 import { ShareReplayComponent } from './shared/components/share-replay/share-replay.component';
 import { ShareComponent } from './shared/components/share/share.component';
+import { ColdOrHotComponent } from './shared/components/cold-or-hot/cold-or-hot.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ShareComponent } from './shared/components/share/share.component';
     ColdObservableComponent,
     PublishReplayComponent,
     ShareReplayComponent,
-    ShareComponent
+    ShareComponent,
+    ColdOrHotComponent
   ],
   imports: [
     BrowserModule,
