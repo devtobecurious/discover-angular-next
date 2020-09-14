@@ -13,10 +13,12 @@ import { ShareReplayComponent } from './shared/components/share-replay/share-rep
 import { ShareComponent } from './shared/components/share/share.component';
 import { ColdOrHotComponent } from './shared/components/cold-or-hot/cold-or-hot.component';
 import { SubjectComponent } from './shared/components/subject/subject.component';
+
 import { MergeMapComponent } from './shared/components/merge-map/merge-map.component';
 import { SwitchMapComponent } from './shared/components/switch-map/switch-map.component';
 import { ConcatMapComponent } from './shared/components/concat-map/concat-map.component';
-import { NeverComponent } from './shared/components/never/never.component';
+import { NeverComponent } from './shared/components/never/never.component';import { BehaviorSubjectComponent } from './shared/components/behavior-subject/behavior-subject.component';
+import { ReplaySubjectComponent } from './shared/components/replay-subject/replay-subject.component';
 
 @NgModule({
   declarations: [
@@ -33,8 +35,9 @@ import { NeverComponent } from './shared/components/never/never.component';
     MergeMapComponent,
     SwitchMapComponent,
     ConcatMapComponent,
-    NeverComponent
-  ],
+    NeverComponent,
+BehaviorSubjectComponent,
+    ReplaySubjectComponent  ],
   imports: [
     BrowserModule,
     HttpClientModule
