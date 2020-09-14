@@ -13,6 +13,7 @@ import { ShareReplayComponent } from './shared/components/share-replay/share-rep
 import { ShareComponent } from './shared/components/share/share.component';
 import { ColdOrHotComponent } from './shared/components/cold-or-hot/cold-or-hot.component';
 import { SubjectComponent } from './shared/components/subject/subject.component';
+import { MergeMapComponent } from './shared/components/merge-map/merge-map.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { SubjectComponent } from './shared/components/subject/subject.component'
     ShareReplayComponent,
     ShareComponent,
     ColdOrHotComponent,
-    SubjectComponent
+    SubjectComponent,
+    MergeMapComponent
   ],
   imports: [
     BrowserModule,
