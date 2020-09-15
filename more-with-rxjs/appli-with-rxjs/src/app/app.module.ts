@@ -15,6 +15,8 @@ import { ColdOrHotComponent } from './shared/components/cold-or-hot/cold-or-hot.
 import { SubjectComponent } from './shared/components/subject/subject.component';
 import { MergeMapComponent } from './shared/components/merge-map/merge-map.component';
 import { SwitchMapComponent } from './shared/components/switch-map/switch-map.component';
+import { ConcatMapComponent } from './shared/components/concat-map/concat-map.component';
+import { NeverComponent } from './shared/components/never/never.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { SwitchMapComponent } from './shared/components/switch-map/switch-map.co
     ColdOrHotComponent,
     SubjectComponent,
     MergeMapComponent,
-    SwitchMapComponent
+    SwitchMapComponent,
+    ConcatMapComponent,
+    NeverComponent
   ],
   imports: [
     BrowserModule,
