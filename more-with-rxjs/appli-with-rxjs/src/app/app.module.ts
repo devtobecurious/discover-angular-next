@@ -34,15 +34,16 @@ import { ZipForkForkjoinCombinelatestRaceComponent } from './shared/components/z
     ShareComponent,
     ColdOrHotComponent,
     SubjectComponent,
- MergeMapComponent,
+    MergeMapComponent,
     SwitchMapComponent,
     ConcatMapComponent,
     NeverComponent,
-BehaviorSubjectComponent,
+    BehaviorSubjectComponent,
     ReplaySubjectComponent,
     AsyncSubjectComponent,
-    ZipForkForkjoinCombinelatestRaceComponent
-    ReplaySubjectComponent  
+    ZipForkForkjoinCombinelatestRaceComponent,
+    ReplaySubjectComponent 
+  ],
   imports: [
     BrowserModule,
     HttpClientModule
