@@ -20,6 +20,7 @@ import { ConcatMapComponent } from './shared/components/concat-map/concat-map.co
 import { NeverComponent } from './shared/components/never/never.component';import { BehaviorSubjectComponent } from './shared/components/behavior-subject/behavior-subject.component';
 import { ReplaySubjectComponent } from './shared/components/replay-subject/replay-subject.component';
 import { AsyncSubjectComponent } from './shared/components/async-subject/async-subject.component';
+import { ZipForkForkjoinCombinelatestRaceComponent } from './shared/components/zip-fork-forkjoin-combinelatest-race/zip-fork-forkjoin-combinelatest-race.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { AsyncSubjectComponent } from './shared/components/async-subject/async-s
     NeverComponent,
 BehaviorSubjectComponent,
     ReplaySubjectComponent,
-    AsyncSubjectComponent
+    AsyncSubjectComponent,
+    ZipForkForkjoinCombinelatestRaceComponent
     ReplaySubjectComponent  
   imports: [
     BrowserModule,
