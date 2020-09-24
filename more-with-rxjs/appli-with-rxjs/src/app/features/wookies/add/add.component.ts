@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { sizeMaxValidator } from 'src/app/shared/validators/size-max-validators';
 
 @Component({
   selector: 'app-add',
@@ -11,7 +12,7 @@ export class AddComponent implements OnInit {
 
   wookieForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    size: new FormControl(''),
+    size: new FormControl('', sizeMaxValidator()),
     weapon: new FormGroup({
       name: new FormControl(''),
       xp: new FormControl('')
