@@ -1,1 +1,56 @@
-<p>add works!</p>
+<h2>
+    Ajout d'un wookie !
+</h2>
+
+
+<input type="text" [formControl]="name">
+
+{{ name.value }}
+
+<button (click)="setValue()">Set value</button>
+
+<h3>Wookie</h3>
+<form [formGroup]="wookieForm" (ngSubmit)="onSubmit()">
+    <label>Prénom : <input type="text" formControlName="name" required></label>
+    <label>Taille : <input type="text" formControlName="size"></label>
+
+    <div formGroupName="weapon">
+        <label>Nom : <input type="text" formControlName="name"></label>
+        <label>XP : <input type="text" formControlName="xp"></label>
+    </div>
+    <button type="submit" [disabled]="! wookieForm.valid">Let's go !</button>
+</form>
+
+<i>
+    {{ wookieForm.status }}
+</i>
+
+<button (click)="prepareWookiePatch()">Prepare wookie</button>
+<button (click)="prepareWookieAll()">Prepare wookie</button>
+
+
+<h3>Enemy</h3>
+<form [formGroup]="enemyForm" (ngSubmit)="onSubmit()">
+    <label>Prénom : <input type="text" formControlName="name" required></label>
+
+    <div formGroupName="weapon">
+        <label>Nom : <input type="text" formControlName="name"></label>
+        <label>XP : <input type="text" formControlName="xp"></label>
+    </div>
+
+    <div formArrayName="legs">
+        <h4>Pattes</h4>
+        <button type="button" (click)='addLeg()'>Add leg</button>
+
+        <div *ngFor="let leg of legs.controls; let i=index">
+            <label>
+                Patte : 
+                <input type="text" [formControlName]='i'>
+            </label>
+        </div>
+    </div>
+
+    <button type="submit" [disabled]="! enemyForm.valid">Let's go !</button>
+</form>
+
+<button (click)="prepareEnemyAll()">Prepare enemy</button>
