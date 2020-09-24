@@ -1,3 +1,4 @@
+import { nameDifferentValidator } from './../../../shared/validators/name-different-validator';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { sizeMaxValidator } from 'src/app/shared/validators/size-max-validators';
@@ -16,8 +17,11 @@ export class AddComponent implements OnInit {
     weapon: new FormGroup({
       name: new FormControl(''),
       xp: new FormControl('')
-    })
-  });
+    })},
+    {
+      validators: nameDifferentValidator
+    }
+  );
 
   enemyForm = this.fb.group({
     name: [''],

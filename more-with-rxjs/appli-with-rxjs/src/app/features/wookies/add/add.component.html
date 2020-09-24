@@ -18,6 +18,11 @@
         <label>Nom : <input type="text" formControlName="name"></label>
         <label>XP : <input type="text" formControlName="xp"></label>
     </div>
+
+    <div *ngIf="wookieForm.errors?.identic">
+      Noms identiques non autorisés
+    </div>
+
     <button type="submit" [disabled]="! wookieForm.valid">Let's go !</button>
 </form>
 
@@ -44,7 +49,7 @@
 
         <div *ngFor="let leg of legs.controls; let i=index">
             <label>
-                Patte : 
+                Patte :
                 <input type="text" [formControlName]='i'>
             </label>
         </div>
