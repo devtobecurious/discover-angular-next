@@ -1,25 +1,38 @@
-<app-display-one-wookie></app-display-one-wookie>
 {{title}}
 
-<app-unsubscribe></app-unsubscribe>
-<app-take-until-subject></app-take-until-subject>
+<ul>
+    <li *ngFor="let item of steps">
+        <button (click)="selectStep(item.id)">{{ item.label }}</button>
+    </li>
+</ul>
 
-<app-cold-observable></app-cold-observable>
-<app-cold-or-hot></app-cold-or-hot>
-<app-share></app-share>
-<app-share-replay></app-share-replay>
-<app-publish-replay></app-publish-replay>
+<ng-container *ngIf="currentStep?.label == 'reactive form'">
+    <app-add></app-add>
+</ng-container>
 
-<app-subject></app-subject>
-<app-behavior-subject></app-behavior-subject>
+<ng-container *ngIf="currentStep?.label == 'rxjs'">
+    <app-display-one-wookie></app-display-one-wookie>
 
-<app-concat-map></app-concat-map>
-<app-merge-map></app-merge-map>
-<app-switch-map></app-switch-map>
+    <app-unsubscribe></app-unsubscribe>
+    <app-take-until-subject></app-take-until-subject>
 
-<app-never></app-never>
-<app-behavior-subject></app-behavior-subject>
-<app-replay-subject></app-replay-subject>
-<app-async-subject></app-async-subject>
+    <app-cold-observable></app-cold-observable>
+    <app-cold-or-hot></app-cold-or-hot>
+    <app-share></app-share>
+    <app-share-replay></app-share-replay>
+    <app-publish-replay></app-publish-replay>
 
-<app-zip-fork-forkjoin-combinelatest-race></app-zip-fork-forkjoin-combinelatest-race>
+    <app-subject></app-subject>
+    <app-behavior-subject></app-behavior-subject>
+
+    <app-concat-map></app-concat-map>
+    <app-merge-map></app-merge-map>
+    <app-switch-map></app-switch-map>
+
+    <app-never></app-never>
+    <app-behavior-subject></app-behavior-subject>
+    <app-replay-subject></app-replay-subject>
+    <app-async-subject></app-async-subject>
+
+    <app-zip-fork-forkjoin-combinelatest-race></app-zip-fork-forkjoin-combinelatest-race>
+</ng-container>
