@@ -7,10 +7,10 @@ import { FormControl, FormGroup, FormBuilder, Validators, FormArray } from '@ang
   styleUrls: ['./add.component.css']
 })
 export class AddComponent implements OnInit {
-  name = new FormControl('');
+  name = new FormControl(8);
 
   wookieForm = new FormGroup({
-    name: new FormControl('', Validators.required),
+    name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     size: new FormControl(''),
     weapon: new FormGroup({
       name: new FormControl(''),
