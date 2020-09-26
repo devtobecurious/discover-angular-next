@@ -11,7 +11,6 @@ export class WookieService {
   constructor() { }
 
   getOne(): Observable<Wookie> {
-    console.log('coucou');
     return interval(1000).pipe(
       map(id => new Wookie(id, 'chewie ' + id, id * 100))
     );

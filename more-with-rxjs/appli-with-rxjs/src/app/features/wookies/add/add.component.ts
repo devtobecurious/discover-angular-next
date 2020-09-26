@@ -2,6 +2,10 @@ import { nameDifferentValidator } from './../../../shared/validators/name-differ
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { sizeMaxValidator } from 'src/app/shared/validators/size-max-validators';
+import validWeaponName from 'src/app/shared/validators/weapon-name.validator';
+import { WeaponService } from 'src/app/shared/services/weapon.service';
+import { of, timer } from 'rxjs';
+import { debounceTime, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add',
@@ -15,7 +19,7 @@ export class AddComponent implements OnInit {
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
     size: new FormControl('', sizeMaxValidator()),
     weapon: new FormGroup({
-      name: new FormControl(''),
+      name: new FormControl('', [Validators.required], validWeaponName(this.weaponService)),
       xp: new FormControl('')
     })},
     {
@@ -34,9 +38,13 @@ export class AddComponent implements OnInit {
     ])
   });
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private weaponService: WeaponService) { }
 
   ngOnInit(): void {
+    this.enemyForm.valueChanges.pipe(
+      debounceTime(200),
+      switchMap((value: string) => {console.log('valueChanges ?', value); return of(value); })
+    ).subscribe(item => console.log('lets subscribe :>> ', item));
   }
 
   setValue() {
