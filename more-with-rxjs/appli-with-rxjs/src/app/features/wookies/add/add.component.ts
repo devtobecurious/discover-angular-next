@@ -5,7 +5,7 @@ import { sizeMaxValidator } from 'src/app/shared/validators/size-max-validators'
 import validWeaponName from 'src/app/shared/validators/weapon-name.validator';
 import { WeaponService } from 'src/app/shared/services/weapon.service';
 import { of, timer } from 'rxjs';
-import { debounceTime, switchMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, pairwise, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add',
@@ -45,6 +45,11 @@ export class AddComponent implements OnInit {
       debounceTime(200),
       switchMap((value: string) => {console.log('valueChanges ?', value); return of(value); })
     ).subscribe(item => console.log('lets subscribe :>> ', item));
+
+    this.wookieForm.valueChanges.pipe(
+      distinctUntilChanged(),
+      pairwise()
+    ).subscribe(item => console.log('wookieForm:before/new', item));
   }
 
   setValue() {
