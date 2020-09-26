@@ -1,0 +1,11 @@
+<p>cold-or-hot works !</p>
+
+<h3>Cold 1</h3>
+<div *ngIf="obsRandom$ | async as rand">
+  {{ rand }}
+</div>
+
+<h3>Cold 2</h3>
+<div *ngIf="obs2$ | async as miam">
+  {{ miam }}
+</div>
