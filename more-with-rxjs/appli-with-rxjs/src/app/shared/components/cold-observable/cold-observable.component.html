@@ -1,0 +1,11 @@
+<p>cold-observable works!</p>
+
+<b>
+    Nb people : {{ peopleCount$ | async }}
+</b>
+
+<ul>
+    <li *ngFor="let item of peoples$ | async">
+        {{ item.name }}
+    </li>
+</ul>
