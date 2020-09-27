@@ -7,14 +7,16 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { OneOneComponent } from './shared/components/one-one/one-one.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
-  return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    OneOneComponent
   ],
   imports: [
     BrowserModule,

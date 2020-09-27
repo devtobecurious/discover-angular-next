@@ -1,0 +1,4 @@
+{
+    "hello": "hello {{val}}",
+    "areyou": "How are you {{surname}} ?"
+}
