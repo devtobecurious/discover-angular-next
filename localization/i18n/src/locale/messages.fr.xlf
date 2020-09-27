@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="8bd9adcb8bf68a005fb62e19b457d357805452e3" datatype="html">
+        <source>Un wookie</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/wookies/one-wookie/one-wookie.component.js</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <note priority="1" from="description">titre un wookie</note>
+        <note priority="1" from="meaning">titre</note>
+      </trans-unit>
+      <trans-unit id="701174153757adf13e7c24a248c8a873ac9f5193" datatype="html">
+        <source>Angular logo</source>
+        <target>Un logo</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/wookies/one-wookie/one-wookie.component.js</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5a134dee893586d02bffc9611056b9cadf9abfad" datatype="html">
+        <source>{VAR_PLURAL, plural, =0 {just now} =1 {one minute ago} other {<x id="INTERPOLATION"/> minutes ago}}</source>
+        <target>{VAR_PLURAL, plural, =0 {maintenant} =1 {il y a une minute} other {<x id="INTERPOLATION"/> minutes avant}}</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/wookies/one-wookie/one-wookie.component.js</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d69f6b42305f49332026fef24b40227f02e34594" datatype="html">
+        <source>Mise à jour <x id="ICU" equiv-text="i18n_5"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/wookies/one-wookie/one-wookie.component.js</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="44d5d0dc7fc1c76712d01e521f2798f83e10f303" datatype="html">
+        <source>{VAR_SELECT, select, male {male!} female {female} other {other}}</source>
+        <target>{VAR_SELECT, select, male {homme} female {femme} other {autre}}</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/wookies/one-wookie/one-wookie.component.js</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="660b758340682b95c6065b05f9511e427777fee8" datatype="html">
+        <source>L'auteur est <x id="ICU" equiv-text="i18n_9"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/wookies/one-wookie/one-wookie.component.js</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="055f1db3345092eb8a1f7908f06753afe8941af3" datatype="html">
+        <source>Hello !</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/wookies/one-wookie/one-wookie.component.js</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
