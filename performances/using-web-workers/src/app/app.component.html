@@ -1,0 +1,6 @@
+<div>
+  <input type="number" [(ngModel)]="number" placeholder="Enter any number" />
+  <button (click)="calcFib()">Calc. sync Fib</button>
+  <button (click)="calcFibWorker()">Calc. web worker Fib</button>
+</div>
+<div>Résultat : {{output}}</div>
