@@ -1,3 +1,4 @@
+import { MyLibModule, MyLibService } from 'my-lib';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -8,9 +9,12 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    MyLibModule
   ],
-  providers: [],
+  providers: [
+    MyLibService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
