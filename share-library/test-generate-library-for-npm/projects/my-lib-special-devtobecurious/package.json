@@ -1,5 +1,5 @@
 {
-  "name": "my-lib-devtobecurious",
+  "name": "my-lib-special-devtobecurious",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^10.1.6",

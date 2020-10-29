@@ -34,7 +34,7 @@ import { Component, HostBinding, OnInit, Input, Output, EventEmitter } from '@an
   ]
 })
 export class MyLibComponent implements OnInit {
-  private _message: string;
+  private _message: string = '';
 
   @HostBinding('@state')
   state: 'opened' | 'closed' = 'closed';

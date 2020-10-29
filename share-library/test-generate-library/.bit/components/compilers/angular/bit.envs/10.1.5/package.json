@@ -1,0 +1,105 @@
+{
+  "name": "@bit/bit.envs.compilers.angular",
+  "version": "10.1.5",
+  "homepage": "https://bit.dev/bit/envs/compilers/angular",
+  "main": "dist/index.js",
+  "componentId": {
+    "scope": "bit.envs",
+    "name": "compilers/angular",
+    "version": "10.1.5"
+  },
+  "dependencies": {
+    "@angular/compiler": "^10.1.5",
+    "@angular/compiler-cli": "^10.1.5",
+    "@angular/core": "10.1.5",
+    "@bazel/typescript": "^1.7.0",
+    "debug": "4.1.1",
+    "ng-packagr": "^9.0.0",
+    "rxjs": "6.5.4",
+    "tsickle": "^0.38.1",
+    "tslib": "1.11.1",
+    "typescript": "^4.0.3",
+    "vinyl": "^2.2.0",
+    "zone.js": "^0.10.3"
+  },
+  "devDependencies": {
+    "@types/vinyl": "^2.0.3",
+    "bit-bin": "14.7.6",
+    "@types/node": "^12.7.4",
+    "@types/webpack-env": "^1.15.1"
+  },
+  "peerDependencies": {},
+  "license": "SEE LICENSE IN LICENSE",
+  "bit": {
+    "env": {
+      "compiler": {
+        "bit.envs/compilers/typescript@3.1.49": {
+          "rawConfig": {
+            "compilerPath": "typescript/bin/tsc",
+            "compilerArguments": [
+              "--declaration"
+            ],
+            "compiledFileTypes": [
+              ".ts",
+              ".tsx"
+            ],
+            "configFileName": "tsconfig.json",
+            "tsconfig": {
+              "compilerOptions": {
+                "outDir": "dist",
+                "target": "ES2015",
+                "sourceMap": false,
+                "moduleResolution": "Node",
+                "esModuleInterop": true,
+                "module": "CommonJS",
+                "allowSyntheticDefaultImports": true,
+                "resolveJsonModule": true,
+                "declaration": true,
+                "experimentalDecorators": true,
+                "inlineSourceMap": false,
+                "inlineSources": false,
+                "jsx": "react",
+                "rootDir": "./",
+                "removeComments": true,
+                "typeRoots": [
+                  "./node_modules/@types"
+                ],
+                "importHelpers": false,
+                "skipLibCheck": true
+              },
+              "include": [
+                "./**/*"
+              ],
+              "exclude": [
+                "node_modules",
+                "dist",
+                ".dependencies",
+                "*.spec.ts",
+                "*.e2e.ts"
+              ]
+            },
+            "development": false,
+            "copyPolicy": {
+              "ignorePatterns": [
+                "package.json",
+                "package-lock.json",
+                "tsconfig.json"
+              ],
+              "disable": false
+            }
+          },
+          "options": {}
+        }
+      }
+    },
+    "overrides": {
+      "dependencies": {
+        "bit-bin": "-"
+      },
+      "devDependencies": {
+        "@types/node": "+",
+        "@types/webpack-env": "+"
+      }
+    }
+  }
+}
