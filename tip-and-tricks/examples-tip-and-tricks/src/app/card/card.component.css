@@ -1,0 +1,11 @@
+/* https://developer.mozilla.org/fr/docs/Web/CSS/:host */
+
+:host {
+  padding: 2rem;
+  font-size: 2rem;
+  font-family: 'Helvetica', sans-serif;
+  font-weight: 300;
+  background: #e3f2fd;
+  margin: 1rem;
+  display: inline-block;
+}

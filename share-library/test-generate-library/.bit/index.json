@@ -1,0 +1,34 @@
+[
+  {
+    "id": {
+      "scope": "bit.envs",
+      "name": "compilers/angular"
+    },
+    "isSymlink": false,
+    "hash": "ff9bc2ee2e58fda705df24b3be15badf367346ef"
+  },
+  {
+    "id": {
+      "scope": "bit.envs",
+      "name": "compilers/utils"
+    },
+    "isSymlink": false,
+    "hash": "cc7bb2c0111e69015e8cf907fc7b13755039e61c"
+  },
+  {
+    "id": {
+      "scope": null,
+      "name": "lib"
+    },
+    "isSymlink": true,
+    "hash": "9d062bafff17ba8b9a1215c4c51485134d509d91"
+  },
+  {
+    "id": {
+      "scope": "devtobecurious.formation",
+      "name": "lib"
+    },
+    "isSymlink": false,
+    "hash": "0ea385111dc034a66eabf1a9cac2f4b345f8d226"
+  }
+]
