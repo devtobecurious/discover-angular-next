@@ -1,4 +1,5 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { DroidesAnimationService } from 'projects/game/shared/services/droides-animation.service';
 
 export enum KEY_CODE {
   RIGHT_ARROW = 39,
@@ -17,7 +18,7 @@ export class DisplayComponent implements OnInit {
   @Input()
   currentY = 0;
 
-  constructor() { }
+  constructor(private droideAnimationsService: DroidesAnimationService) { }
 
   ngOnInit(): void {
   }
