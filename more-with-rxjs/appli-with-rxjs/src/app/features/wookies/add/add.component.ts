@@ -1,11 +1,12 @@
-import { nameDifferentValidator } from './../../../shared/validators/name-different-validator';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { of } from 'rxjs';
+import { debounceTime, distinctUntilChanged, pairwise, switchMap } from 'rxjs/operators';
+import { WeaponService } from 'src/app/shared/services/weapon.service';
+import modulo from 'src/app/shared/validators/modulo.validator';
 import { sizeMaxValidator } from 'src/app/shared/validators/size-max-validators';
 import validWeaponName from 'src/app/shared/validators/weapon-name.validator';
-import { WeaponService } from 'src/app/shared/services/weapon.service';
-import { of, timer } from 'rxjs';
-import { debounceTime, distinctUntilChanged, pairwise, switchMap } from 'rxjs/operators';
+import { nameDifferentValidator } from './../../../shared/validators/name-different-validator';
 
 @Component({
   selector: 'app-add',
@@ -16,7 +17,7 @@ export class AddComponent implements OnInit {
   name = new FormControl(8);
 
   wookieForm = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    name: new FormControl('', [], modulo(1)),
     size: new FormControl('', sizeMaxValidator()),
     weapon: new FormGroup({
       name: new FormControl('', [Validators.required], validWeaponName(this.weaponService)),
