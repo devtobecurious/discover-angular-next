@@ -1,5 +1,5 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
-import { DroidesAnimationService } from 'projects/game/shared/services/droides-animation.service';
+import { DroidesAnimationService } from '../../../shared/services/droides-animation.service';
 
 export enum KEY_CODE {
   RIGHT_ARROW = 39,

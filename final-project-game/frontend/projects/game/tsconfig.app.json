@@ -2,8 +2,12 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "baseUrl": "./",
     "outDir": "../../out-tsc/app",
-    "types": []
+    "types": [],
+    "paths": {
+      "~models/*": ["src/app/core/models/*"]
+    }
   },
   "files": [
     "src/main.ts",

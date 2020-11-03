@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { GameModule } from 'projects/game/features/game/game.module';
+import { GameModule } from './features/game/game.module';
 
 @NgModule({
   declarations: [
