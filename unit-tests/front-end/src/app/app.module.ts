@@ -7,6 +7,7 @@ import { FirstEasyComponent } from './shared/components/first-easy/first-easy.co
 import { DashboardComponent } from './shared/components/dashboard/dashboard.component';
 import { WelcomeComponent } from './shared/components/welcome/welcome.component';
 import { BannerComponent } from './shared/component/banner/banner.component';
+import { DashboardWithNavigateComponent } from './dashboard-with-navigate/dashboard-with-navigate.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { BannerComponent } from './shared/component/banner/banner.component';
     FirstEasyComponent,
     DashboardComponent,
     WelcomeComponent,
-    BannerComponent
+    BannerComponent,
+    DashboardWithNavigateComponent
   ],
   imports: [
     BrowserModule,
