@@ -1,4 +1,4 @@
-import { fakeAsync, TestBed } from '@angular/core/testing';
+import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { WookiesWithHttpService } from './wookies-with-http.service';
 import { HttpClient } from '@angular/common/http';
@@ -9,6 +9,11 @@ describe('WookiesWithHttpService', () => {
   let httpClient: HttpClient;
   let httpMock: HttpTestingController;
 
+  let mockResult = [
+    { name: 'chewie' },
+    { name: 'chewa' }
+  ];
+
   beforeEach(() => {
 
     TestBed.configureTestingModule({
@@ -18,7 +23,7 @@ describe('WookiesWithHttpService', () => {
     });
     service = TestBed.inject(WookiesWithHttpService);
     httpClient = TestBed.inject(HttpClient);
-    httpMock = TestBed.get(HttpTestingController);
+    httpMock = TestBed.inject(HttpTestingController);
   });
 
   it('should be created', () => {
@@ -30,13 +35,23 @@ describe('WookiesWithHttpService', () => {
 
     expect(result).toBeTruthy();
 
+    console.log('1');
+
+    tick();
+
+    console.log('2');
     result.subscribe(items => {
+      console.log('3');
       expect(items).toBeTruthy();
+      console.log('---> ', items.length);
+
       expect(items.length).toBeGreaterThan(0, 'Gets more than 0 wookies');
     });
 
     const testRequest = httpMock.expectOne(environment.apis.wookies.url);
     expect(testRequest.request.url).toBe(environment.apis.wookies.url);
     expect(testRequest.request.method).toBe('GET');
+
+    testRequest.flush(mockResult);
   }));
 });
