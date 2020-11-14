@@ -35,6 +35,8 @@ describe('WookiesWithHttpService', () => {
       expect(items.length).toBeGreaterThan(0, 'Gets more than 0 wookies');
     });
 
-    httpMock.expectOne(environment.apis.wookies.url);
+    const testRequest = httpMock.expectOne(environment.apis.wookies.url);
+    expect(testRequest.request.url).toBe(environment.apis.wookies.url);
+    expect(testRequest.request.method).toBe('GET');
   }));
 });
