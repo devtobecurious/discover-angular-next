@@ -5,7 +5,7 @@ import { DisplayCharacterGameComponent } from './display-character-game.componen
 
 @NgModule({
   declarations: [
-    DisplayCharacterGameComponent,
+    DisplayCharacterGameComponent
   ],
   imports: [
   ],
