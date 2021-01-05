@@ -9,7 +9,7 @@ import { environment } from '../environments/environment';
 import { AuthenticationModule } from './features/authentications/authentication.module';
 import { EffectsModule } from '@ngrx/effects';
 import { RouterState, StoreRouterConnectingModule } from '@ngrx/router-store';
-import { reducers, metaReducers } from './core/store/reducers/index';
+import { reducers, metaReducers, routerReducerKey } from './core/store/reducers/index';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,7 @@ import { reducers, metaReducers } from './core/store/reducers/index';
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot({
-      stateKey: 'router', // property in the state
+      stateKey: routerReducerKey, // property in the state
       routerState: RouterState.Minimal // serialize the minimal value of the router state
     }),
     StoreRouterConnectingModule.forRoot()
