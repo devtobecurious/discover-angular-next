@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 import { ApplicationState } from './core/store/reducers';
 import { AuthenticationActions } from './features/authentications/store/actions/actions-types';
+import { login } from './features/authentications/store/actions/authenticate.actions';
 import { isLoggedIn, isLoggedOut } from './features/authentications/store/selectors/authentication.selector';
 
 @Component({
@@ -36,6 +37,11 @@ export class AppComponent implements OnInit {
     // better 3 : with selectors
     this.isLoggin$ = this.store.pipe(select(isLoggedIn));
     this.isLoggedOut$ = this.store.pipe(select(isLoggedOut));
+
+    const userProfile = localStorage.getItem('user');
+    if (userProfile) {
+      this.store.dispatch(login({ user: JSON.parse(userProfile) }));
+    }
   }
 
   logout(): void {
