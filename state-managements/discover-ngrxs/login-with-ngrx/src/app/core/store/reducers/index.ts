@@ -1,3 +1,4 @@
+import { routerReducer, RouterReducerState, RouterState } from '@ngrx/router-store';
 import {
   ActionReducerMap,
   MetaReducer
@@ -6,11 +7,15 @@ import { environment } from '../../../../environments/environment';
 
 import * as fromAuthenticate from '../../../features/authentications/store/reducers/authenticate.reducer';
 
+const routerReducerKey = 'router';
 export interface ApplicationState {
-  [fromAuthenticate.authenticateFeatureKey]: fromAuthenticate.AuthenticateState
+  [fromAuthenticate.authenticateFeatureKey]: fromAuthenticate.AuthenticateState,
+  [routerReducerKey]: RouterReducerState
 }
 
+
 export const reducers: ActionReducerMap<ApplicationState> = {
+  [routerReducerKey]: routerReducer,
   [fromAuthenticate.authenticateFeatureKey]: fromAuthenticate.reducer
 };
 
