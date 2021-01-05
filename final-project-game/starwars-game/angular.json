@@ -1,0 +1,168 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "the-game": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "sass"
+        }
+      },
+      "root": "projects/the-game",
+      "sourceRoot": "projects/the-game/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/the-game",
+            "index": "projects/the-game/src/index.html",
+            "main": "projects/the-game/src/main.ts",
+            "polyfills": "projects/the-game/src/polyfills.ts",
+            "tsConfig": "projects/the-game/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/the-game/src/favicon.ico",
+              "projects/the-game/src/assets"
+            ],
+            "styles": [
+              "projects/the-game/src/styles.sass"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/the-game/src/environments/environment.ts",
+                  "with": "projects/the-game/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "the-game:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "the-game:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "the-game:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/the-game/src/test.ts",
+            "polyfills": "projects/the-game/src/polyfills.ts",
+            "tsConfig": "projects/the-game/tsconfig.spec.json",
+            "karmaConfig": "projects/the-game/karma.conf.js",
+            "assets": [
+              "projects/the-game/src/favicon.ico",
+              "projects/the-game/src/assets"
+            ],
+            "styles": [
+              "projects/the-game/src/styles.sass"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/the-game/tsconfig.app.json",
+              "projects/the-game/tsconfig.spec.json",
+              "projects/the-game/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/the-game/e2e/protractor.conf.js",
+            "devServerTarget": "the-game:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "the-game:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "star-wars-player": {
+      "projectType": "library",
+      "root": "projects/star-wars-player",
+      "sourceRoot": "projects/star-wars-player/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/star-wars-player/tsconfig.lib.json",
+            "project": "projects/star-wars-player/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/star-wars-player/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/star-wars-player/src/test.ts",
+            "tsConfig": "projects/star-wars-player/tsconfig.spec.json",
+            "karmaConfig": "projects/star-wars-player/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/star-wars-player/tsconfig.lib.json",
+              "projects/star-wars-player/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "the-game"
+}
