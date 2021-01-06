@@ -8,12 +8,14 @@
 
     "build:lib:dev": "ng build star-wars-player",
 
-
     "prestart": "npm run build:lib:dev",
     "start": "ng serve",
 
     "build": "ng build",
-    "test": "ng test",
+
+    "test:lib": "ng test star-wars-player",
+    "test:game": "ng test",
+
     "lint": "ng lint",
     "e2e": "ng e2e"
   },

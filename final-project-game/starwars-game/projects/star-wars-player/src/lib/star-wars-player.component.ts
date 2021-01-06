@@ -2,11 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'lib-star-wars-player',
-  template: `
-    <p>
-      star-wars-player works!
-    </p>
-  `,
+  templateUrl: './star-wars-player.component.html',
   styles: [
   ]
 })
