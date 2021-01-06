@@ -19,6 +19,10 @@
       "star-wars-player": [
         "dist/star-wars-player/star-wars-player",
         "dist/star-wars-player"
+      ],
+      "star-wars-enemy": [
+        "dist/star-wars-enemy/star-wars-enemy",
+        "dist/star-wars-enemy"
       ]
     }
   }

@@ -3,19 +3,14 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-
     "commit": "git add --all && cz",
-
-    "build:lib:dev": "ng build star-wars-player",
-
+    "build:lib:dev": "ng build star-wars-player && ng build star-wars-enemy",
     "prestart": "npm run build:lib:dev",
     "start": "ng serve",
-
     "build": "ng build",
-
-    "test:lib": "ng test star-wars-player",
+    "test:lib:player": "ng test star-wars-player",
+    "test:lib:enemy": "ng test star-wars-enemy",
     "test:game": "ng test",
-
     "lint": "ng lint",
     "e2e": "ng e2e"
   },

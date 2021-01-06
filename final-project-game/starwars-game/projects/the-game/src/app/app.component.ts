@@ -7,9 +7,4 @@ import { Component, HostListener } from '@angular/core';
 })
 export class AppComponent {
   title = 'the-game';
-
-  @HostListener('window:keyup', ['$event'])
-  onKeyUp(event: KeyboardEvent) {
-    console.info('kniiii');
-  }
 }

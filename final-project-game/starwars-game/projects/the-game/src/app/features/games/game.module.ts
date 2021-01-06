@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StarWarsPlayerModule } from 'star-wars-player';
+import { StarWarsEnemyModule } from 'star-wars-enemy';
 import { GameComponent } from './game/game.component';
 import { GameRoutingModule } from './game-routing.module';
 
@@ -10,7 +11,8 @@ import { GameRoutingModule } from './game-routing.module';
   imports: [
     CommonModule,
     GameRoutingModule,
-    StarWarsPlayerModule
+    StarWarsPlayerModule,
+    StarWarsEnemyModule
   ]
 })
 export class GameModule { }

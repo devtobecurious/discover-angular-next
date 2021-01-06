@@ -162,6 +162,46 @@
           }
         }
       }
+    },
+    "star-wars-enemy": {
+      "projectType": "library",
+      "root": "projects/star-wars-enemy",
+      "sourceRoot": "projects/star-wars-enemy/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/star-wars-enemy/tsconfig.lib.json",
+            "project": "projects/star-wars-enemy/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/star-wars-enemy/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/star-wars-enemy/src/test.ts",
+            "tsConfig": "projects/star-wars-enemy/tsconfig.spec.json",
+            "karmaConfig": "projects/star-wars-enemy/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/star-wars-enemy/tsconfig.lib.json",
+              "projects/star-wars-enemy/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "the-game"
