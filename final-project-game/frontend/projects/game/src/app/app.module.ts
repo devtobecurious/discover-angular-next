@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GameModule } from './features/game/game.module';
 
+import { StarWarsPlayerModule } from 'star-wars-player';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -12,7 +14,8 @@ import { GameModule } from './features/game/game.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    GameModule
+    GameModule,
+    StarWarsPlayerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
