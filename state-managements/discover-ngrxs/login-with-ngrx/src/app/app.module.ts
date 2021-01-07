@@ -11,6 +11,9 @@ import { EffectsModule } from '@ngrx/effects';
 import { RouterState, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { reducers, metaReducers, routerReducerKey } from './core/store/reducers/index';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EntityDataModule } from '@ngrx/data';
+import { entityConfig } from './entity-metadata';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     AuthenticationModule.forRoot(),
     StoreModule.forRoot(reducers, {
       metaReducers,
@@ -36,7 +40,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       routerState: RouterState.Minimal // serialize the minimal value of the router state
     }),
     StoreRouterConnectingModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    EntityDataModule.forRoot(entityConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]
