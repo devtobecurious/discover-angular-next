@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
@@ -16,9 +17,10 @@ export class AppComponent implements OnInit {
   title = 'login-with-ngrx';
   isLoggin$: Observable<boolean>;
   isLoggedOut$: Observable<boolean>;
+  pageLoading: boolean = false;
 
 
-  constructor(private store: Store<ApplicationState>) {
+  constructor(private store: Store<ApplicationState>, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -42,6 +44,24 @@ export class AppComponent implements OnInit {
     if (userProfile) {
       this.store.dispatch(login({ user: JSON.parse(userProfile) }));
     }
+
+    this.router.events.subscribe(event => {
+      switch(true) {
+        case event instanceof NavigationStart: {
+          this.pageLoading = true;
+          console.info('loading', this.pageLoading);
+          break;
+        }
+        case event instanceof NavigationEnd:
+        case event instanceof NavigationCancel:
+        case event instanceof NavigationError: {
+          console.info('loading', this.pageLoading);
+          this.pageLoading = false;
+          break;
+        }
+      }
+    })
+
   }
 
   logout(): void {
