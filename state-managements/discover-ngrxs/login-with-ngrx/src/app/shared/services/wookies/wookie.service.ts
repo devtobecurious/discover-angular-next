@@ -13,8 +13,8 @@ export class WookieService {
   getAll(): Observable<Wookie[]> {
     console.warn('fetching data');
     const list: Wookie[] = [
-      { id: 1, name: 'Chewie', size: 250 },
-      { id: 3, name: 'Tralk', size: 300 }
+      { id: 1, displayId: 3, name: 'Chewie', size: 250 },
+      { id: 3, displayId: 2, name: 'Tralk', size: 300 }
     ];
 
     return of(list).pipe(delay(1000));

@@ -1,7 +1,8 @@
 import { createEntityAdapter, EntityState } from "@ngrx/entity";
 import { createReducer, on } from "@ngrx/store";
-import { Wookie } from "src/app/core/models/wookie";
+import { compareWookies, Wookie } from "src/app/core/models/wookie";
 import { WookiesActions } from '../actions/actions-types';
+import { WookiesEffect } from "../effects/wookies.effects";
 
 export const wookieFeatureKey = 'wookies';
 
@@ -17,13 +18,20 @@ export const wookieFeatureKey = 'wookies';
 // }
 
 export interface WookiesState extends EntityState<Wookie> {
+  allLoaded: boolean
 }
 
-export const adapter = createEntityAdapter<Wookie>();
+export const adapter = createEntityAdapter<Wookie>({
+  sortComparer: compareWookies,
+  selectId: wookie => wookie.id
+});
+
 export const { selectAll } = adapter.getSelectors();
-export const initialState = adapter.getInitialState();
+export const initialState = adapter.getInitialState({
+  allLoaded: false
+});
 
 export const reducer = createReducer(
   initialState,
-  on(WookiesActions.wookiesLoaded, (state, action) => adapter.setAll(action.wookies, state))
+  on(WookiesActions.wookiesLoaded, (state, action) => adapter.setAll(action.wookies, {...state, allLoaded: true}))
 );

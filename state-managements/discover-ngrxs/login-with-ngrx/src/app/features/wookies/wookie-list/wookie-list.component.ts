@@ -17,7 +17,7 @@ export class WookieListComponent implements OnInit {
   constructor(private store: Store<ApplicationState>) { }
 
   ngOnInit(): void {
-    this.list$ = this.store.pipe(select(fromWookies.selectAllBigWookies));
+    this.list$ = this.store.pipe(select(fromWookies.selectAllWookies));
   }
 
 }
