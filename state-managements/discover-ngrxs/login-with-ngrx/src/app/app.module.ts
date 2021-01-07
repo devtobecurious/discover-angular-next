@@ -10,6 +10,7 @@ import { AuthenticationModule } from './features/authentications/authentication.
 import { EffectsModule } from '@ngrx/effects';
 import { RouterState, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { reducers, metaReducers, routerReducerKey } from './core/store/reducers/index';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { reducers, metaReducers, routerReducerKey } from './core/store/reducers/
       stateKey: routerReducerKey, // property in the state
       routerState: RouterState.Minimal // serialize the minimal value of the router state
     }),
-    StoreRouterConnectingModule.forRoot()
+    StoreRouterConnectingModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

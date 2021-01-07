@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -6,12 +6,13 @@ import { LoginService } from 'src/app/shared/services/authenticates/login.servic
 import { AuthenticationActions } from '../store/actions/actions-types';
 import { ApplicationState } from '../../../core/store/reducers';
 
+declare var M: any;
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, AfterViewInit {
   loginForm: FormGroup;
 
   constructor(private loginService: LoginService,
@@ -24,7 +25,11 @@ export class LoginComponent implements OnInit {
     })
    }
 
-  ngOnInit(): void {
+   ngOnInit(): void {
+  }
+
+  ngAfterViewInit(): void {
+    M.updateTextFields();
   }
 
   login(): void {
