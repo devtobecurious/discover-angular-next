@@ -1,1 +1,3 @@
-<p>wookie-list works!</p>
+<div *ngFor="let item of list$ | async" class="wookie">
+  {{item.name}}
+</div>

@@ -6,7 +6,6 @@ import { StoreModule } from '@ngrx/store';
 import { AuthenticateGuard } from 'src/app/shared/guards/authenticate.guard';
 import { AuthenticateService } from 'src/app/shared/services/authenticates/authenticate.service';
 import { LoginService } from 'src/app/shared/services/authenticates/login.service';
-import * as fromAuthenticate from '../authentications/store/reducers/authenticate.reducer';
 import { AuthenticationRoutingModule } from './authentication-routing.module';
 import { LoginComponent } from './login/login.component';
 import { AuthenticateEffect } from './store/effects/authenticate.effect';
@@ -18,7 +17,7 @@ import { AuthenticateEffect } from './store/effects/authenticate.effect';
     CommonModule,
     ReactiveFormsModule,
     AuthenticationRoutingModule,
-    StoreModule.forFeature(fromAuthenticate.authenticateFeatureKey, fromAuthenticate.reducer),
+    //StoreModule.forFeature(fromAuthenticate.authenticateFeatureKey, fromAuthenticate.reducer), // no need because we add the storemodule in the AppModule
     EffectsModule.forFeature([AuthenticateEffect])
   ],
   exports: [LoginComponent]

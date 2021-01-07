@@ -204,5 +204,8 @@
       }
     }
   },
-  "defaultProject": "the-game"
+  "defaultProject": "the-game",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
