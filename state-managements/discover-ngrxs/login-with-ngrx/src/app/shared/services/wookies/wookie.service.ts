@@ -19,4 +19,14 @@ export class WookieService {
 
     return of(list).pipe(delay(1000));
   }
+
+  saveOne(id: number | string, changes: Partial<Wookie>): Observable<Wookie> {
+    console.info('saveOne');
+    return of({
+      id: <number>id,
+      name: changes.name,
+      displayId: changes.displayId,
+      size: changes.size
+    }).pipe(delay(3000));
+  }
 }

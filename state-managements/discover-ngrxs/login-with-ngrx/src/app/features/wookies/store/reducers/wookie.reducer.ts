@@ -33,5 +33,9 @@ export const initialState = adapter.getInitialState({
 
 export const reducer = createReducer(
   initialState,
-  on(WookiesActions.wookiesLoaded, (state, action) => adapter.setAll(action.wookies, {...state, allLoaded: true}))
+  on(WookiesActions.wookiesLoaded, (state, action) => adapter.setAll(action.wookies, {...state, allLoaded: true})),
+  on(WookiesActions.wookyUpdated, (state, action) => {
+    console.info('reducer', action);
+    return adapter.updateOne(action.update, state);
+  })
 );

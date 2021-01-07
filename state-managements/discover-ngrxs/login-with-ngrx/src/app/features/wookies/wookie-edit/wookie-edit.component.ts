@@ -1,8 +1,12 @@
-import { Component, OnInit, AfterViewInit, Inject } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Actions, ofType } from '@ngrx/effects';
+import { Update } from '@ngrx/entity';
+import { Store } from '@ngrx/store';
 import { Wookie } from 'src/app/core/models/wookie';
+import { ApplicationState } from 'src/app/core/store/reducers';
+import { WookiesActions } from '../store/actions/actions-types';
 
 declare var M: any;
 
@@ -17,7 +21,8 @@ export class WookieEditComponent implements OnInit, AfterViewInit {
   constructor(private formBuilder: FormBuilder,
               @Inject(MAT_DIALOG_DATA) public data: {mode: string, wookie: Wookie},
               public dialogRef: MatDialogRef<WookieEditComponent>,
-                ) {
+              private store: Store<ApplicationState>,
+              private actions$: Actions) {
     this.wookieForm = this.formBuilder.group({
       name: ['rooooar', [Validators.required]],
       size: [200]
@@ -30,6 +35,10 @@ export class WookieEditComponent implements OnInit, AfterViewInit {
       name,
       size
     });
+
+    this.actions$.pipe(
+      ofType(WookiesActions.wookyUpdated)
+    ).subscribe(item => this.dialogRef.close());
   }
 
   ngAfterViewInit(): void {
@@ -37,6 +46,12 @@ export class WookieEditComponent implements OnInit, AfterViewInit {
   }
 
   save() {
-    this.dialogRef.close();
+    const wookie: Wookie = { ...this.data.wookie, ...this.wookieForm.value };
+    const update: Update<Wookie> = {
+      id: wookie.id,
+      changes: wookie
+    };
+
+    this.store.dispatch(WookiesActions.wookyWillUpdate({update}));
   }
 }
