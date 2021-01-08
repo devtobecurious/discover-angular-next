@@ -1,0 +1,33 @@
+<h1>Home</h1>
+
+<div class="example-button-container">
+  <button mat-fab color="accent" aria-label="Example icon button with a bookmark icon" (click)="openCreateDialog()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+
+<div class="container">
+<mat-card class="example-card" *ngFor="let item of wookies$ | async">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{ item.name }}</mat-card-title>
+    <mat-card-subtitle>{{ item.size }} cm</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="https://i.pinimg.com/564x/da/df/d5/dadfd55a900805c3210d2af74698630a.jpg" alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <p>
+      Wookie more later ....
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-fab color="accent" aria-label="Example icon button with a bookmark icon" (click)="openEditDialog(item)">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-fab color="accent" aria-label="Example icon button with a bookmark icon" (click)="deleteWookie(item)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
+</div>
+
+<a [routerLink]="['wookies']">Wookies</a>

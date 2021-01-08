@@ -45,7 +45,11 @@ export class WookieEditComponent implements OnInit, AfterViewInit {
     M.updateTextFields();
   }
 
-  save() {
+  close(): void {
+    this.dialogRef.close()
+  }
+
+  save(): void {
     const wookie: Wookie = { ...this.data.wookie, ...this.wookieForm.value };
     const update: Update<Wookie> = {
       id: wookie.id,

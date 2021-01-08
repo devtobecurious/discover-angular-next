@@ -1,7 +1,11 @@
 import { EntityMetadataMap, EntityDataModuleConfig } from '@ngrx/data';
+import { compareWookies } from './core/models/wookie';
 
 export const entityMetadata: EntityMetadataMap = {
-  Wookie: {}
+  Wookie: {
+    selectId: item => item.id,
+    sortComparer: compareWookies
+  }
 };
 
 const pluralNames = {  };
