@@ -1,11 +1,14 @@
 import { AfterViewInit, Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { EntityChangeTracker, EntityOp } from '@ngrx/data';
 import { Actions, ofType } from '@ngrx/effects';
 import { Update } from '@ngrx/entity';
 import { Store } from '@ngrx/store';
+import { filter, tap } from 'rxjs/operators';
 import { Wookie } from 'src/app/core/models/wookie';
 import { ApplicationState } from 'src/app/core/store/reducers';
+import { WookieEntityService } from 'src/app/shared/services/wookies/wookie-entity.service';
 import { WookiesActions } from '../store/actions/actions-types';
 
 declare var M: any;
@@ -17,16 +20,19 @@ declare var M: any;
 })
 export class WookieEditComponent implements OnInit, AfterViewInit {
   wookieForm: FormGroup;
+  mode: 'create' | 'update';
 
   constructor(private formBuilder: FormBuilder,
-              @Inject(MAT_DIALOG_DATA) public data: {mode: string, wookie: Wookie},
+              @Inject(MAT_DIALOG_DATA) public data: {mode: 'create' | 'update', wookie: Wookie},
               public dialogRef: MatDialogRef<WookieEditComponent>,
-              private store: Store<ApplicationState>,
-              private actions$: Actions) {
+              private service: WookieEntityService) {
+
     this.wookieForm = this.formBuilder.group({
       name: ['rooooar', [Validators.required]],
       size: [200]
     });
+
+    this.mode = this.data.mode;
   }
 
   ngOnInit(): void {
@@ -36,9 +42,11 @@ export class WookieEditComponent implements OnInit, AfterViewInit {
       size
     });
 
-    this.actions$.pipe(
-      ofType(WookiesActions.wookyUpdated)
-    ).subscribe(item => this.dialogRef.close());
+    this.service.entityActions$.pipe(
+      filter(item => item.type.endsWith(EntityOp.SAVE_UPDATE_ONE_SUCCESS))
+    ).subscribe(
+      item => this.dialogRef.close()
+    );
   }
 
   ngAfterViewInit(): void {
@@ -51,11 +59,9 @@ export class WookieEditComponent implements OnInit, AfterViewInit {
 
   save(): void {
     const wookie: Wookie = { ...this.data.wookie, ...this.wookieForm.value };
-    const update: Update<Wookie> = {
-      id: wookie.id,
-      changes: wookie
-    };
 
-    this.store.dispatch(WookiesActions.wookyWillUpdate({update}));
+    if (this.mode == 'update') {
+      this.service.update(wookie);
+    }
   }
 }

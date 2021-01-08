@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "https://31207eda-365c-49c0-be35-b8e6dd3e2f2c.mock.pstmn.io",
+    "target": "https://d5ce7856-12ce-4909-8da5-c0e0db976262.mock.pstmn.io",
     "secure": false,
     "pathRewrite": {
       "^/api": ""
