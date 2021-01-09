@@ -1,10 +1,12 @@
 import { WookiesState } from "src/app/features/wookies/store/reducers/wookie.reducer";
+import { Weapon } from "./weapon";
 
 export interface Wookie {
   id: number;
   displayId: number;
   name: string;
   size: number;
+  weapons?: Weapon[];
 }
 
 export function compareWookies(wookie1: Wookie, wookie2: Wookie): number {

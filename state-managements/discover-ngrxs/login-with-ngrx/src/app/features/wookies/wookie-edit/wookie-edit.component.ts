@@ -43,7 +43,7 @@ export class WookieEditComponent implements OnInit, AfterViewInit {
     });
 
     this.service.entityActions$.pipe(
-      filter(item => item.type.endsWith(EntityOp.SAVE_UPDATE_ONE_SUCCESS))
+      filter(item => item.type.endsWith(EntityOp.SAVE_UPDATE_ONE_SUCCESS) || item.type.endsWith(EntityOp.SAVE_ADD_ONE_SUCCESS))
     ).subscribe(
       item => this.dialogRef.close()
     );
@@ -62,6 +62,8 @@ export class WookieEditComponent implements OnInit, AfterViewInit {
 
     if (this.mode == 'update') {
       this.service.update(wookie);
+    } else if (this.mode == 'create') {
+      this.service.add(wookie);
     }
   }
 }

@@ -9,11 +9,15 @@ import { WookieComponent } from './wookie/wookie.component';
 
 const routes: Routes = [
   {
-    path: 'wookies',
+    path: 'list',
     component: WookieListComponent,
     resolve: {
       wookies: WookieResolver
     }
+  },
+  {
+    path: 'edit/:id',
+    component: WookieComponent
   },
   {
     path: '',
@@ -22,10 +26,6 @@ const routes: Routes = [
       wookies: WookieBisResolver
     }
   },
-  {
-    path: 'edit/:id',
-    component: WookieComponent
-  }
 ];
 
 @NgModule({
