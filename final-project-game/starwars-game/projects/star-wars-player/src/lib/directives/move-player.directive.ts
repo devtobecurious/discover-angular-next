@@ -22,8 +22,6 @@ export class MovePlayerDirective {
 
     this.lastLeft += operator;
     this.element.nativeElement.style.left = this.lastLeft + 'px';
-
-    console.info('keydown');
   }
 
 }

@@ -1,4 +1,7 @@
 <div class="game" style="width:550px; height: 350px; background-image: url('http://www.ewokzone.com/wp-content/uploads/2020/01/endor-1-550x350.jpg');">
   <lib-star-wars-player></lib-star-wars-player>
-  <lib-star-wars-enemy></lib-star-wars-enemy>
+  <lib-star-wars-enemy [coordinate]="item.location" *ngFor="let item of enemies"></lib-star-wars-enemy>
 </div>
+
+
+

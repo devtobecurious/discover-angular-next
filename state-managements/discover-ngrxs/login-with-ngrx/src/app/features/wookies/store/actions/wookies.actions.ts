@@ -14,5 +14,5 @@ export const loadAllWookies = createAction(AuthenticateActionTypes.LoadAll);
 export const wookiesLoaded = createAction(AuthenticateActionTypes.LoadEffects, props<{wookies: Wookie[]}>());
 
 export const wookyWillUpdate = createAction(AuthenticateActionTypes.EditOne, props<{update: Update<Wookie>}>());
-export const wookyUpdated = createAction(AuthenticateActionTypes.EditOne, props<{update: Update<Wookie>}>());
+export const wookyUpdated = createAction(AuthenticateActionTypes.EditEffects, props<{update: Update<Wookie>}>());
 

@@ -1,6 +1,18 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { Observable, of } from 'rxjs';
+import { Enemy } from '../../../core/models/enemy';
+import { EnemyService } from '../../../shared/services/enemies/enemy.service';
 import { GameComponent } from './game.component';
+
+class FakeService {
+  getAll(): Observable<Enemy[]> {
+    return of([
+      { type: 'droide', name: 'Droide001' },
+      { type: 'droide', name: 'Droide002' },
+    ]);
+  }
+}
+
 
 describe('GameComponent', () => {
   let component: GameComponent;
@@ -8,7 +20,10 @@ describe('GameComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GameComponent ]
+      declarations: [ GameComponent ],
+      providers: [
+        { provide: EnemyService, useValue: FakeService }
+      ]
     })
     .compileComponents();
   });
@@ -35,4 +50,14 @@ describe('GameComponent', () => {
     expect(container.style.width).toBe('550px');
     expect(container.style.height).toBe('350px');
   });
+
+  it('should load all enemies in observable', fakeAsync(() => {
+
+    fixture.detectChanges();
+
+    component.enemies$.subscribe(items => {
+      expect(items).toBeTruthy();
+      expect(items.length).toBe(2);
+    });
+  }));
 });

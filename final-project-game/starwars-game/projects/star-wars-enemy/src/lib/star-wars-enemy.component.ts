@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { EnemyType } from './models/enemy-type';
 import imageUrls from './models/images-urls';
 import { Coordinate } from './models/coordinate';
@@ -13,6 +13,7 @@ export class StarWarsEnemyComponent implements OnInit {
   type: EnemyType;
   imageUrl: string;
 
+  @Input()
   coordinate: Coordinate = {
     x: 0,
     y: 0
