@@ -90,14 +90,14 @@ describe('StarWarsPlayerComponent', () => {
 
   function movePlayer(keyCode: string, nbKeyPress: number = 1) {
     for (let i=0; i < nbKeyPress; i++) {
-      simulateKeyUp(keyCode);
+      simulateKeyDown(keyCode);
     }
   }
 
-  function simulateKeyUp(keyCode: string) {
+  function simulateKeyDown(keyCode: string) {
     const escapeEvent: any = document.createEvent('CustomEvent');
     escapeEvent.code = keyCode;
-    escapeEvent.initEvent('keyup', true, true);
+    escapeEvent.initEvent('keydown', true, true);
     document.dispatchEvent(escapeEvent);
   }
 });

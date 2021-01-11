@@ -8,8 +8,8 @@ export class MovePlayerDirective {
 
   constructor(private element: ElementRef) { }
 
-  @HostListener('window:keyup', ['$event'])
-  onKeyPress(event: KeyboardEvent) {
+  @HostListener('window:keydown', ['$event'])
+  onKeyUp(event: KeyboardEvent) {
     let operator = 0;
 
     if (event.code == 'ArrowRight') {
@@ -22,6 +22,8 @@ export class MovePlayerDirective {
 
     this.lastLeft += operator;
     this.element.nativeElement.style.left = this.lastLeft + 'px';
+
+    console.info('keydown');
   }
 
 }
