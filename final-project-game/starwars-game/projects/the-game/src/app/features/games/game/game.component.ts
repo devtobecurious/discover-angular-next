@@ -20,6 +20,7 @@ export class GameComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(fromEnemyActions.loadEnemies());
 
+    // first version, without alter the ngrx state
     this.store.pipe(
       select(fromEnemySelectors.selectAllEnemies),
       map(items => items.map(item => new RealEnemy(item)))
@@ -35,7 +36,7 @@ export class GameComponent implements OnInit {
 
   moveEnemies() {
     this.enemies.forEach(enemy => {
-      enemy.location.x += 1;
+      enemy.location.x -= 1;
     });
   }
 
