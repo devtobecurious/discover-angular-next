@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Wookie } from 'src/app/models/wookies/wookie';
 
 import { FirstComponentComponent } from './first-component.component';
 
