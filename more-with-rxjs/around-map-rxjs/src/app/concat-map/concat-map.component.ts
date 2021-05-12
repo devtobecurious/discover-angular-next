@@ -26,10 +26,6 @@ export class ConcatMapComponent implements OnInit {
       observer.complete();
     });
 
-    // firstObservable.pipe(
-    //   concatMap(item => secondObservable)
-    // ).subscribe(item => console.log('??', item));
-
     this.result$ = firstObservable.pipe(
       concatMap(item => of('item' + item).pipe(delay(500)))
     );
