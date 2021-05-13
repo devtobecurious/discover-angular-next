@@ -1,11 +1,11 @@
 export const baseEnvApis = {
   apis: {
-    base: '',
+    base: 'http://localhost:3000/',
     notifications: {
-      url: '/api/subscribe'
+      url: 'api/subscribe'
     },
     newsletter: {
-      url: '/api/newsletter'
+      url: 'api/newsletter'
     }
   }
 };

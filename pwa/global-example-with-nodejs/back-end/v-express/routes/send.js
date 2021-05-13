@@ -2,10 +2,12 @@ var express = require('express');
 var router = express.Router();
 const vapiService = require('../services/vapi-service').getInstance();
 
+router.get('/', function(req, res, next) {
+    res.render('send', { title: 'Send notif' });
+  });
+
 router.post('/', function(req, res, next) {
     const subscription = req.body;
-
-    console.log(subscription);
 
     vapiService.init();
     vapiService.send(subscription, 'Test 2');

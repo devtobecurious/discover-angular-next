@@ -16,7 +16,7 @@ webpush.setVapidDetails(
 /* GET users listing. */
 
  const sendAllNotifications = (req, res, next) => {
-    const payload = {
+    const notificationPayload = {
         "notification": {
             "title": "Angular News",
             "body": "Newsletter Available!",

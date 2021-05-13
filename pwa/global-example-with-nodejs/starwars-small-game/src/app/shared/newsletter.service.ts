@@ -10,10 +10,11 @@ export class NewsletterService {
   constructor(private httpClient: HttpClient) { }
 
   addPushSubscriber(sub: any) {
-    return this.httpClient.post(environment.apis.notifications.url, sub);
+    console.info(sub);
+    return this.httpClient.post(environment.apis.base + environment.apis.notifications.url, sub);
   }
 
   send() {
-    return this.httpClient.post(environment.apis.newsletter.url, null);
+    return this.httpClient.post(environment.apis.base + environment.apis.newsletter.url, null);
   }
 }
