@@ -1,6 +1,7 @@
 const webpush = require('web-push');
-
 class VapiService {
+    subscriptions = [];
+
     constructor() {
         this.vapidKeys = {
             "publicKey": "BEfaBUPsLxyR0_UbcSCmlTV7ibMf7smzfXNY4dqI8DJUdRYNuuWK2T_rEsGiUe0WZXia1SJhyhOwV02JRYE9zLM",
@@ -17,6 +18,8 @@ class VapiService {
     }
 
     send(subscription, title) {
+        this.subscriptions.push(subscription);
+
         const payload = JSON.stringify({
             notification: {
               title: title,
