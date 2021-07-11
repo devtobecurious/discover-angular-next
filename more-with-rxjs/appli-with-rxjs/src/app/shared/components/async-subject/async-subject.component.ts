@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AsyncSubject } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-async-subject',
@@ -14,13 +15,15 @@ export class AsyncSubjectComponent implements OnInit {
     const subject$ = new AsyncSubject();
 
     subject$.subscribe(item => console.log('async subject', 1, item));
-    
+
     subject$.next('A');
     subject$.next('B');
     subject$.next('C');
-    
+
+    subject$.pipe(tap(item => console.log(item)));
+
     subject$.subscribe(item => console.log('async subject', 2, item));
-    
+
     subject$.next('D');
 
     console.log('when ...');
