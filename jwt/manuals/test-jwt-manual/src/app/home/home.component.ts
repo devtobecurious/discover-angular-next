@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ProductDto } from '../models/product.dto';
+import { ProductService } from '../shared/services/product.service';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +9,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  products$ !: Observable<ProductDto[]>;
 
-  constructor() { }
+
+  constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
+    this.products$ = this.productService.getAll();
   }
 
 }

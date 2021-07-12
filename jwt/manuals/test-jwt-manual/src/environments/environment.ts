@@ -7,6 +7,9 @@ export const environment = {
   apis: {
     login: {
       url: 'http://localhost:8000/auth/login'
+    },
+    products: {
+      url: 'http://localhost:8000/products'
     }
   }
 };

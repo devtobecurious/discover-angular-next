@@ -33,7 +33,12 @@ export class AuthService {
     return this.httpClient.post<TokenResult>(environment.apis.login.url, profile).pipe(
       map(item => {
         user.token = item.access_token;
+        console.log(item.access_token);
         return user;
+      }),
+      tap(item => {
+        this.user = item;
+        this.localStorage.set('jwt_token', this.user.token);
       })
     );
   }
