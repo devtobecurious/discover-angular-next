@@ -12,10 +12,15 @@ import { AdThreeComponent } from '../ad-three/ad-three.component';
 })
 export class AdAllComponent implements OnInit, OnDestroy, AfterViewInit {
   destroy$: Subject<boolean> = new Subject();
+
+
   private components = [AdOneComponent, AdTwoComponent, AdThreeComponent];
   @ViewChild('ref', {read: ViewContainerRef}) containerRef: ViewContainerRef;
 
+
   constructor(private componentResolver: ComponentFactoryResolver) { }
+
+
 
   ngAfterViewInit(): void {
     interval(1000).pipe(

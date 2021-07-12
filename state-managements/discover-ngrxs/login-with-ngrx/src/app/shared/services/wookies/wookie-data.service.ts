@@ -13,4 +13,5 @@ export class WookieDataService extends DefaultDataService<Wookie>  {
   getAll(): Observable<Wookie[]> {
     return this.http.get<Wookie[]>('/api/wookies');
   }
+
 }

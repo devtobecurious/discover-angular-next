@@ -7,6 +7,12 @@ router.post('/', function(req, res, next) {
 
     console.log(subscription);
 
+    // this.mongo.save({
+        //idUser: req.params.id,
+        //sub: subscription
+    //});
+    })
+
     vapiService.init();
     vapiService.send(subscription, 'Test 2');
 

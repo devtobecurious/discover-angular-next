@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'lib-star-wars-player',
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   ]
 })
 export class StarWarsPlayerComponent implements OnInit {
-  coordinate = {
+  @Input() coordinate = {
     x: 0
   };
 

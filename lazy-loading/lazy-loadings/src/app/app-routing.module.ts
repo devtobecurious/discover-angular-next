@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: 'wookies',
     loadChildren: () =>  import('./business/wookies/wookies.module').then(item => item.WookiesModule),
-    data: { preload: false }
+    data: { preload: true }
   }
 ];
 
