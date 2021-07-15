@@ -1,4 +1,11 @@
-<input type="text" name="login" id="" [(ngModel)]="user.login">
+<h1>TDF</h1>
+<input type="text" name="login" id="" [(ngModel)]="user.login" required>
 <input type="text" name="password" id="" [(ngModel)]="user.password">
+
+<h1>Reactive form</h1>
+<form [formGroup]="loginForm">
+  <input type="text" name="login" id="" formControlName="email" >
+  <input type="text" name="password" id="" formControlName="password" >
+</form>
 
 <button (click)="clickToLog()" >Log</button>
