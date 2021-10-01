@@ -8,3 +8,5 @@ export class WookieEntityService extends EntityCollectionServiceBase<Wookie> {
     super('Wookie', factory);
   }
 }
+
+

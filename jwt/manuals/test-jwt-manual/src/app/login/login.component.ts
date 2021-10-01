@@ -1,3 +1,4 @@
+import { trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -7,7 +8,10 @@ import { AuthService } from '../shared/service/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  animations: [
+    trigger
+  ]
 })
 export class LoginComponent implements OnInit {
   user: User = { login: '', name: '', password: '', token: ''  };

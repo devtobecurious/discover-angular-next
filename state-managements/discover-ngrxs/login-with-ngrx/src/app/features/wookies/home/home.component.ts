@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
   }
 
   deleteWookie(wookie: Wookie): void {
-
+    this.service.delete(wookie);
   }
 
   private openDialog(state: 'create' | 'update', wookie: Wookie): void {
