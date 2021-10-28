@@ -2,6 +2,7 @@ import { pluck, shareReplay } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 
+
 @Component({
   selector: 'app-share-replay',
   templateUrl: './share-replay.component.html',
@@ -19,7 +20,7 @@ export class ShareReplayComponent implements OnInit {
     );
 
     const subscriber = lastUrl.subscribe(item => console.log('ShareReplayComponent share: 1', item));
-    
+
     const secondSubscriber = lastUrl.subscribe(item => console.log('ShareReplayComponent share: 2', item));
     this.routeEnd.next({ url: 'swapi', data: {} });
     this.routeEnd.next({ url: 'swapi 2', data: {} });
