@@ -1,0 +1,7 @@
+{
+  "apis" : {
+    "starwars": {
+      "url": "https://swapi.dev/api/people"
+    }
+  }
+}
