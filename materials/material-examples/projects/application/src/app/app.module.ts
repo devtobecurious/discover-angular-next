@@ -16,13 +16,15 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { LayoutModule } from '@angular/cdk/layout';
+import { BreakpointObserverComponent } from './breakpoint-observer/breakpoint-observer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DialogTestComponent,
     DialogDisplayComponent,
-    TestComponent
+    TestComponent,
+    BreakpointObserverComponent
   ],
   imports: [
     BrowserModule,
