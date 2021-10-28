@@ -1,22 +1,25 @@
+import { LayoutModule } from '@angular/cdk/layout';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSliderModule } from '@angular/material/slider';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DialogTestComponent } from './dialog-test/dialog-test.component';
-import { DialogDisplayComponent } from './dialog-display/dialog-display.component';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatSliderModule } from '@angular/material/slider';
-import { FormsModule } from '@angular/forms';
-import { TestComponent } from './test/test.component';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatCardModule } from '@angular/material/card';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { LayoutModule } from '@angular/cdk/layout';
 import { BreakpointObserverComponent } from './breakpoint-observer/breakpoint-observer.component';
+import { DialogDisplayComponent } from './dialog-display/dialog-display.component';
+import { DialogTestComponent } from './dialog-test/dialog-test.component';
+import { ScrollingVirtualComponent } from './scrolling-virtual/scrolling-virtual.component';
+import { TestComponent } from './test/test.component';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +27,8 @@ import { BreakpointObserverComponent } from './breakpoint-observer/breakpoint-ob
     DialogTestComponent,
     DialogDisplayComponent,
     TestComponent,
-    BreakpointObserverComponent
+    BreakpointObserverComponent,
+    ScrollingVirtualComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +42,8 @@ import { BreakpointObserverComponent } from './breakpoint-observer/breakpoint-ob
     MatMenuModule,
     MatIconModule,
     MatButtonModule,
+    ScrollingModule,
+    MatSelectModule,
     LayoutModule
   ],
   providers: [],

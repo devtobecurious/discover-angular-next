@@ -2,3 +2,17 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-select-panel.virtual-scroll {
+  max-height: 100% !important;
+  overflow: inherit !important;
+}
+.mat-select-panel .cdk-virtual-scroll-viewport {
+ max-height: 240px !important;
+}
+
+.mat-select-panel .cdk-virtual-scroll-content-wrapper {
+  position: inherit !important;
+  top: inherit !important;
+  left: 0;
+}

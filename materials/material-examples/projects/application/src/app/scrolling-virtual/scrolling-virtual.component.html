@@ -1,0 +1,25 @@
+<h1>Scrolling</h1>
+
+<!-- <div *ngFor="let item of items">
+  {{ item }}
+</div> -->
+
+<button (click)="goTo()">Aller à</button><input type="number" [(ngModel)]="scrollIndex"><br>
+
+<cdk-virtual-scroll-viewport appendOnly itemSize="50" class="example-viewport"
+  (scrolledIndexChange)="scrolledIndexChange($event)">
+  <div *cdkVirtualFor="let item of items" class="example-item">
+    {{ item }}
+  </div>
+</cdk-virtual-scroll-viewport>
+
+<mat-form-field>
+	<mat-select placeholder="State" class="virtual-scroll"
+		(openedChange)="scrollViewport.scrollToIndex(items.indexOf('0'))">
+		<cdk-virtual-scroll-viewport itemSize="10" #scrollViewport>
+			<mat-option *cdkVirtualFor="let state of items" [value]="state">
+				{{state}}
+			</mat-option>
+		</cdk-virtual-scroll-viewport>
+	</mat-select>
+</mat-form-field>
