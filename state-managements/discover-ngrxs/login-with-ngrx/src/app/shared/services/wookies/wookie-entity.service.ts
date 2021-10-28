@@ -6,6 +6,8 @@ import { Wookie } from "src/app/core/models/wookie";
 export class WookieEntityService extends EntityCollectionServiceBase<Wookie> {
   constructor(factory: EntityCollectionServiceElementsFactory) {
     super('Wookie', factory);
+
+
   }
 }
 
