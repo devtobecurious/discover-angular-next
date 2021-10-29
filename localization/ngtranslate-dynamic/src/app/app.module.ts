@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { OneOneComponent } from './shared/components/one-one/one-one.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+  return new TranslateHttpLoader(http, './assets/i18n', '.json');
 }
 
 @NgModule({
