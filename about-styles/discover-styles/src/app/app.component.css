@@ -1,0 +1,13 @@
+
+
+div {
+  background-color: seagreen;
+  color: white;
+  font-weight: bold;
+}
+
+::ng-deep div {
+  background-color: red;
+  color: white;
+  font-weight: bold;
+}
