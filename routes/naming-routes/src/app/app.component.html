@@ -1,0 +1,7 @@
+<h1>App </h1>
+
+<a routerLink="">Home</a>
+<a [routerLink]="[{ outlets: { primary: ['wookies'], sidebar: ['child-wookies'] } }]">Wookies</a>
+
+<router-outlet></router-outlet>
+<router-outlet name="sidebar"></router-outlet>
