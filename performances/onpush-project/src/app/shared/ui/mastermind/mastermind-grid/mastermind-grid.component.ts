@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit } from '@angular/core';
 import { changeStateCell, Tile, TileCell } from '../models';
 
 @Component({
@@ -26,7 +26,16 @@ export class MastermindGridComponent implements OnInit {
     console.info('view');
   }
 
-  clickTile(item: TileCell) {
-    changeStateCell(item, ! item.isRevealed);
+  clickTile(item: TileCell, cell: HTMLDivElement) {
+    changeStateCell(item, ! item.isRevealed, true);
+    this.appearValueOnCell(item, cell);
+  }
+
+  private appearValueOnCell(cell: TileCell, div: HTMLDivElement) {
+    div.innerText = '';
+
+    if (cell.isRevealed) {
+      div.innerText = cell.value.toString();
+    }
   }
 }

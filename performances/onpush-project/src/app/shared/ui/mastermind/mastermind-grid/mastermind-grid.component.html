@@ -1,5 +1,5 @@
 {{ logView() }}
 
 <div class="mastermind">
-    <div [ngClass]="item.css" class="tile" *ngFor="let item of cells" (click)="clickTile(item)"></div>
+    <div [ngClass]="item.css" #cell *ngFor="let item of cells" (click)="clickTile(item, cell)"></div>
 </div>

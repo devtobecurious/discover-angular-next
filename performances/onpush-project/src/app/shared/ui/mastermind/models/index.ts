@@ -8,11 +8,16 @@ export interface TileCell extends Tile {
 }
 
 /** change state and css value of the current cell */
-export const changeStateCell = (cell: TileCell, isRevealed: boolean) => {
+export const changeStateCell = (cell: TileCell, isRevealed: boolean, clicked: boolean = false) => {
   cell.isRevealed = isRevealed;
   cell.css = 'tile';
 
   if (cell.isRevealed) {
     cell.css += ' flipped';
   }
+
+  if (! cell.isRevealed && clicked) {
+    cell.css += ' covered';
+  }
 }
+
