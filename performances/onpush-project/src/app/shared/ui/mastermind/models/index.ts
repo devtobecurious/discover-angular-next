@@ -1,5 +1,8 @@
 export interface Tile {
-  color: string;
   isRevealed: boolean;
   value: number;
+}
+
+export interface TileCell extends Tile {
+  css: string
 }

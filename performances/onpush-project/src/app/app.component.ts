@@ -13,8 +13,7 @@ export class AppComponent implements OnInit {
   constructor() {
     for (let index = 0; index < 256; index++) {
       this.tiles.push({
-        color: 'grey',
-        isRevealed: index %2 === 0,
+        isRevealed: false,
         value: index,
       });
     }

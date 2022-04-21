@@ -1,6 +1,6 @@
 .mastermind {
-  width: 800px;
-  height: 800px;
+  width: 900px;
+  height: 900px;
   background-color: #f5f5f5;
   display: flex;
   flex-direction: row;
@@ -19,4 +19,8 @@
 
 .mastermind .tile:hover {
   cursor: pointer;
+}
+
+.mastermind .tile.flipped {
+  background-color: #f5f5f5;
 }
