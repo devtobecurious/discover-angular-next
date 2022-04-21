@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Tile } from './shared/ui/mastermind/models';
+import { Tile } from './features/mastermind/models';
 
 @Component({
   selector: 'app-root',

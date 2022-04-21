@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MastermindModule } from './shared/ui/mastermind/mastermind.module';
+import { MastermindModule } from './features/mastermind/mastermind.module';
 
 @NgModule({
   declarations: [
