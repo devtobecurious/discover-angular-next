@@ -11,12 +11,7 @@ export class AppComponent implements OnInit {
   tiles: Tile[] = [];
 
   constructor() {
-    for (let index = 0; index < 256; index++) {
-      this.tiles.push({
-        isRevealed: false,
-        value: index,
-      });
-    }
+
   }
 
   ngOnInit(): void {
