@@ -16,7 +16,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.service.loadAll().pipe(tap(item => console.info(item))).subscribe(tiles => this.tiles = tiles);
+    this.service.loadAll()
+    .subscribe(tiles => this.tiles = tiles);
   }
 
 }

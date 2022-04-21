@@ -7,20 +7,20 @@ import { changeStateCell, Tile, TileCell } from '../models';
   styleUrls: ['./mastermind-grid.component.css']
 })
 export class MastermindGridComponent implements OnInit {
-  @Input() tiles: Tile[] = [];
-  cells: TileCell[] = [];
-
-  constructor() { }
-
-  ngOnInit(): void {
-    console.info(this.tiles);
-    this.cells = this.tiles.map(tile => {
+  @Input() set tiles(values: Tile[]) {
+    this.cells = values.map(tile => {
       const cell = { ... tile, css: '' };
 
       changeStateCell(cell, tile.isRevealed);
 
       return cell;
     });
+  };
+  cells: TileCell[] = [];
+
+  constructor() { }
+
+  ngOnInit(): void {
   }
 
   logView() {
