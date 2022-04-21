@@ -32,6 +32,10 @@ export class MastermindGridComponent implements OnInit {
     this.appearValueOnCell(item, cell);
   }
 
+  trackByFn(index: number, item: TileCell) {
+    return item.id;
+  }
+
   private appearValueOnCell(cell: TileCell, div: HTMLDivElement) {
     div.innerText = '';
 

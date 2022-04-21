@@ -13,7 +13,8 @@ export class TileService {
     for (let index = 0; index < 256; index++) {
       this.tiles.push({
         isRevealed: false,
-        value: index,
+        value: Math.floor(Math.random() * 100),
+        id: index
       });
     }
   }

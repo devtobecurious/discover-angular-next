@@ -1,6 +1,7 @@
 export interface Tile {
   isRevealed: boolean;
   value: number;
+  id: number;
 }
 
 export interface TileCell extends Tile {
