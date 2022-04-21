@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Tile, TileCell } from '../models';
+import { changeStateCell, Tile, TileCell } from '../models';
 
 @Component({
   selector: 'app-mastermind-grid',
@@ -16,12 +16,7 @@ export class MastermindGridComponent implements OnInit {
     this.cells = this.tiles.map(tile => {
       const cell = { ... tile, css: '' };
 
-      cell.css = 'tile';
-      if (tile.isRevealed) {
-        cell.css += ' flipped';
-      }
-
-      console.info(cell);
+      changeStateCell(cell, tile.isRevealed);
 
       return cell;
     });
@@ -31,7 +26,7 @@ export class MastermindGridComponent implements OnInit {
     console.info('view');
   }
 
-  clickTile() {
-    console.info('click tile');
+  clickTile(item: TileCell) {
+    changeStateCell(item, ! item.isRevealed);
   }
 }
