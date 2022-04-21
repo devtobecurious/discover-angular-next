@@ -13,6 +13,7 @@ export class MastermindGridComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.info(this.tiles);
     this.cells = this.tiles.map(tile => {
       const cell = { ... tile, css: '' };
 
