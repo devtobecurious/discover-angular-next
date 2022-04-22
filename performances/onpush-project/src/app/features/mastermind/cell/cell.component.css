@@ -1,0 +1,55 @@
+.mastermind .tile {
+  width: 50px;
+  height: 50px;
+  margin: 1px;
+  border-radius: 15px;
+  border: 2px solid black;
+  color: white;
+  background-color: rgb(110, 10, 10);
+}
+
+.mastermind .tile:hover {
+  cursor: pointer;
+
+}
+
+.mastermind .tile.flipped {
+  animation: toFlipped 0.5s ease-in-out;
+  background-color: #f5f5f5;
+  color: black;
+  text-align: center;
+  font-weight: bold;
+  font-size: 22px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.mastermind .tile.covered {
+  animation: covered 0.5s ease-in-out;
+  background-color: rgb(110, 10, 10);
+}
+
+@keyframes covered {
+  0% {
+    background-color: #f5f5f5;
+  }
+  50% {
+    background-color: #a08d8d;
+  }
+  100% {
+    background-color: rgb(110, 10, 10);
+  }
+}
+
+@keyframes toFlipped {
+  0% {
+      background-color: rgb(110, 10, 10);
+  }
+  50% {
+    background-color: #a08d8d;
+  }
+  100% {
+    background-color: #f5f5f5;
+  }
+}

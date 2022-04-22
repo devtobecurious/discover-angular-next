@@ -1,5 +1,5 @@
 {{ logView() }}
 
 <div class="mastermind">
-    <div [ngClass]="item.css" #cell *ngFor="let item of cells; trackBy: trackByFn" (click)="clickTile(item, cell)"></div>
+  <app-cell *ngFor="let item of cells" [item]="item" ></app-cell>
 </div>

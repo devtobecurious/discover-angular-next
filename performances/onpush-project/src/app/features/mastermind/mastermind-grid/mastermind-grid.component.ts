@@ -1,11 +1,12 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { changeStateCell, Tile, TileCell } from '../models';
 
 @Component({
   selector: 'app-mastermind-grid',
   templateUrl: './mastermind-grid.component.html',
   styleUrls: ['./mastermind-grid.component.css'],
-  changeDetection: ChangeDetectionStrategy.Default
+  changeDetection: ChangeDetectionStrategy.Default,
+  encapsulation: ViewEncapsulation.None
 })
 export class MastermindGridComponent implements OnInit {
   @Input() set tiles(values: Tile[]) {
@@ -17,35 +18,24 @@ export class MastermindGridComponent implements OnInit {
       return cell;
     });
 
-    this.cdRef.detectChanges();
+   // this.cdRef.detectChanges();
   };
   cells: TileCell[] = [];
 
-  constructor(private readonly cdRef: ChangeDetectorRef) { }
+  //constructor(private readonly cdRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-    this.cdRef.detach();
+   // this.cdRef.detach();
   }
 
   logView() {
     console.info('view');
   }
 
-  clickTile(item: TileCell, cell: HTMLDivElement) {
-    changeStateCell(item, ! item.isRevealed, true);
-    this.appearValueOnCell(item, cell);
-    this.cdRef.detectChanges();
-  }
 
   trackByFn(index: number, item: TileCell) {
     return item.id;
   }
 
-  private appearValueOnCell(cell: TileCell, div: HTMLDivElement) {
-    div.innerText = '';
 
-    if (cell.isRevealed) {
-      div.innerText = cell.value.toString();
-    }
-  }
 }
