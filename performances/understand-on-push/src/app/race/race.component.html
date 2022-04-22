@@ -1,0 +1,6 @@
+<h2>Race</h2>
+<p>{{ check() }}</p>
+<div *ngFor="let pony of ponies">
+  <app-pony [ponyModel]="pony"></app-pony>
+</div>
+<button (click)="changeColor()">Change color</button>
