@@ -5,8 +5,8 @@ import { changeStateCell, Tile, TileCell } from '../models';
   selector: 'app-mastermind-grid',
   templateUrl: './mastermind-grid.component.html',
   styleUrls: ['./mastermind-grid.component.css'],
-  changeDetection: ChangeDetectionStrategy.Default,
-  encapsulation: ViewEncapsulation.None
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class MastermindGridComponent implements OnInit {
   @Input() set tiles(values: Tile[]) {
@@ -18,11 +18,11 @@ export class MastermindGridComponent implements OnInit {
       return cell;
     });
 
-   // this.cdRef.detectChanges();
+//    this.cdRef.detectChanges();
   };
   cells: TileCell[] = [];
 
-  //constructor(private readonly cdRef: ChangeDetectorRef) { }
+ // constructor(private readonly cdRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
    // this.cdRef.detach();
