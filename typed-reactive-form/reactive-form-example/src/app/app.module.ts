@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { AddMovieComponent } from './add-movie/add-movie.component';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -11,8 +11,7 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule
+    AddMovieComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
