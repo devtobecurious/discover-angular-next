@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { UserComponent } from './features/user/user.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';

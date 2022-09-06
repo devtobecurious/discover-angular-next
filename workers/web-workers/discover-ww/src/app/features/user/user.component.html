@@ -1,3 +1,7 @@
 
-<button (click)="normal()">Run normally</button>
-<button (click)="worker()">Run worker</button>
+<button (click)="runNormal()">Run normally</button>
+
+<input type="text" [(ngModel)]="data">
+<button (click)="runWorker()">Run worker</button>
+
+<span>result : {{result}}</span>

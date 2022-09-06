@@ -1,38 +1,54 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
-export class UserComponent implements OnInit {
+export class UserComponent implements OnInit, OnDestroy {
+  private worker : Worker | undefined;
+  data = '';
+  result = '';
 
-  constructor() { }
+  constructor() {
+
+
+    if (typeof Worker !== 'undefined') {
+      this.worker = new Worker(new URL('./clear-data.worker.ts', import.meta.url), { name: 'clear-data', type: 'module' });
+    }
+  }
+  ngOnDestroy(): void {
+    this.worker?.terminate();
+  }
 
   ngOnInit(): void {
 
   }
 
-  worker() {
-    if (typeof Worker !== 'undefined') {
-      //console.info('import.meta.url', import.meta.url);
+  runWorker() {
+    if (typeof(this.worker) != 'undefined') {
+        this.worker.onmessage = ( {data} ) => {
+          this.result = data;
 
-      console.info('lets');
+          console.info('1.', data);
+        };
 
-      const worker = new Worker('./clear-data.worker', { type: 'module' });
+        this.worker.onmessage = (ev: MessageEvent) => {
+          this.result = ev.data;
+          console.info('2.', ev.data);
+        }
 
-      worker.onmessage = ( {data} ) => {
-        console.info('return: ', data);
-      }
+        this.worker.postMessage(this.data);
 
-      worker.postMessage('hello');
+        console.info('##########################');
     }
   }
 
-  normal() {
+  runNormal() {
 
   }
 
