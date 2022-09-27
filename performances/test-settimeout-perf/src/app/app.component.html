@@ -1,0 +1,4 @@
+<button (click)="show()">Show prob</button>
+
+<app-un [item]="1" *ngIf="! isShowOutside"></app-un>
+<app-un-outside [item]="1" *ngIf="isShowOutside"></app-un-outside>
