@@ -12,12 +12,17 @@ const routes: Routes = [
   {
     path: '',
     component: SidebarComponent,
-    outlet: 'sidebar'
+    outlet: 'sidebarRight'
   },
   {
     path: 'child-wookies',
     component: WookiesSidebarComponent,
-    outlet: 'sidebar'
+    outlet: 'sidebarRight'
+  },
+  {
+    path: 'child-wookies',
+    component: WookiesSidebarComponent,
+    outlet: 'sidebarLeft'
   }
 ];
 
