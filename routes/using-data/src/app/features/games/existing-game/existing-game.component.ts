@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+import { GameState } from '../models';
+import { hasKey } from 'src/app/shared/functions';
 
 @Component({
   selector: 'app-existing-game',
@@ -9,10 +12,16 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./existing-game.component.css']
 })
 export class ExistingGameComponent implements OnInit {
+  public lastGame !: GameState;
 
-  constructor() { }
+  constructor(private readonly route: ActivatedRoute, private location: Location) { }
 
   ngOnInit(): void {
+    const state = this.location.getState();
+
+    if (typeof state == 'object' && state != null && hasKey('finish', state)) {
+      this.lastGame = state as GameState;
+    }
   }
 
 }

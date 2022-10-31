@@ -3,3 +3,6 @@
 <div *ngIf="this.config$ | async as config">
   <b>Config : {{ config.lifePoints }}</b>
 </div>
+
+
+<button (click)="goToReload()">Go to reload</button>
