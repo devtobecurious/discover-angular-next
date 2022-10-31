@@ -1,0 +1,5 @@
+<b>Config snapshot : {{ configSnapshot | json}}</b>
+
+<div *ngIf="this.config$ | async as config">
+  <b>Config : {{ config.lifePoints }}</b>
+</div>
