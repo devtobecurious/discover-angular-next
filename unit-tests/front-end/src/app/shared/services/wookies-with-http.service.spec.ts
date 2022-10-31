@@ -49,7 +49,10 @@ describe('WookiesWithHttpService', () => {
     });
 
     const testRequest = httpMock.expectOne(environment.apis.wookies.url);
+    // A titre de compréhension d'abord
     expect(testRequest.request.url).toBe(environment.apis.wookies.url);
+
+    // ici c'est important si tu veux faire des verifs techniques
     expect(testRequest.request.method).toBe('GET');
 
     testRequest.flush(mockResult);
