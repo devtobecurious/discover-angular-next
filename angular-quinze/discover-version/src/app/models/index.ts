@@ -7,3 +7,11 @@ export type PeopleResult = {
 export type ApiPersonResult = {
   results: PeopleResult[]
 }
+
+export type MovieResult = {
+  title: string
+}
+
+export type ApiMovieResult = {
+  results: MovieResult[]
+}
