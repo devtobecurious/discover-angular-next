@@ -1,1 +1,5 @@
 <span>Child 2 : {{ service.identity }}</span>
+
+<div *ngFor="let item of people$ | async">
+  <b>{{item.name}}</b>
+</div>

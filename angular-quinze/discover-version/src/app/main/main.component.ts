@@ -4,6 +4,7 @@ import { TestSingletonService } from '../services/test-singleton.service';
 import { ChildOneComponent } from '../childs/child-one/child-one.component';
 import { MenuGlobalComponent } from '../menu-global/menu-global.component';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-main',
