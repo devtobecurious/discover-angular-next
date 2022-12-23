@@ -1,14 +1,11 @@
 import { Component, EnvironmentInjector } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { TestSingletonService } from '../services/test-singleton.service';
+import { RouterModule } from '@angular/router';
+import { getFilms } from '../actions';
 import { ChildOneComponent } from '../childs/child-one/child-one.component';
 import { MenuGlobalComponent } from '../menu-global/menu-global.component';
-import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
-import { getFilms } from '../actions';
-import { ChangeColorDirective } from '../tools/ui/directives/change-color.directive';
-import { HeightSizeDirective } from '../tools/ui/directives/height-size.directive';
+import { TestSingletonService } from '../services/test-singleton.service';
 import { ChangeColorHeightDirective } from '../tools/ui/directives/change-color-height.directive';
+import { TestColorDirective } from '../tools/ui/directives/test-color/test-color.directive';
 
 @Component({
   selector: 'app-main',
@@ -16,12 +13,15 @@ import { ChangeColorHeightDirective } from '../tools/ui/directives/change-color-
   imports: [
     RouterModule,
     ChildOneComponent,
-    MenuGlobalComponent
+    MenuGlobalComponent,
+    TestColorDirective
+    //TestColorModule
   ],
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css'],
   hostDirectives: [
-    ChangeColorHeightDirective
+    ChangeColorHeightDirective,
+    // TestColorDirective
   ]
 })
 export class MainComponent {
