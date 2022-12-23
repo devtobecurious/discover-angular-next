@@ -9,7 +9,7 @@ import { ApiPersonResult, PeopleResult } from '../models';
 export class ChildService {
   private client: HttpClient = inject(HttpClient);
 
-  // constructor(private readonly client: HttpClient) { }
+  //constructor(private readonly client: HttpClient) { }
 
   getAll(): Observable<PeopleResult[]> {
     return this.client.get<ApiPersonResult>('https://swapi.dev/api/people').pipe(

@@ -6,6 +6,9 @@ import { MenuGlobalComponent } from '../menu-global/menu-global.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { getFilms } from '../actions';
+import { ChangeColorDirective } from '../tools/ui/directives/change-color.directive';
+import { HeightSizeDirective } from '../tools/ui/directives/height-size.directive';
+import { ChangeColorHeightDirective } from '../tools/ui/directives/change-color-height.directive';
 
 @Component({
   selector: 'app-main',
@@ -16,7 +19,10 @@ import { getFilms } from '../actions';
     MenuGlobalComponent
   ],
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  styleUrls: ['./main.component.css'],
+  hostDirectives: [
+    ChangeColorHeightDirective
+  ]
 })
 export class MainComponent {
   constructor(protected readonly service: TestSingletonService,
