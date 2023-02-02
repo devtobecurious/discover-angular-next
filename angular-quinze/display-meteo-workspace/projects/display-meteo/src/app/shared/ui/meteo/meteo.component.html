@@ -1,0 +1,3 @@
+<div *ngIf="meteoResult$ | async as result">
+  {{ result.current_weather.temperature }}
+</div>
