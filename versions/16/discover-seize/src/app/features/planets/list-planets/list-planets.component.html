@@ -1,0 +1,6 @@
+<h2>Liste des planetes</h2>
+
+<select>
+  <option *ngFor="let item of state().results" value="{{ item.name }}">{{item.name}}</option>
+</select>
+
