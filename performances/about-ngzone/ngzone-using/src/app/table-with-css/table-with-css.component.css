@@ -1,0 +1,5 @@
+button.added {
+  color: grey;
+  background-color: grey;
+  cursor: not-allowed;
+}

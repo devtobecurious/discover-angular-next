@@ -1,0 +1,8 @@
+<b>Progress</b>
+<p>progress {{progressValue}} %</p>
+
+<p *ngIf="progressValue >= 100">It's done !</p>
+
+<button (click)="processInZone()">In zone</button>
+<button (click)="processOutZone()">Out zone</button>
+<button (click)="cancel()">Cancel</button>
