@@ -11,6 +11,7 @@ import { TableWithCssComponent } from './table-with-css/table-with-css.component
 import { HeaderComponent } from './header/header.component';
 import { ShoppingCartResumeComponent } from './shopping-cart-resume/shopping-cart-resume.component';
 import { ProductListComponent } from './product-list/product-list.component';
+import { BetterClickComponent } from './better-click/better-click.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ProductListComponent } from './product-list/product-list.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ProductListComponent
+    ProductListComponent,
+    BetterClickComponent
   ],
   providers: [],
   bootstrap: [AppComponent, HeaderComponent]
