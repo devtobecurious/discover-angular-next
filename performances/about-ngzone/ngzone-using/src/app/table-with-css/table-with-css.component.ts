@@ -26,6 +26,7 @@ export class TableWithCssComponent {
     this.zone.runOutsideAngular(() => {
       const button = document.getElementById(`product-${item.id}`);
       button?.classList.add('added');
+      (button as HTMLButtonElement).disabled = true;
     });
   }
 

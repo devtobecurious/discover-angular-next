@@ -2,4 +2,5 @@ button.added {
   color: grey;
   background-color: grey;
   cursor: not-allowed;
+  opacity: 0.65;
 }
