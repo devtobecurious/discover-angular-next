@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StoreModule } from '@ngrx/store';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './reducers';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { metaReducers, reducers } from './reducers';
 import { HeaderComponent } from './shared/ui/header/header.component';
 
 @NgModule({
