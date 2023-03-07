@@ -10,6 +10,7 @@ import { ProgressComponent } from './progress/progress.component';
 import { TableWithCssComponent } from './table-with-css/table-with-css.component';
 import { HeaderComponent } from './header/header.component';
 import { ShoppingCartResumeComponent } from './shopping-cart-resume/shopping-cart-resume.component';
+import { ProductListComponent } from './product-list/product-list.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ShoppingCartResumeComponent } from './shopping-cart-resume/shopping-car
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ProductListComponent
   ],
   providers: [],
   bootstrap: [AppComponent, HeaderComponent]

@@ -34,4 +34,12 @@ export class TableWithCssComponent {
     this.cart.addTo(item);
     item.added = true;
   }
+
+  onDescriptionInput(id: number, target: EventTarget | null): void {
+    if (typeof(target) != null) {
+      const value = (target as HTMLInputElement).value;
+
+
+    }
+  }
 }

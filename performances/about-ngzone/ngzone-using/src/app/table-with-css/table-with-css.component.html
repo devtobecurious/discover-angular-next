@@ -3,6 +3,9 @@
     <tr *ngFor="let item of items">
       <td>{{item.title}}</td>
       <td>
+        <textarea name="" id="" cols="30" rows="10" (input)="onDescriptionInput(item.id, $event.target)" value="{{ item?.description }}"></textarea>
+      </td>
+      <td>
         <button id="product-{{ item.id }}" (click)="addToCart(item)">Add to cart (out zone)</button>
         <button [ngClass]="item?.added ? 'added' : ''" id="product-2-{{ item.id }}" (click)="addToCartInZone(item)">Add to cart (int zone)</button>
       </td>

@@ -1,6 +1,7 @@
 export type ProductType = {
   id: number,
-  title: string
+  title: string,
+  description?: string
 }
 
 export type ProductTypeForView = ProductType & {
