@@ -5,5 +5,9 @@ export const mainRoutes: Routes = [
   {
     path: '',
     component: DashboardComponent
+  },
+  {
+    path: 'jokes',
+    loadChildren: () => import('../features/jokes/routes/index').then(item => item.jokeRoutes)
   }
 ];

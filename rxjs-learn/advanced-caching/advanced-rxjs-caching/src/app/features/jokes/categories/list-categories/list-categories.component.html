@@ -1,5 +1,5 @@
 <ul class="list-group" *ngIf="items$ | async as categories">
   <li class="list-group-item" *ngFor="let category of categories">
-    <a [routerLink]="category.value">{{ category.value }}</a>
+    <a [routerLink]="['jokes', category.value]">{{ category.value }}</a>
   </li>
 </ul>

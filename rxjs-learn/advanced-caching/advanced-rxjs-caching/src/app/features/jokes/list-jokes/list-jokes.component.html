@@ -1,0 +1,17 @@
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Content</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let joke of jokes$ | async; index as i">
+			<th scope="row">{{ joke.id }}</th>
+			<td>
+				{{ joke.content}}
+			</td>
+		</tr>
+	</tbody>
+</table>
