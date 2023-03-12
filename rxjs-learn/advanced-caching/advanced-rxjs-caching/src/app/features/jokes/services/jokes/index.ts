@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, InjectionToken, inject } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { BehaviorSubject, Subject, Subscription, concatMap, shareReplay, switchMap, takeUntil, tap, timer } from "rxjs";
+import { BehaviorSubject, Subject, Subscription, combineLatest, concatMap, merge, of, shareReplay, switchMap, takeUntil, tap, timer } from "rxjs";
 import { Observable } from "rxjs/internal/Observable";
 import { map } from "rxjs/internal/operators/map";
 import { Joke } from "../../models";
@@ -45,9 +45,9 @@ export class JokeService {
     if (! this.cache$) {
       const timer$ = timer(0, this.intervalRefresh);
 
-      this.cache$ = timer$.pipe(
-        switchMap(() => this.category.observable),
-        concatMap(category => getJokeRawList(this.httpClient, category)),
+      this.cache$ = this.category.observable.pipe(
+        switchMap(category => combineLatest([timer$, of(category)])),
+        concatMap(categoryTimer => getJokeRawList(this.httpClient, categoryTimer[1])),
         takeUntil(this.reload$),
         shareReplay(this.cacheSize)
       );
