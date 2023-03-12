@@ -3,6 +3,7 @@ import { Injectable, inject } from "@angular/core"
 import { BehaviorSubject, Observable, concatMap, from, map, shareReplay, take } from "rxjs";
 import { CategoryType } from "../../models";
 import { ActivatedRoute } from "@angular/router";
+import { CACHE_SIZE } from "../jokes";
 
 export function getJokeCategories(): Observable<CategoryType[]> {
   const httpClient = inject(HttpClient);
@@ -19,6 +20,7 @@ export function getJokeCategories(): Observable<CategoryType[]> {
 export class CategoriesService {
   private httpClient = inject(HttpClient);
   private categories !: Observable<CategoryType[]>;
+  private cacheSize = inject(CACHE_SIZE);
 
   getAll(): Observable<CategoryType[]> {
     if (!this.categories) {
@@ -27,7 +29,7 @@ export class CategoriesService {
           concatMap(items => from(items.map(label => ({ value: label })))),
           take(1),
           map(item => [item]),
-          shareReplay(1)
+          shareReplay(this.cacheSize)
         );
     }
 
