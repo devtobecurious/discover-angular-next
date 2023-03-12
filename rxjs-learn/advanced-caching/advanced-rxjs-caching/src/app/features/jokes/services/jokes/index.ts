@@ -57,7 +57,13 @@ export class OneCategoryService {
 
   listen(): Subscription {
     const route = inject(ActivatedRoute);
-    return route.params.subscribe(item => this.state.next(item['category']));
+    return route.params.subscribe(item => this.sendNewOne(item['category']));
+  }
+
+  sendNewOne(value: string): void {
+    if (this.state.value !== value) {
+      this.state.next(value);
+    }
   }
 
   get observable(): Observable<string> {

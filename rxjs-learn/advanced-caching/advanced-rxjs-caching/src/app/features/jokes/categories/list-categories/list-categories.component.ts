@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { getJokeCategories } from '../../services/categories';
+import { CategoriesService, getJokeCategories } from '../../services/categories';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -11,5 +11,5 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./list-categories.component.css']
 })
 export class ListCategoriesComponent {
-  items$ = getJokeCategories();
+  items$ = inject(CategoriesService).getAll();
 }
