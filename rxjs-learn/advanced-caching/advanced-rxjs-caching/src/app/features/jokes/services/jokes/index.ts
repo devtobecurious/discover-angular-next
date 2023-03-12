@@ -3,8 +3,11 @@ import { InjectionToken, inject } from "@angular/core";
 import { Observable } from "rxjs/internal/Observable";
 import { map } from "rxjs/internal/operators/map";
 import { Joke } from "../../models";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Params } from "@angular/router";
 import { concatMap } from "rxjs/internal/operators/concatMap";
+import { iif } from "rxjs/internal/observable/iif";
+import { tap } from "rxjs/internal/operators/tap";
+import { combineLatest, defaultIfEmpty, of } from "rxjs";
 
 type JokeResult = {
   id: string,
@@ -15,6 +18,14 @@ type JokeResult = {
 type JokesApiResult = {
   result: JokeResult[]
 };
+
+const getOneJoke = (httpClient: HttpClient): Observable<Joke[]> => {
+  return httpClient.get<JokeResult>('https://api.chucknorris.io/jokes/random')
+  .pipe(
+    tap(item => console.info(item)),
+    map(item => [({ id: item.id, url: item.url, content: item.value })])
+  );
+}
 
 const getJokeRawList = (httpClient: HttpClient, category = ''): Observable<Joke[]> => {
   return httpClient.get<JokesApiResult>(`https://api.chucknorris.io/jokes/search?query=${category}`)
@@ -27,8 +38,13 @@ const getJokeList = (): Observable<Joke[]> => {
   const route = inject(ActivatedRoute);
   const httpClient = inject(HttpClient);
 
+  const detectEmptyParam$ = (params: Params) => iif(() => typeof(params['category']) !== 'undefined',
+                                                    getJokeRawList(httpClient, params['category']),
+                                                    getOneJoke(httpClient))
+
   return route.params.pipe(
-    concatMap(params => getJokeRawList(httpClient, params['category']))
+    tap(item => console.info(item['category'])),
+    concatMap(detectEmptyParam$)
   );
 };
 
