@@ -4,11 +4,12 @@ import { PreloadAllModules, provideRouter, withDebugTracing, withPreloading } fr
 import { provideHttpClient } from '@angular/common/http';
 import { AppComponent } from './app/app.component';
 import { mainRoutes } from './app/routes';
-import { provideDefaultCacheSize } from './app/features/jokes/services/jokes';
+import { provideDefaultCacheSize, provideDefaultRefreshInterval } from './app/features/jokes/services/jokes';
 
 const providers:(Provider | EnvironmentProviders)[] = [
   provideHttpClient(),
   provideDefaultCacheSize(),
+  provideDefaultRefreshInterval(),
   provideRouter(mainRoutes, withPreloading(PreloadAllModules))
 ]
 

@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, InjectionToken, inject } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { BehaviorSubject, Subscription, shareReplay, switchMap, tap } from "rxjs";
+import { BehaviorSubject, Subject, Subscription, concatMap, shareReplay, switchMap, takeUntil, tap, timer } from "rxjs";
 import { Observable } from "rxjs/internal/Observable";
 import { map } from "rxjs/internal/operators/map";
 import { Joke } from "../../models";
@@ -34,20 +34,31 @@ const getJokeRawList = (httpClient: HttpClient, category = ''): Observable<Joke[
   providedIn: 'root'
 })
 export class JokeService {
-  private cache$ !: Observable<Joke[]>;
+  private cache$ : Observable<Joke[]> | null = null;
   private httpClient = inject(HttpClient);
   private category = inject(OneCategoryService);
   private cacheSize = inject(CACHE_SIZE);
+  private intervalRefresh = inject(REFRESH_INTERVAL);
+  private reload$ = new Subject<void>();
 
   getAll(): Observable<Joke[]> {
     if (! this.cache$) {
-      this.cache$ = this.category.observable.pipe(
-        switchMap(category => getJokeRawList(this.httpClient, category)),
+      const timer$ = timer(0, this.intervalRefresh);
+
+      this.cache$ = timer$.pipe(
+        switchMap(() => this.category.observable),
+        concatMap(category => getJokeRawList(this.httpClient, category)),
+        takeUntil(this.reload$),
         shareReplay(this.cacheSize)
       );
     }
 
     return this.cache$;
+  }
+
+  force(): void {
+    this.reload$.next();
+    this.cache$ = null;
   }
 }
 
@@ -78,3 +89,7 @@ export class OneCategoryService {
 
 export const CACHE_SIZE = new InjectionToken<number>('CACHE SIZE');
 export const provideDefaultCacheSize = () => ({ provide: CACHE_SIZE, useValue: 1 });
+
+
+export const REFRESH_INTERVAL = new InjectionToken<number>('REFRESH INTERVAL');
+export const provideDefaultRefreshInterval = () => ({ provide: REFRESH_INTERVAL, useValue: 1000 });
