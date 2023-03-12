@@ -1,13 +1,10 @@
 import { HttpClient } from "@angular/common/http";
-import { InjectionToken, inject } from "@angular/core";
+import { Injectable, InjectionToken, inject } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { BehaviorSubject, Subscription, shareReplay, switchMap, tap } from "rxjs";
 import { Observable } from "rxjs/internal/Observable";
 import { map } from "rxjs/internal/operators/map";
 import { Joke } from "../../models";
-import { ActivatedRoute, Params } from "@angular/router";
-import { concatMap } from "rxjs/internal/operators/concatMap";
-import { iif } from "rxjs/internal/observable/iif";
-import { tap } from "rxjs/internal/operators/tap";
-import { combineLatest, defaultIfEmpty, of } from "rxjs";
 
 type JokeResult = {
   id: string,
@@ -22,7 +19,6 @@ type JokesApiResult = {
 const getOneJoke = (httpClient: HttpClient): Observable<Joke[]> => {
   return httpClient.get<JokeResult>('https://api.chucknorris.io/jokes/random')
   .pipe(
-    tap(item => console.info(item)),
     map(item => [({ id: item.id, url: item.url, content: item.value })])
   );
 }
@@ -30,24 +26,47 @@ const getOneJoke = (httpClient: HttpClient): Observable<Joke[]> => {
 const getJokeRawList = (httpClient: HttpClient, category = ''): Observable<Joke[]> => {
   return httpClient.get<JokesApiResult>(`https://api.chucknorris.io/jokes/search?query=${category}`)
   .pipe(
-    map(item => item.result.map(jokeResult => ({ id: jokeResult.id, url: jokeResult.url, content: jokeResult.value })))
+    map(item => item.result.map(jokeResult => ({ id: jokeResult.id, url: jokeResult.url, content: jokeResult.value }))),
   );
 }
 
-const getJokeList = (): Observable<Joke[]> => {
-  const route = inject(ActivatedRoute);
-  const httpClient = inject(HttpClient);
+@Injectable({
+  providedIn: 'root'
+})
+export class JokeService {
+  private cache$ !: Observable<Joke[]>;
+  private httpClient = inject(HttpClient);
+  private category = inject(OneCategoryService);
 
-  const detectEmptyParam$ = (params: Params) => iif(() => typeof(params['category']) !== 'undefined',
-                                                    getJokeRawList(httpClient, params['category']),
-                                                    getOneJoke(httpClient))
+  getAll(): Observable<Joke[]> {
+    if (! this.cache$) {
+      this.cache$ = this.category.observable.pipe(
+        switchMap(category => getJokeRawList(this.httpClient, category))
+      );
+    }
 
-  return route.params.pipe(
-    tap(item => console.info(item['category'])),
-    concatMap(detectEmptyParam$)
-  );
-};
+    return this.cache$;
+  }
+}
 
-export const JOKES_LIST = new InjectionToken<typeof getJokeList>('List of jokes');
+@Injectable({
+  providedIn: 'root'
+})
+export class OneCategoryService {
+  private state = new BehaviorSubject<string>('');
 
-export const provideGetJokesList = () => ({ provide: JOKES_LIST, useFactory: () => getJokeList });
+  listen(): Subscription {
+    const route = inject(ActivatedRoute);
+    return route.params.subscribe(item => this.state.next(item['category']));
+  }
+
+  get observable(): Observable<string> {
+    return this.state.asObservable();
+  }
+}
+
+// export const JOKES_LIST = new InjectionToken<typeof getJokeList>('List of jokes');
+// export const provideGetJokesList = () => ({ provide: JOKES_LIST, useFactory: () => getJokeList });
+
+export const CACHE_SIZE = new InjectionToken<number>('CACHE SIZE');
+export const provideDefaultCacheSize = () => ({ provide: CACHE_SIZE, useValue: 1 });

@@ -1,8 +1,6 @@
-import { Component, Inject, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { JOKES_LIST, provideGetJokesList } from '../services/jokes';
-import { Joke } from '../models';
-import { Observable } from 'rxjs/internal/Observable';
+import { Component, OnDestroy, inject } from '@angular/core';
+import { JokeService, OneCategoryService } from '../services/jokes';
 
 @Component({
   selector: 'app-list-jokes',
@@ -10,8 +8,13 @@ import { Observable } from 'rxjs/internal/Observable';
   imports: [CommonModule],
   templateUrl: './list-jokes.component.html',
   styleUrls: ['./list-jokes.component.css'],
-  providers: [provideGetJokesList()]
+  providers: []
 })
-export class ListJokesComponent {
-  jokes$ = inject(JOKES_LIST)();
+export class ListJokesComponent implements OnDestroy {
+  private sub = inject(OneCategoryService).listen();
+  jokes$ = inject(JokeService).getAll();
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
 }
