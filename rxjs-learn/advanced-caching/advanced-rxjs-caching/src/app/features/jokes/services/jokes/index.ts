@@ -37,11 +37,13 @@ export class JokeService {
   private cache$ !: Observable<Joke[]>;
   private httpClient = inject(HttpClient);
   private category = inject(OneCategoryService);
+  private cacheSize = inject(CACHE_SIZE);
 
   getAll(): Observable<Joke[]> {
     if (! this.cache$) {
       this.cache$ = this.category.observable.pipe(
-        switchMap(category => getJokeRawList(this.httpClient, category))
+        switchMap(category => getJokeRawList(this.httpClient, category)),
+        shareReplay(this.cacheSize)
       );
     }
 
