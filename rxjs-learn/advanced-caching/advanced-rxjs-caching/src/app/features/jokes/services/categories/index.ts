@@ -27,7 +27,7 @@ export class CategoriesService {
       this.categories = this.httpClient.get<string[]>('https://api.chucknorris.io/jokes/categories')
         .pipe(
           map(items => items.map(label => ({ value: label }))),
-          shareReplay(this.cacheSize)
+          shareReplay({ bufferSize: this.cacheSize, refCount: true })
         );
     }
 
