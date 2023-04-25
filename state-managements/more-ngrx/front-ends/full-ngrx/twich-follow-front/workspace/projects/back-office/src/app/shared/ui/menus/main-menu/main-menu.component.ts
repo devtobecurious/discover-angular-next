@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { select, Store } from '@ngrx/store';
+import { selectUserIsLogged } from 'projects/back-office/src/app/features/authentication/store/selectors';
 
 @Component({
   selector: 'app-main-menu',
@@ -9,5 +11,5 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./main-menu.component.css']
 })
 export class MainMenuComponent {
-
+  isLogged$ = inject(Store).select(selectUserIsLogged);
 }

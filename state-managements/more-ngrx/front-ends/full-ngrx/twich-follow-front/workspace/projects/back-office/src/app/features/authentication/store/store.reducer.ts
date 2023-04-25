@@ -1,10 +1,10 @@
 import { createReducer, on } from '@ngrx/store';
-import { AuthenticateStateWithToken } from '../models';
+import { AuthenticatedUser, AuthenticateStateWithToken } from '../models';
 
 export const authenticationFeatureKey = 'authentication';
 
 export interface AuthenticationState {
-  user?: AuthenticateStateWithToken
+  user?: AuthenticatedUser
 }
 
 export const initialState: AuthenticationState = {
