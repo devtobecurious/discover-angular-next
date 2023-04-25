@@ -25,6 +25,8 @@
               "projects/back-office/src/assets"
             ],
             "styles": [
+              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "projects/back-office/src/styles.css"
             ],
             "scripts": []

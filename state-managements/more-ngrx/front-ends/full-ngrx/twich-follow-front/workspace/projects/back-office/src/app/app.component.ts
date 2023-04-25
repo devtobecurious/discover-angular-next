@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { setTheme } from 'ngx-bootstrap/utils';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'back-office';
+
+  constructor() {
+    setTheme('bs5');
+  }
 }
