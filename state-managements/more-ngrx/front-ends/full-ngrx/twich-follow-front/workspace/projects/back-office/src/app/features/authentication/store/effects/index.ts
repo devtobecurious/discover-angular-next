@@ -15,7 +15,9 @@ export class AuthEffect {
     ofType(isLogginAction),
     concatMap(action => this.authService.authenticate(action.user)),
     map(user => isLogginSuccessAction({ user: { ...user, isLogged: true } })),
-    catchError(error => of(isLogginFailureAction({ error })))
+    catchError(error => {
+      return of(isLogginFailureAction({ error }));
+    })
   ));
 
   onLoggedInSuccess$ = createEffect(() => this.actions$.pipe(

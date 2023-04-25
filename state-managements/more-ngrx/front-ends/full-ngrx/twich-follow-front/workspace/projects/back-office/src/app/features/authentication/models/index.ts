@@ -2,6 +2,11 @@ export type ApiAuthUser = {
   access_token: string,
 }
 
+export type ApiError = {
+  message: string,
+  statusCode: number
+}
+
 export interface ToLogUser {
   login: string,
   password: string

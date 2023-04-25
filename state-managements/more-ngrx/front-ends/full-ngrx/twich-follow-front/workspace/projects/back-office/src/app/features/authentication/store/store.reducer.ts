@@ -1,13 +1,13 @@
 import { isLogginFailureAction } from './actions/index';
 import { createReducer, on } from '@ngrx/store';
-import { AuthenticatedUser, AuthenticateStateWithToken } from '../models';
+import { ApiError, AuthenticatedUser, AuthenticateStateWithToken } from '../models';
 import { isLogginAction, isLogginSuccessAction } from './actions';
 
 export const authenticationFeatureKey = 'authentication';
 
 export interface AuthenticationState {
   user?: AuthenticatedUser,
-  error?: any
+  error?: ApiError
 }
 
 export const initialState: AuthenticationState = {

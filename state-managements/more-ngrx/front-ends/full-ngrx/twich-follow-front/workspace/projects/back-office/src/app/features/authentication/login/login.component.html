@@ -1,5 +1,5 @@
 <alert type="danger" *ngIf="errorOnLogin$ | async as error">
-  <strong>Oh snap!</strong> {{error}}
+  <strong>Oh snap!</strong> {{error.message}}
 </alert>
 
 <div id="login" class="text-center">
