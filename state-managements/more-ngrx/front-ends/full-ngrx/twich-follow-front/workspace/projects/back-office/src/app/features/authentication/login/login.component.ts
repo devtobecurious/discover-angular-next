@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToLogUser } from '../models';
 import { AuthService } from '../services/auth.service';
 
@@ -12,6 +13,7 @@ export class LoginComponent {
     login: '', password: ''
   }
   private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
 
   clickToLogin(): void {
     this.authService.login(this.user);

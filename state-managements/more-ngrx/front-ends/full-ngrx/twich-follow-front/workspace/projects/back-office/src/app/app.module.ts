@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -7,6 +8,7 @@ import { StoreModule } from '@ngrx/store';
 import { AuthenticationModule } from './features/authentication/authentication.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainMenuComponent } from './shared/ui/menus/main-menu/main-menu.component';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -15,11 +17,13 @@ import { MainMenuComponent } from './shared/ui/menus/main-menu/main-menu.compone
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     StoreModule.forRoot({
     }, {}),
     AuthenticationModule,
     MainMenuComponent,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    EffectsModule.forRoot([])
   ],
   providers: [],
   bootstrap: [AppComponent]

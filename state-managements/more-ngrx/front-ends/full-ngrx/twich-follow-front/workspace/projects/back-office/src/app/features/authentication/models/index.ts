@@ -1,3 +1,7 @@
+export type ApiAuthUser = {
+  access_token: string,
+}
+
 export interface ToLogUser {
   login: string,
   password: string
@@ -15,5 +19,8 @@ export interface AuthenticatedUser extends ToLogUser, WithIsLogged {
 
 }
 
-export interface AuthenticateStateWithToken extends ToLogUser, WithToken {
+export interface AuthenticateStateWithToken extends AuthenticatedUser, WithToken {
+}
+
+export interface ToLogUserWithToken extends ToLogUser, WithToken {
 }
