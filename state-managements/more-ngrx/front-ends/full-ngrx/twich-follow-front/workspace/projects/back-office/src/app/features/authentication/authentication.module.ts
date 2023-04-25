@@ -6,7 +6,7 @@ import { authenticationFeatureKey, authenticationReducer } from './store/store.r
 import { LoginComponent } from './login/login.component';
 import { AuthenticationRoutingModule } from './authentication-routing.module';
 import { AuthEffect } from './store/effects';
-
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 
 @NgModule({
@@ -17,7 +17,8 @@ import { AuthEffect } from './store/effects';
     CommonModule,
     StoreModule.forFeature(authenticationFeatureKey, authenticationReducer),
     EffectsModule.forFeature([AuthEffect]),
-    AuthenticationRoutingModule
+    AuthenticationRoutingModule,
+    AlertModule.forRoot()
   ]
 })
 export class AuthenticationModule { }

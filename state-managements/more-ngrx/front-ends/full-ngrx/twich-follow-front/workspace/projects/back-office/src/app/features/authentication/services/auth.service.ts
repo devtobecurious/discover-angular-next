@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
 import { ApiAuthUser, AuthenticateStateWithToken, ToLogUser, ToLogUserWithToken } from '../models';
 import { isLogginAction } from '../store/actions';
-import { selectUserIsLogged } from '../store/selectors';
+import { selectUserAuthWithFailure, selectUserIsLogged } from '../store/selectors';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,10 @@ import { selectUserIsLogged } from '../store/selectors';
 export class AuthService {
   private readonly store = inject(Store);
   private readonly httpClient = inject(HttpClient);
+
+  selectAuthError(): Observable<any | undefined> {
+    return this.store.select(selectUserAuthWithFailure);
+  }
 
   login(user: ToLogUser): void {
     this.store.dispatch(isLogginAction({ user }));

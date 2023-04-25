@@ -1,9 +1,10 @@
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { concatMap, map, tap } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { concatMap, map, tap, catchError } from 'rxjs/operators';
 import { AuthService } from '../../services/auth.service';
-import { isLogginAction, isLogginSuccessAction } from '../actions';
+import { isLogginAction, isLogginFailureAction, isLogginSuccessAction } from '../actions';
 @Injectable()
 export class AuthEffect {
   private readonly authService = inject(AuthService);
@@ -13,7 +14,8 @@ export class AuthEffect {
   onLoggedIn$ = createEffect(() => this.actions$.pipe(
     ofType(isLogginAction),
     concatMap(action => this.authService.authenticate(action.user)),
-    map(user => isLogginSuccessAction({ user: { ...user, isLogged: true } }))
+    map(user => isLogginSuccessAction({ user: { ...user, isLogged: true } })),
+    catchError(error => of(isLogginFailureAction({ error })))
   ));
 
   onLoggedInSuccess$ = createEffect(() => this.actions$.pipe(

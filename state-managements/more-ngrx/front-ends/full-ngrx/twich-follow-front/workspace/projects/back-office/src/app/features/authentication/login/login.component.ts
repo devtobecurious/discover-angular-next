@@ -14,6 +14,7 @@ export class LoginComponent {
   }
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
+  errorOnLogin$ = this.authService.selectAuthError();
 
   clickToLogin(): void {
     this.authService.login(this.user);
