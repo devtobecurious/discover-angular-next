@@ -17,7 +17,7 @@ export const initialState: AuthenticationState = {
 export const authenticationReducer = createReducer(
   initialState,
   on(isLogginSuccessAction, (state, { user }) => ({ ...state, user: { ...user, isLogged: true } })),
-  on(isLogginFailureAction, (state, { error }) => ({ ...state, user: { login: '', password: '', isLogged: false }, error }))
+  on(isLogginFailureAction, (state, { error }) => ({ ...state, user: { username: '', password: '', isLogged: false }, error }))
 );
 
 

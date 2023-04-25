@@ -8,7 +8,7 @@ export type ApiError = {
 }
 
 export interface ToLogUser {
-  login: string,
+  username: string,
   password: string
 }
 

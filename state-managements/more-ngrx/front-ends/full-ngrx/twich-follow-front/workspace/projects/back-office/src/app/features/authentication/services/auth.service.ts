@@ -23,12 +23,12 @@ export class AuthService {
 
   authenticate(user: ToLogUser): Observable<ToLogUserWithToken> {
     return this.httpClient.post<ApiAuthUser>('http://localhost:3000/auth/login', {
-      login: user.login,
+      username: user.username,
       password: user.password
     }).pipe(
       map(apiUser => ({
         token: apiUser.access_token,
-        login: user.login,
+        username: user.username,
         password: user.password
       })
       ));

@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { EffectsModule } from '@ngrx/effects';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -15,6 +16,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     StoreModule.forFeature(authenticationFeatureKey, authenticationReducer),
     EffectsModule.forFeature([AuthEffect]),
     AuthenticationRoutingModule,
