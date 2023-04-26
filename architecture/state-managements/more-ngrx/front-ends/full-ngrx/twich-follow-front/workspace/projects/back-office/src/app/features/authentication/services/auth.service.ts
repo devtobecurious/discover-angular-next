@@ -1,17 +1,17 @@
-import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, map } from 'rxjs';
-import { ApiAuthUser, AuthenticateStateWithToken, ToLogUser, ToLogUserWithToken } from '../models';
+import { map, Observable } from 'rxjs';
+import { ToLogUser, ToLogUserWithToken } from '../models';
 import { isLogginAction } from '../store/actions';
 import { selectUserAuthWithFailure, selectUserIsLogged } from '../store/selectors';
+import { AuthLayerService } from './auth-layer.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private readonly store = inject(Store);
-  private readonly httpClient = inject(HttpClient);
+  private readonly layer = inject(AuthLayerService);
 
   selectAuthError(): Observable<any | undefined> {
     return this.store.select(selectUserAuthWithFailure);
@@ -22,7 +22,7 @@ export class AuthService {
   }
 
   authenticate(user: ToLogUser): Observable<ToLogUserWithToken> {
-    return this.httpClient.post<ApiAuthUser>('http://localhost:3000/auth/login', {
+    return this.layer.authenticate({
       username: user.username,
       password: user.password
     }).pipe(
@@ -31,7 +31,7 @@ export class AuthService {
         username: user.username,
         password: user.password
       })
-      ));
+    ));
   }
 
   get isLogged(): Observable<boolean | undefined> {
