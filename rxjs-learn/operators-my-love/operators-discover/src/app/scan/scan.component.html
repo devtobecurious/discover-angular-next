@@ -1,0 +1,31 @@
+<h1>Scan</h1>
+
+<h2>Factoriel</h2>
+{{ source$ | async }}
+
+<h2>Accumulate object</h2>
+{{ acumulate$ | async | json}}
+<button (click)="better01()">Better 1</button>
+<button (click)="better02()">Better 2</button>
+
+
+<h2>Votes</h2>
+<div *ngFor="let item of voteCount$ | async">
+  <b>{{item.option}}</b> : {{ item.count}}
+</div>
+
+<select #options>
+  <option>Angular</option>
+  <option>React</option>
+  <option>Vuejs</option>
+</select>
+
+<button (click)="vote()">Add one vote</button>
+
+<h2>History</h2>
+<ng-container *ngIf="history$ | async as history">
+  <div *ngFor="let item of history.items">
+    <b>{{item}}</b>
+  </div>
+</ng-container>
+  <button (click)="addHistory()">Add history</button>
