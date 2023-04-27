@@ -65,22 +65,22 @@ export class CityService {
 
   getAll(countryCode: string): Observable<Cities> {
     return this.getAllPerPage(countryCode)
-    .pipe(
-      concatMap(item => {
-        return range(2, item.total_pages).pipe(
-          concatMap(page => of(page).pipe(delay(2000))),
-          concatMap(page => this.getAllPerPage(countryCode, page + 1)),
-        );
-      }),
+    // .pipe(
+    //   concatMap(item => {
+    //     return range(2, item.total_pages).pipe(
+    //       concatMap(page => of(page).pipe(delay(2000))),
+    //       concatMap(page => this.getAllPerPage(countryCode, page + 1)),
+    //     );
+    //   }),
 
-      scan((history: Cities, current: Cities) => {
-        history.total_pages = current.total_pages;
-        history.cities = [...history.cities, ...current.cities];
+    //   scan((history: Cities, current: Cities) => {
+    //     history.total_pages = current.total_pages;
+    //     history.cities = [...history.cities, ...current.cities];
 
-        return history;
-      }, { total_pages: 0, cities: [] } as Cities),
-      last()
-    );
+    //     return history;
+    //   }, { total_pages: 0, cities: [] } as Cities),
+    //   last()
+    // );
   }
 
   getAllPerPage(countryCode: string, page = 1): Observable<Cities> {
