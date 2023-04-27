@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component, NgZone, inject } from '@angular/cor
   selector: 'app-progress',
   templateUrl: './progress.component.html',
   styleUrls: ['./progress.component.css'],
-  // changeDetection: ChangeDetectionStrategy.OnPush => if we activate this line => progress value not update the template
+  //changeDetection: ChangeDetectionStrategy.OnPush // => if we activate this line => progress value not update the template
 })
 export class ProgressComponent {
   private readonly ngZone = inject(NgZone);
