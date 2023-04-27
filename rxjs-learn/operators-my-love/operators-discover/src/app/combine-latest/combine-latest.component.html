@@ -18,3 +18,27 @@
 
   <button [disabled]="hasErrors">Save</button>
 </form>
+
+<h2>Weather</h2>
+<h3>Pays</h3>
+<select *ngIf="countries$ | async as item" (change)="changeCountry($event.target)">
+  <option value="">-- SELECT PAYS --</option>
+  <option *ngFor="let country of item.countries" [value]="country.code">{{ country.name }}</option>
+</select>
+
+<ng-container *ngIf="cities$ | async as item">
+  <h3>Ville</h3>
+  <select  (change)="changeCity($event.target)">
+    <option value="">-- SELECT VILLE --</option>
+    <option *ngFor="let city of item.cities" [value]="city.name">{{ city.name }}</option>
+  </select>
+</ng-container>
+
+<ng-container *ngIf="weather$ | async as weather">
+  <h3>Weather</h3>
+  <div>{{ weather.temperature }}</div>
+</ng-container>
+
+
+
+
