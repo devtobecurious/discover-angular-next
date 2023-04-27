@@ -1,0 +1,15 @@
+<h1>Fork join</h1>
+<h2>Temps attente :</h2>
+<input type="number" [(ngModel)]="waitingTime" /> <button (click)="changeTime()">Change</button>
+<div>{{ data$ | async }}</div>
+
+<ng-container *ngIf="starwars$ | async as starwars">
+  <h2>Chargement de deux apis</h2>
+
+  People : <select><option *ngFor="let item of starwars.people.results">{{ item.name }}</option></select>
+  Planets : <select><option *ngFor="let item of starwars.planets.results">{{ item.name }}</option></select>
+</ng-container>
+
+
+
+

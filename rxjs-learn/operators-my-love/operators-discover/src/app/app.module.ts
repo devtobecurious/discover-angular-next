@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ScanComponent } from './scan/scan.component';
 import { CombineLatestComponent } from './combine-latest/combine-latest.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ForkJoinComponent } from './fork-join/fork-join.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ForkJoinComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
