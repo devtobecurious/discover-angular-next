@@ -1,0 +1,15 @@
+<h1>Share and replay</h1>
+
+<h2>Mise en cache</h2>
+<ng-container *ngIf="users$ | async as users">
+  <div *ngFor="let item of users.results">{{item.name}}</div>
+</ng-container>
+<hr>
+<ng-container *ngIf="users$ | async as users">
+  <div *ngFor="let item of users.results">{{item.name}}</div>
+</ng-container>
+<hr>
+<ng-container *ngIf="users$ | async as users">
+  <div *ngFor="let item of users.results">{{item.name}}</div>
+</ng-container>
+

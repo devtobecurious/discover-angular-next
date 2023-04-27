@@ -7,6 +7,7 @@ import { ScanComponent } from './scan/scan.component';
 import { CombineLatestComponent } from './combine-latest/combine-latest.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ForkJoinComponent } from './fork-join/fork-join.component';
+import { ShareReplayComponent } from './share-replay/share-replay.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ForkJoinComponent } from './fork-join/fork-join.component';
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
-    ForkJoinComponent
+    ForkJoinComponent,
+    ShareReplayComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
