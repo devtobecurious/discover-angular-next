@@ -95,6 +95,7 @@ export class CombineLatestComponent {
   changeCountry(event: EventTarget | null): void {
     if (event) {
       const countryCode = (event as HTMLSelectElement).value;
+      this.selectCity$.next('');
       this.selectCountry$.next(countryCode);
     }
   };
