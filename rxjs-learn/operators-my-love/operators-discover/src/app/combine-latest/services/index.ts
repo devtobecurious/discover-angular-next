@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
-import { Observable, map, of, tap } from "rxjs";
+import { Observable, concatMap, delay, last, map, of, range, scan, tap } from "rxjs";
 import { ApiCountries, ApiWeather, Cities, City, Countries, Weather } from "../models";
 
 const headers = {
@@ -64,7 +64,27 @@ export class CityService {
   private readonly httpClient = inject(HttpClient);
 
   getAll(countryCode: string): Observable<Cities> {
-    const apiUrl = `https://countries-cities.p.rapidapi.com/location/country/${countryCode}/city/list?page=1&per_page=100`;
+    return this.getAllPerPage(countryCode)
+    .pipe(
+      concatMap(item => {
+        return range(2, item.total_pages).pipe(
+          concatMap(page => of(page).pipe(delay(2000))),
+          concatMap(page => this.getAllPerPage(countryCode, page + 1)),
+        );
+      }),
+
+      scan((history: Cities, current: Cities) => {
+        history.total_pages = current.total_pages;
+        history.cities = [...history.cities, ...current.cities];
+
+        return history;
+      }, { total_pages: 0, cities: [] } as Cities),
+      last()
+    );
+  }
+
+  getAllPerPage(countryCode: string, page = 1): Observable<Cities> {
+    const apiUrl = `https://countries-cities.p.rapidapi.com/location/country/${countryCode}/city/list?page=${page}&per_page=20`;
     return this.httpClient.get<Cities>(apiUrl, { headers });
   }
 }

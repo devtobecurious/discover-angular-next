@@ -6,7 +6,8 @@ export interface City {
 }
 
 export interface Cities {
-  cities: City[]
+  total_pages: number;
+  cities: City[];
 }
 
 export interface Country {

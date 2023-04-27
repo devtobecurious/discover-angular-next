@@ -12,7 +12,7 @@ import { Cities, Weather } from './models';
 export class CombineLatestComponent {
   selectCountry$ = new BehaviorSubject<string>('');
   selectCity$ = new BehaviorSubject<string>('');
-  citiesStore$ = new BehaviorSubject<Cities>({ cities: [] });
+  citiesStore$ = new BehaviorSubject<Cities>({ total_pages: 0, cities: [] });
 
   private readonly cityService = inject(CityService);
   countries$ = inject(CountryService).getAll();
