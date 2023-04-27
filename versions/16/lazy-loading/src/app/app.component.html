@@ -1,0 +1,9 @@
+<h1>Planets</h1>
+<ng-container *ngIf="planets$ | async as result">
+  <ul>
+    <li *ngFor="let planet of result.results">
+      {{ planet.name }}
+    </li>
+  </ul>
+</ng-container>
+
