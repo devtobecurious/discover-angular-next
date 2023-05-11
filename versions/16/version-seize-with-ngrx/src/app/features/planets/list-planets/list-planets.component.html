@@ -1,0 +1,7 @@
+<button (click)="loadFromMemory()">Load from Memory</button>
+
+<div>
+  <div *ngFor="let item of planets$$()">
+    {{ item.label }}
+  </div>
+</div>
