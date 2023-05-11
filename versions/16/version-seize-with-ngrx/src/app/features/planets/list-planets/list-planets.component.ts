@@ -1,7 +1,7 @@
 import { CommonModule, NgFor } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { selectAllPlanets } from '../store';
+import { selectAll } from '../store';
 import { loadPlanetsInMemory } from '../store/actions';
 
 @Component({
@@ -13,9 +13,9 @@ import { loadPlanetsInMemory } from '../store/actions';
 })
 export class ListPlanetsComponent {
   private readonly store = inject(Store);
-  readonly planets$$ = this.store.selectSignal(selectAllPlanets);
+  readonly planets$$ = this.store.selectSignal(selectAll);
 
   loadFromMemory(): void {
-    this.store.dispatch(loadPlanetsInMemory({ planets: [ {label: 'Tatooine'}, { label: 'Mustafar'} ] }));
+    this.store.dispatch(loadPlanetsInMemory({ planets: [ {id: 1, label: 'Tatooine'}, { id: 2, label: 'Mustafar'} ] }));
   }
 }

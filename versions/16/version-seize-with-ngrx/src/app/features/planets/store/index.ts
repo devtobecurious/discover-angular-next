@@ -1,18 +1,13 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import { Planet, Planets } from '../models';
+import { Planet } from '../models';
 import { createFeature, createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 import { loadPlanetsInMemory } from './actions';
 
-export interface PlanetState {
-  items: Planets;
-}
-
-const initialState: PlanetState = {
-  items: []
-}
+const planetAdapter = createEntityAdapter<Planet>();
+const initialState: EntityState<Planet> = planetAdapter.getInitialState();
 
 const inReducer = createReducer(initialState,
-  on(loadPlanetsInMemory, (state, { planets }) => ({ ...state, items: planets }))
+  on(loadPlanetsInMemory, (state, { planets }) => planetAdapter.setAll(planets, state))
 );
 
 export const planetFeature = createFeature({
@@ -24,10 +19,12 @@ export const planetFeature = createFeature({
 export const {
   name,
   reducer,
+  selectEntities,
   selectPlanetsState
 } = planetFeature;
 
-export const selectAllPlanetsFeature = createFeatureSelector<PlanetState>('planets');
-export const selectAllPlanets = createSelector(selectAllPlanetsFeature, (state: PlanetState) => state.items);
+export const {
+  selectAll
+} = planetAdapter.getSelectors(selectPlanetsState);
 
 
