@@ -1,0 +1,67 @@
+
+@defer (on interaction(testClick)) {
+  <h1>The h1 !!!!</h1>
+}
+
+@defer (on timer(1500ms)) {
+  Main content
+} @placeholder {
+  Placeholder
+}
+
+@defer (on interaction) {
+  <h2>The h2 !!!!</h2>
+}
+@placeholder {
+  <i>waiting ....</i>
+}
+
+@if (userUpdate().isHuman) {
+  <ng-container>
+    <div>Oh yeah</div>
+  </ng-container>
+
+
+}
+@else {
+  <ng-container>
+    <div>Ben non</div>
+  </ng-container>
+
+  @defer (when unBooleen) {
+    <ng-container>
+      <div>The last one</div>
+    </ng-container>
+  }
+
+  @defer (on immediate) {
+    <ng-container>
+      <div>The immediate one</div>
+    </ng-container>
+  }
+  @loading {
+
+    {{onLog()}}
+    <hr>
+    <i>Loading ....</i>
+  }
+  @error {
+
+  }
+}
+
+@for (item of listItems(); track item) {
+  @defer (on timer(1500)) {
+    <div>
+      {{item}}
+    </div>
+  }
+  @placeholder {
+    {{item}} is loading
+  }
+}
+<button (click)="loadItems()">Load</button>
+
+<button #testClick (click)="changeSpecie()">Change human</button>
+
+<router-outlet></router-outlet>
