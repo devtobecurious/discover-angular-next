@@ -13,7 +13,7 @@ import { concatMap, delay, mergeMap, switchMap, tap } from 'rxjs/operators';
 export class AppComponent implements OnInit, AfterViewInit {
   title = 'rxjs-plus';
 
-  @ViewChild('clickButton', { static: false }) button;
+  @ViewChild('clickButton', { static: false }) button: ElementRef<HTMLButtonElement>;
   clicks$: Observable<any>;
 
   ngAfterViewInit() {

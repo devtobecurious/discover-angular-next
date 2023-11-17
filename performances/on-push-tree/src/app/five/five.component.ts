@@ -10,7 +10,7 @@ export class FiveComponent implements OnInit {
 
   constructor(private el: ElementRef) { }
   cdCheck() {
-    hightlight(this.el);
+    hightlight('FiveComponent', this.el);
   }
 
   ngOnInit(): void {

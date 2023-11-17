@@ -10,13 +10,13 @@ import { hightlight } from 'src/shared/tools/hightlight';
 export class TwoComponent implements OnInit {
 
   ngOnInit(): void {
-    this.cd.detach();
+    //this.cd.detach();
   }
 
   constructor(private el: ElementRef, public cd: ChangeDetectorRef) {}
 
   cdCheck() {
-    hightlight(this.el);
+    hightlight('TwoComponent', this.el);
   }
 
   //does not work for all the cases

@@ -14,7 +14,7 @@ export class OneComponent implements OnInit {
   }
 
   cdCheck() {
-    hightlight(this.el);
+    hightlight('OneComponent', this.el);
   }
 
 }
