@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
-import { BehaviorSubject, Observable, combineLatest, concatMap, delay, filter, last, map, of, range, scan, switchMap, tap } from "rxjs";
+import { BehaviorSubject, Observable, Subscriber, combineLatest, concatMap, delay, filter, last, map, of, range, scan, switchMap, tap } from "rxjs";
 import { ApiCountries, ApiWeather, Cities, City, Countries, Weather } from "../models";
 
 const headers = {
@@ -26,7 +26,7 @@ export class WeatherService {
   private readonly httpClient = inject(HttpClient);
 
   getOne(country: string, city: City | undefined): Observable<Weather | null> {
-    let result: Observable<Weather | null> = of(null);
+    let result: Observable<Weather | null> = new Observable<Weather | null>(subscriber => subscriber.next(null));
 
     if (city) {
       const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${city.latitude}&longitude=${city.longitude}&current_weather=true&hourly=temperature_2m,relativehumidity_2m,windspeed_10m`;
@@ -123,14 +123,10 @@ export class WeatherWithCountryAndCityService {
     country: this.store.searchCountry.store$,
     city: this.store.searchCity.store$
   }).pipe(
-    filter(result => !! result.country && !! result.city),
+   // filter(result => !! result.country && !! result.city),
     switchMap(result => {
       const city = this.store.cities.cities$.value.cities.find(item => item.geonameid === +result.city);
-      if(city) {
-        return this.weatherService.getOne(result.country, city);
-      }
-
-      return of(null);
+      return this.weatherService.getOne(result.country, city);
     })
   )
 }

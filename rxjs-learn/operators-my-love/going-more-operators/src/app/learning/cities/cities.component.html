@@ -1,5 +1,6 @@
 @if(cities$ | async; as result) {
-  <select (change)="selectNewCity($event.target)">
+  <select [ngModel]="cityId" (ngModelChange)="selectNewCity($event)">
+  <option value="">-- SELECT --</option>
   @for (city of result.cities; track city.geonameid) {
     <option value="{{city.geonameid}}">{{city.name}}</option>
   }
