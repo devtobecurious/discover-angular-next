@@ -1,0 +1,6 @@
+<app-countries></app-countries>
+<app-cities></app-cities>
+
+@if(weather$ | async; as weather) {
+  Il fait : {{weather.temperature}}
+}
