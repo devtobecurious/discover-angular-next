@@ -1,3 +1,5 @@
+{{ collectForm.value | json }}
+
 <form [formGroup]="collectForm" (ngSubmit)="save()">
   <mat-accordion class="example-headers-align" >
     <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle formGroupName="user">

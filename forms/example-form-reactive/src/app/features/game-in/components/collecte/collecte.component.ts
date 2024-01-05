@@ -1,4 +1,4 @@
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, JsonPipe } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, FormControl, FormGroupDirective, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
@@ -25,7 +25,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 @Component({
   selector: 'app-collecte',
   standalone: true,
-  imports: [AsyncPipe, ReactiveFormsModule, MatGridListModule, MatToolbarModule,MatCardModule, MatInputModule, MatSelectModule, MatExpansionModule, MatFormFieldModule, MatNativeDateModule, MatDatepickerModule, MatIconModule],
+  imports: [AsyncPipe, JsonPipe, ReactiveFormsModule, MatGridListModule, MatToolbarModule,MatCardModule, MatInputModule, MatSelectModule, MatExpansionModule, MatFormFieldModule, MatNativeDateModule, MatDatepickerModule, MatIconModule],
   templateUrl: './collecte.component.html',
   styleUrl: './collecte.component.css'
 })
@@ -44,7 +44,7 @@ export class CollecteComponent {
       email: ['', [Validators.required, Validators.email]]
     }),
     game: this.builder.group({
-      id: [-1, Validators.required]
+      id: [-1, Validators.min(1)]
     }),
     network: this.builder.group({
       id: [-1, Validators.min(1)]
