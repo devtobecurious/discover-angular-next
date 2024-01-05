@@ -4,3 +4,11 @@ export interface Game {
 }
 
 export type Games = Game[];
+
+export interface SocialNetwork {
+  id: number;
+  label: string;
+  description: string;
+}
+
+export type SocialNetworks = SocialNetwork[];
