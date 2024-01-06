@@ -1,6 +1,6 @@
 import { AsyncPipe, JsonPipe } from '@angular/common';
 import { Component, OnInit, inject, signal } from '@angular/core';
-import { FormBuilder, FormControl, FormGroupDirective, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { ErrorStateMatcher, MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -57,7 +57,7 @@ export class CollecteComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]]
     }),
     consoles: this.builder.group({
-      list: this.builder.array([], [Validators.required])
+      list: this.builder.array<FormGroup>([], [Validators.required])
     }),
     game: this.builder.group({
       id: [-1, Validators.min(1)]
@@ -68,8 +68,14 @@ export class CollecteComponent implements OnInit {
   })
 
   private addConsoleGameControl(console: GameConsole): void {
-    const control = this.builder.control(false);
-    this.collectForm.controls.consoles.controls.list.push(control);
+    // const control = this.builder.control(false);
+    // this.collectForm.controls.consoles.controls.list.push(control);
+    this.collectForm.controls.consoles.controls.list.push(
+      this.builder.group({
+        id: console.id,
+        isSelected: false
+      })
+    )
   }
 
   setStep(index: number) {
