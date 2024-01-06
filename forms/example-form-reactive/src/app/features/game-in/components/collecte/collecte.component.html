@@ -57,7 +57,30 @@
       </mat-action-row>
     </mat-expansion-panel>
 
-    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle formGroupName="network">
+    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle formGroupName="consoles">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Consoles
+        </mat-panel-title>
+        <mat-panel-description>
+          Choisis tes consoles
+          <mat-icon>map</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div formArrayName="list">
+      @for (console of consoles$ | async; track console.id; let i = $index) {
+        <mat-checkbox [formControlName]="i" >{{console.label}} // {{console.version}}</mat-checkbox>
+      }
+    </div>
+
+      <mat-action-row>
+        <button mat-button color="warn" (click)="prevStep()">Previous</button>
+        <button [disabled]="! consolesIsValid" mat-button color="primary" (click)="nextStep()">Next</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle formGroupName="network">
       <mat-expansion-panel-header>
         <mat-panel-title>
           Réseaux sociaux
@@ -91,7 +114,7 @@
             @if (selectedNetwork) {
               <mat-toolbar color="default">
                 <mat-toolbar-row>
-                  <span>{{ selectedNetwork.description }}</span>
+                  <span>{{ networkDescription() }}</span>
                 </mat-toolbar-row>
               </mat-toolbar>
             }

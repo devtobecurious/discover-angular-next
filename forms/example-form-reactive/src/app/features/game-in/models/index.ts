@@ -12,3 +12,11 @@ export interface SocialNetwork {
 }
 
 export type SocialNetworks = SocialNetwork[];
+
+export interface GameConsole {
+  id: number;
+  label: string;
+  version: number;
+}
+
+export type GameConsoles = GameConsole[];

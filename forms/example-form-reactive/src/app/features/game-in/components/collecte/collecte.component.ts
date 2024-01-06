@@ -1,5 +1,5 @@
 import { AsyncPipe, JsonPipe } from '@angular/common';
-import { Component, inject, signal } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { FormBuilder, FormControl, FormGroupDirective, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { ErrorStateMatcher, MatNativeDateModule } from '@angular/material/core';
@@ -10,10 +10,13 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { SocialNetwork } from '../../models';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { GameConsole, SocialNetwork } from '../../models';
 import { CollectGameBusiness } from '../../services/collecte-game.business';
 import { SocialNetworkBusiness } from '../../services/social-network.business';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { ConsoleBusiness } from '../../services/console.business';
+import { map, shareReplay } from 'rxjs';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -25,23 +28,36 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 @Component({
   selector: 'app-collecte',
   standalone: true,
-  imports: [AsyncPipe, JsonPipe, ReactiveFormsModule, MatGridListModule, MatToolbarModule,MatCardModule, MatInputModule, MatSelectModule, MatExpansionModule, MatFormFieldModule, MatNativeDateModule, MatDatepickerModule, MatIconModule],
+  imports: [AsyncPipe, JsonPipe, MatCheckboxModule, ReactiveFormsModule, MatGridListModule, MatToolbarModule,MatCardModule, MatInputModule, MatSelectModule, MatExpansionModule, MatFormFieldModule, MatNativeDateModule, MatDatepickerModule, MatIconModule],
   templateUrl: './collecte.component.html',
   styleUrl: './collecte.component.css'
 })
-export class CollecteComponent {
+export class CollecteComponent implements OnInit {
+  ngOnInit(): void {
+    this.consoles$.subscribe(consoles => {
+      consoles.forEach(console => this.addConsoleGameControl(console));
+    })
+  }
   private builder = inject(FormBuilder);
+  private readonly gameConsoleBusiness = inject(ConsoleBusiness);
+
+  consoles$ = this.gameConsoleBusiness.getAll().pipe(shareReplay(1));
+
+  step = 0;
   selectedNetwork: SocialNetwork | undefined = undefined;
   networkDescription = signal<string>('');
 
   games$ = inject(CollectGameBusiness).getGameAll();
   networks$ = inject(SocialNetworkBusiness).getAll();
-
   matcher = new MyErrorStateMatcher();
+
   collectForm = this.builder.group({
     user: this.builder.group({
       surname: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]]
+    }),
+    consoles: this.builder.group({
+      list: this.builder.array([], [Validators.required])
     }),
     game: this.builder.group({
       id: [-1, Validators.min(1)]
@@ -51,7 +67,10 @@ export class CollecteComponent {
     })
   })
 
-  step = 0;
+  private addConsoleGameControl(console: GameConsole): void {
+    const control = this.builder.control(false);
+    this.collectForm.controls.consoles.controls.list.push(control);
+  }
 
   setStep(index: number) {
     this.step = index;
@@ -72,6 +91,7 @@ export class CollecteComponent {
   selectNetwork(network: SocialNetwork): void {
     this.selectedNetwork = network;
     this.collectForm.controls.network.controls.id.setValue(network.id);
+    this.networkDescription.set(network.description);
   }
 
   get userGroupIsValid(): boolean {
@@ -84,5 +104,9 @@ export class CollecteComponent {
 
   get networkIdIsValid(): boolean {
     return this.collectForm.controls.network.controls.id.valid;
+  }
+
+  get consolesIsValid(): boolean {
+    return this.collectForm.controls.consoles.controls.list.valid;
   }
 }
