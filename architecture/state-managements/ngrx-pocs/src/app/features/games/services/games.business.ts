@@ -3,8 +3,8 @@ import { Observable } from "rxjs";
 import { Games } from "../models";
 import { Store, select } from "@ngrx/store";
 import { ApplicationState } from "../../../reducers";
-import { requestToGetGames } from "../store/games.actions";
-import { getAllGamesSelector } from "../store/games.selectors";
+import { removeLastGameCommand, requestToGetGames } from "../store/games.actions";
+import { getAllGamesSelector, getOnlyOneGameSelector } from "../store/games.selectors";
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,16 @@ export class GamesBusiness {
   getAll(): Observable<Games> {
     return this.store.pipe(
       select(getAllGamesSelector) // Et voilà ! :) un next sera executé à chaque fois que le state va changer !
+    )
+  }
+
+  removeLastOne(): void {
+    this.store.dispatch(removeLastGameCommand());
+  }
+
+  isOnlyOneGame(): Observable<boolean> {
+    return this.store.pipe(
+      select(getOnlyOneGameSelector)
     )
   }
 

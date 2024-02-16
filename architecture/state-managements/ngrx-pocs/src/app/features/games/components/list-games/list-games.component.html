@@ -1,3 +1,13 @@
+@if(onlyOnGame$ | async; as isOneGame)
+{
+  <i>One game {{isOneGame}}</i>
+}
+@else {
+  <i>Many game or zero</i>
+}
+
+<button (click)="removeLast()">Remove one</button>
+
 @for (item of games$ | async;  track item.id)  {
   <div>
     <h1>{{item.title}}</h1>

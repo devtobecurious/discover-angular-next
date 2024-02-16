@@ -1,6 +1,8 @@
 import { createAction, props } from "@ngrx/store";
 import { Games } from "../models";
 
+export const removeLastGameCommand = createAction('[UI] - Remove last game');
+
 export const requestToGetGames = createAction('[UI] - request to get games from api');
 
 type UseGames = {

@@ -11,10 +11,15 @@ import { AsyncPipe } from '@angular/common';
 })
 export class ListGamesComponent implements OnInit {
   private readonly business = inject(GamesBusiness);
+  onlyOnGame$ = this.business.isOnlyOneGame();
   games$ = this.business.getAll(); // Tout le beau du spectacle est ici !
                                    // avec un pipe async <3 !
 
   ngOnInit(): void {
     this.business.load();
+  }
+
+  removeLast(): void {
+    this.business.removeLastOne();
   }
 }
