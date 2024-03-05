@@ -1,4 +1,4 @@
-import { Component, model } from '@angular/core';
+import { Component, model, signal } from '@angular/core';
 
 @Component({
   selector: 'app-model-input',
@@ -8,6 +8,7 @@ import { Component, model } from '@angular/core';
   styleUrl: './model-input.component.css'
 })
 export class ModelInputComponent {
+  title = signal<string>('Mes films');
   titreChanson = model.required<string>();
 
   change(): void {

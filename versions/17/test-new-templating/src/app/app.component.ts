@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, computed, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 
@@ -19,6 +19,10 @@ export class AppComponent implements OnInit {
   unBooleen =true;
 
   listItems = signal<string[]>([]);
+
+  isEmptyList = computed(() => {
+    return this.listItems().length === 0;
+  })
 
   loadItems(): void {
     this.listItems.set([
