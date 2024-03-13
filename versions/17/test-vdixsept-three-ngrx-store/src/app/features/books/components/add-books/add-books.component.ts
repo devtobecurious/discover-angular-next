@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, viewChild } from '@angular/core';
 import { BookStore } from '../../store';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Book } from '../../models';
@@ -13,9 +13,10 @@ import { ChildSaveOneBooksComponent } from '../child-save-one-books/child-save-o
 })
 export class AddBooksComponent {
   store = inject(BookStore);
-
+  childForm = viewChild(ChildSaveOneBooksComponent);
 
   save(item: Book): void {
     this.store.addInmemory(item);
+    this.childForm()?.clear();
   }
 }

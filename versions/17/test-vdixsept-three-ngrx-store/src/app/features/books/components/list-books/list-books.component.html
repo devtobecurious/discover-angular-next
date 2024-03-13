@@ -1,7 +1,13 @@
 @for (item of store.items(); track item.id) {
   <div>
-    {{ item.title }} // {{ item.description }}
+    {{ item.title }} // {{ item.description }} <div><button (click)="editOne(item)">Edit One</button></div>
   </div>
 }
 
-<app-add-books></app-add-books>
+@if(! editingBook) {
+  <app-add-books></app-add-books>
+}
+
+@if (editingBook) {
+  <app-update-books [book]="editingBook" (cancelEdit)="cancelEdition()"></app-update-books>
+}

@@ -2,5 +2,9 @@
   <input formControlName="title" name="title">
   <textarea formControlName="description" name="description"></textarea>
 
-  <button>Add</button>
+  <button>{{ titleButton() }}</button>
+  @if(isCancelAble) {
+    <button type="button" (click)="clickToCancel()">Cancel</button>
+  }
 </form>
+
