@@ -20,8 +20,18 @@ export const BookStore = signalStore(
   })),
   withMethods(store => ({
     addInmemory(item: Book) {
+      item.id = store.items().length + 1;
+
       patchState(store, {isLoading: true});
       patchState(store, {items: [...store.items(), item]})
+      patchState(store, {isLoading: false});
+    },
+    updateOneInMemory(item: Book) {
+      patchState(store, {isLoading: true});
+
+      const updateItems = store.items().map(child => child.id === item.id ? item : child);
+      patchState(store, {items: [...updateItems]});
+
       patchState(store, {isLoading: false});
     }
   }))

@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { BookStore } from '../store';
+import { BookStore } from '../../store';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddBooksComponent } from '../add-books/add-books.component';
 
