@@ -10,7 +10,7 @@ export class SixComponent implements OnInit {
 
   constructor(private el: ElementRef) { }
   cdCheck() {
-    // hightlight('SixComponent', this.el);
+    hightlight('SixComponent', this.el);
   }
 
   ngOnInit(): void {

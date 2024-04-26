@@ -13,7 +13,7 @@ export class TwoComponent implements OnInit {
     //this.cd.detach();
   }
 
-  constructor(private el: ElementRef, public cd: ChangeDetectorRef) {}
+  constructor(private el: ElementRef, public cd: ChangeDetectorRef) { }
 
   cdCheck() {
     hightlight('TwoComponent', this.el);

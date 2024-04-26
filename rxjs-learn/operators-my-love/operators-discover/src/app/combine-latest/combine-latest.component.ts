@@ -55,7 +55,7 @@ export class CombineLatestComponent {
   ],
     (one, two, three) => {
       return '' + one + two + three;
-  });
+    });
 
   private weight$ = of(70, 72, 76, 79, 75);
   private height$ = of(1.76, 1.77, 1.78);
@@ -63,15 +63,15 @@ export class CombineLatestComponent {
     this.weight$,
     this.height$
   ], (weight, height) => {
-    return { weight: weight, bmi: weight / (height * height)};
+    return { weight: weight, bmi: weight / (height * height) };
   }).pipe(
     scan(
-      (acc: {weight: number, bmi: number}[], value:  {weight: number, bmi: number}) => {
+      (acc: { weight: number, bmi: number }[], value: { weight: number, bmi: number }) => {
         acc.push(value);
         return acc;
       },
       []),
-      last()
+    last()
   );
 
   validDates$ = combineLatest([
@@ -88,7 +88,7 @@ export class CombineLatestComponent {
     })
   );
 
-  constructor() {
+  ngOnInit(): void {
     this.validDates$.subscribe();
   }
 

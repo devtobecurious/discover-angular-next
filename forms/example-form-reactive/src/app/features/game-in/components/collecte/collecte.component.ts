@@ -6,17 +6,18 @@ import { ErrorStateMatcher, MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { GameConsole, SocialNetwork } from '../../models';
 import { CollectGameBusiness } from '../../services/collecte-game.business';
 import { SocialNetworkBusiness } from '../../services/social-network.business';
-import {MatGridListModule} from '@angular/material/grid-list';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { ConsoleBusiness } from '../../services/console.business';
 import { map, shareReplay } from 'rxjs';
+import { sizeMaxValidator } from '../../validators/game-consoel-validator';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -28,7 +29,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 @Component({
   selector: 'app-collecte',
   standalone: true,
-  imports: [AsyncPipe, JsonPipe, MatCheckboxModule, ReactiveFormsModule, MatGridListModule, MatToolbarModule,MatCardModule, MatInputModule, MatSelectModule, MatExpansionModule, MatFormFieldModule, MatNativeDateModule, MatDatepickerModule, MatIconModule],
+  imports: [AsyncPipe, JsonPipe, MatCheckboxModule, ReactiveFormsModule, MatGridListModule, MatToolbarModule, MatCardModule, MatInputModule, MatSelectModule, MatExpansionModule, MatFormFieldModule, MatNativeDateModule, MatDatepickerModule, MatIconModule],
   templateUrl: './collecte.component.html',
   styleUrl: './collecte.component.css'
 })
@@ -60,7 +61,7 @@ export class CollecteComponent implements OnInit {
       list: this.builder.array<FormGroup>([], [Validators.required])
     }),
     game: this.builder.group({
-      id: [-1, Validators.min(1)]
+      id: [-1, Validators.min(1), sizeMaxValidator()]
     }),
     network: this.builder.group({
       id: [-1, Validators.min(1)]

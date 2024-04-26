@@ -10,7 +10,7 @@ export class SevenComponent implements OnInit {
 
   constructor(private el: ElementRef) { }
   cdCheck() {
-    // hightlight('SevenComponent', this.el);
+    hightlight('SevenComponent', this.el);
   }
 
   ngOnInit(): void {
