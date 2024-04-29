@@ -8,7 +8,7 @@
       "schematics": {},
       "root": "projects/dtbc-backoffice",
       "sourceRoot": "projects/dtbc-backoffice/src",
-      "prefix": "app",
+      "prefix": "dtbc",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
@@ -79,23 +79,13 @@
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular-devkit/build-angular:jest",
           "options": {
             "polyfills": [
               "zone.js",
               "zone.js/testing"
             ],
-            "tsConfig": "projects/dtbc-backoffice/tsconfig.spec.json",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
-            ],
-            "styles": [
-              "projects/dtbc-backoffice/src/styles.css"
-            ],
-            "scripts": []
+            "tsConfig": "projects/dtbc-backoffice/tsconfig.spec.json"
           }
         }
       }
