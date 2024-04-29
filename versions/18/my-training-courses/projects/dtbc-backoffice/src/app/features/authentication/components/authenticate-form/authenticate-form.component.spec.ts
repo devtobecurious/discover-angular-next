@@ -8,10 +8,9 @@ describe('AuthenticateFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AuthenticateFormComponent]
-    })
-    .compileComponents();
-    
+      imports: [AuthenticateFormComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(AuthenticateFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
