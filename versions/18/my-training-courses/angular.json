@@ -27,6 +27,7 @@
               }
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/cyan-orange.css",
               "projects/dtbc-backoffice/src/styles.css"
             ],
             "scripts": [],
