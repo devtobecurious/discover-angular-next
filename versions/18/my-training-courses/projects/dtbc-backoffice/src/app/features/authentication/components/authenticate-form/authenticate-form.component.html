@@ -1,0 +1,24 @@
+<form [formGroup]="currentForm">
+  <div class="row">
+    <mat-form-field>
+      <mat-label>Enter your email</mat-label>
+      <input matInput placeholder="pat@example.com" [formControl]="email" (blur)="updateErrorMessage()" required />
+      @if (email.invalid) {
+      <mat-error>{{ loginErrorMessage }}</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Enter your password</mat-label>
+      <input type="password" matInput placeholder="password" [formControl]="password" (blur)="updateErrorMessage()"
+        required />
+      @if (password.invalid) {
+      <mat-error>{{ passwordErrorMessage }}</mat-error>
+      }
+    </mat-form-field>
+    <button mat-fab extended color="primary">
+      <mat-icon>favorite</mat-icon>
+      Log in
+    </button>
+  </div>
+</form>
