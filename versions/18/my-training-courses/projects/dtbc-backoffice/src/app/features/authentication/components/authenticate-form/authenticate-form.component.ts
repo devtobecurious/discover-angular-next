@@ -63,4 +63,8 @@ export class AuthenticateFormComponent implements OnInit {
   get password(): FormControl {
     return this.currentForm.controls.password;
   }
+
+  get isFormValid(): boolean {
+    return this.currentForm.valid;
+  }
 }

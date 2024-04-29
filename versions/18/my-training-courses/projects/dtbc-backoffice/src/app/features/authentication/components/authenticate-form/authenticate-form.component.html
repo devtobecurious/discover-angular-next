@@ -16,7 +16,7 @@
       <mat-error>{{ passwordErrorMessage }}</mat-error>
       }
     </mat-form-field>
-    <button mat-fab extended color="primary">
+    <button mat-fab extended color="primary" [disabled]="! isFormValid">
       <mat-icon>favorite</mat-icon>
       Log in
     </button>
