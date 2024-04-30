@@ -1,4 +1,5 @@
-<form [formGroup]="currentForm">
+<!-- eslint-disable prettier/prettier -->
+<form [formGroup]="currentForm" (submit)="save()">
   <div class="row">
     <mat-form-field>
       <mat-label>Enter your email</mat-label>

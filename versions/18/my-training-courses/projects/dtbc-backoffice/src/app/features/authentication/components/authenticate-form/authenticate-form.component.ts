@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Component, inject, OnInit } from '@angular/core';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {
@@ -12,6 +13,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
+import { AuthenticateApplication } from '../../services/authenticate.application';
 
 @Component({
   selector: 'dtbc-authenticate-form',
@@ -21,6 +23,8 @@ import {MatButtonModule} from '@angular/material/button';
   styleUrl: './authenticate-form.component.css',
 })
 export class AuthenticateFormComponent implements OnInit {
+  private readonly application = inject(AuthenticateApplication);
+
   currentForm = inject(FormBuilder).group({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required])
@@ -34,6 +38,12 @@ export class AuthenticateFormComponent implements OnInit {
   updatePasswordErrors$ = merge(this.password.statusChanges, this.password.valueChanges)
                        .pipe(takeUntilDestroyed())
 
+  save(): void {
+    if(this.currentForm.value.email && this.currentForm.value.password) {
+      this.application.logIn(this.currentForm.value.email, this.currentForm.value.password);
+    }
+  }
+
   ngOnInit(): void {
     this.updateEmailErrors$.subscribe(() => this.updateErrorMessage());
     this.updatePasswordErrors$.subscribe(() => this.updateErrorMessage());
@@ -41,7 +51,10 @@ export class AuthenticateFormComponent implements OnInit {
 
   updateErrorMessage() {
     this.loginErrorMessage = this.updateErrorMessageFor(this.email, 'email');
-    this.passwordErrorMessage = this.updateErrorMessageFor(this.password, 'password');
+    this.passwordErrorMessage = this.updateErrorMessageFor(
+      this.password,
+      'password'
+    );
   }
 
   private updateErrorMessageFor(control: FormControl, error: string): string {
