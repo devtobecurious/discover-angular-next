@@ -1,7 +1,7 @@
-import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
+import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
 import { NullOrUndefinedOrType } from '../../../core/types/customs';
 import { AuthenticateUser } from '../models';
-import { inject } from '@angular/core';
+import { computed, inject } from '@angular/core';
 import { AuthenticateInfrastructure } from '../services/authenticate.infrastructure';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { tapResponse } from '@ngrx/operators';
@@ -27,6 +27,10 @@ const initialState: AuthenticateUserState = {
 export const AuthenticateStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
+  withComputed(store => ({
+    isLogged: computed(() => store.isAuthenticated()),
+    isNotLogged: computed(() => !store.user() || !store.isAuthenticated()),
+  })),
   withMethods((store, infra = inject(AuthenticateInfrastructure)) => ({
     logIn: rxMethod<LoginState>(
       pipe(
