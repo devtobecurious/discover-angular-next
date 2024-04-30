@@ -1,3 +1,6 @@
 <h1>Login</h1>
-<mat-spinner></mat-spinner>
+@if (isLoading()) {
+  <mat-spinner></mat-spinner>
+}
+
 <dtbc-authenticate-form></dtbc-authenticate-form>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { delay, Observable, of } from 'rxjs';
 import { AuthenticateUser } from '../models';
 
 const fakeApi: AuthenticateInfrastructure = {
@@ -8,7 +8,7 @@ const fakeApi: AuthenticateInfrastructure = {
       surname: 'Chewie',
     };
 
-    return of(user);
+    return of(user).pipe(delay(1500));
   },
 }
 

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { AuthenticateFormComponent } from '../../components/authenticate-form/authenticate-form.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { AuthenticateStore } from '../../store';
 
 @Component({
   selector: 'dtbc-login',
@@ -10,5 +11,6 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
-
+  private readonly store = inject(AuthenticateStore);
+  isLoading = this.store.isLoading;
 }
