@@ -5,6 +5,11 @@ import { userIsAuthenticatedGuard } from './features/authentication/guards/authe
 
 export const routes: Routes = [
   {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full',
+  },
+  {
     path: 'authenticate',
     children: authenticationRoutes,
   },
@@ -12,5 +17,10 @@ export const routes: Routes = [
     path: 'home',
     component: HomePageComponent,
     canActivate: [userIsAuthenticatedGuard],
+  },
+  {
+    path: '**',
+    redirectTo: 'authenticate/login',
+    pathMatch: 'full',
   },
 ];
