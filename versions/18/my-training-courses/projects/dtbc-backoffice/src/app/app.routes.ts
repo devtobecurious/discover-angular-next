@@ -19,6 +19,14 @@ export const routes: Routes = [
     canActivate: [userIsAuthenticatedGuard],
   },
   {
+    path: 'training-courses',
+    loadChildren: () =>
+      import('./features/training-courses/trainingcourses.routes').then(
+        item => item.trainingCoursesRoutes
+      ),
+    canActivate: [userIsAuthenticatedGuard],
+  },
+  {
     path: '**',
     redirectTo: 'authenticate/login',
     pathMatch: 'full',

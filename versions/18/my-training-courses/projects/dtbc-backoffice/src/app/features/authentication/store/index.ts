@@ -1,4 +1,10 @@
-import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
+import {
+  patchState,
+  signalStore,
+  withComputed,
+  withMethods,
+  withState,
+} from '@ngrx/signals';
 import { NullOrUndefinedOrType } from '../../../core/types/customs';
 import { AuthenticateUser } from '../models';
 import { computed, inject } from '@angular/core';

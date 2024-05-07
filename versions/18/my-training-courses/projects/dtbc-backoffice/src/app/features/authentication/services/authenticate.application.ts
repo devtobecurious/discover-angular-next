@@ -9,7 +9,7 @@ export class AuthenticateApplication {
 
   private authEffect = effect(() => {
     if (this.infra.isAuthenticated()) {
-      this.router.navigate(['home']);
+      this.router.navigate(['training-courses']);
     }
   });
 
