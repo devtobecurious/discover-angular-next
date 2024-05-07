@@ -5,6 +5,8 @@ import { concatMap, filter, pipe, tap } from 'rxjs';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { inject } from '@angular/core';
 import { AuthenticateStore } from '../../authentication/store';
+import { TrainingCoursesInfrastructure } from '../services/training-courses.infrastructure';
+import { tapResponse } from '@ngrx/operators';
 
 export interface TrainingCourseState {
   items: TrainingCourses;
@@ -23,14 +25,23 @@ export const TrainingCoursesStore = signalStore(
     (
       store,
       authStore = inject(AuthenticateStore),
-      isAuthenticated$ = toObservable(authStore.isAuthenticated)
+      isAuthenticated$ = toObservable(authStore.isAuthenticated),
+      infra = inject(TrainingCoursesInfrastructure)
     ) => ({
       loadAll: rxMethod(
         pipe(
           tap(() => patchState(store, { isLoading: true })),
           concatMap(() => isAuthenticated$),
           filter(auth => auth),
-          tap(() => console.info('is auth !'))
+          tap(() => console.info('is auth !')),
+          concatMap(() => {
+            return infra.getAll().pipe(
+              tapResponse({
+                next: items => patchState(store, { items, isLoading: false }),
+                error: () => patchState(store, { isLoading: false }),
+              })
+            );
+          })
         )
       ),
     })

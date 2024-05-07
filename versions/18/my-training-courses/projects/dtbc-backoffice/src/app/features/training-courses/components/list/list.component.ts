@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { TrainingCourse, TrainingCourses } from '../../models';
 
 @Component({
   selector: 'dtbc-list',
@@ -8,5 +9,5 @@ import { Component } from '@angular/core';
   styleUrl: './list.component.css'
 })
 export class ListComponent {
-
+  data = input.required<TrainingCourses>();
 }

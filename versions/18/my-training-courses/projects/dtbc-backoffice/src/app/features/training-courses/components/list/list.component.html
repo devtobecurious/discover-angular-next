@@ -1,1 +1,5 @@
-<p>list works!</p>
+@for (item of data(); track item.id) {
+  <div>
+    {{ item.title }}
+  </div>
+}
