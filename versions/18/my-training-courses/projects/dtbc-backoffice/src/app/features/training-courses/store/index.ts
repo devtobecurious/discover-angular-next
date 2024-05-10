@@ -1,12 +1,12 @@
+import { inject } from '@angular/core';
+import { toObservable } from '@angular/core/rxjs-interop';
+import { tapResponse } from '@ngrx/operators';
 import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
-import { TrainingCourses } from '../models';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { concatMap, filter, pipe, tap } from 'rxjs';
-import { toObservable } from '@angular/core/rxjs-interop';
-import { inject } from '@angular/core';
 import { AuthenticateStore } from '../../authentication/store';
+import { TrainingCourses } from '../models';
 import { TrainingCoursesInfrastructure } from '../services/training-courses.infrastructure';
-import { tapResponse } from '@ngrx/operators';
 
 export interface TrainingCourseState {
   items: TrainingCourses;
