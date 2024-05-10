@@ -16,7 +16,7 @@ export const routes: Routes = [
   {
     path: 'home',
     component: HomePageComponent,
-    //canActivate: [userIsAuthenticatedGuard],
+    canActivate: [userIsAuthenticatedGuard],
   },
   {
     path: 'training-courses',
@@ -24,7 +24,7 @@ export const routes: Routes = [
       import('./features/training-courses/trainingcourses.routes').then(
         item => item.trainingCoursesRoutes
       ),
-    //canActivate: [userIsAuthenticatedGuard],
+    canActivate: [userIsAuthenticatedGuard],
   },
   {
     path: '**',
