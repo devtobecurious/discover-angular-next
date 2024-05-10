@@ -1,0 +1,16 @@
+<button
+  mat-icon-button
+  [matMenuTriggerFor]="menu"
+  aria-label="Main menu">
+  <mat-icon>more_vert</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="goToTrainingCourses()">
+    <mat-icon>school</mat-icon>
+    <span>Training courses</span>
+  </button>
+  <button mat-menu-item (click)="goToLogin()">
+    <mat-icon>verified_user</mat-icon>
+    <span>Login</span>
+  </button>
+</mat-menu>
