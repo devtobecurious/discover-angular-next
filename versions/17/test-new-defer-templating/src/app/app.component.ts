@@ -12,4 +12,14 @@ import { ChildOneBisComponent } from './child-one-bis/child-one-bis.component';
 })
 export class AppComponent {
   title = 'test-new-defer-templating';
+  isDisplay = false;
+  isPreload = false;
+
+  preload(): void {
+    this.isPreload  = true;
+  }
+
+  display(): void {
+    this.isDisplay = true;
+  }
 }

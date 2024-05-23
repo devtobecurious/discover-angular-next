@@ -7,15 +7,87 @@
   </li>
 </ul>
 
-@defer {
+<!-- @defer (on idle; prefetch on idle) {
   <div>
     <app-child-one></app-child-one>
     <app-child-one-bis></app-child-one-bis>
   </div>
+} -->
+
+<!-- @defer (on interaction) {
+  <div>
+    <app-child-one></app-child-one>
+  </div>
 }
 @placeholder {
+  <b>Hello</b>
+} -->
+
+<div #title>Click me ?</div>
+
+<!-- @defer (on interaction(title)) {
+  <div>
+    <app-child-one></app-child-one>
+  </div>
+}
+@placeholder {
+  <b>Hello</b>
+} -->
+
+<!-- @defer (on viewport) {
+  <div>
+    <app-child-one></app-child-one>
+  </div>
+}
+@placeholder {
+  <b>Hello</b>
+} -->
+
+<!-- @defer (on hover) {
+  <div>
+    <app-child-one></app-child-one>
+  </div>
+}
+@placeholder {
+  <b>Hover me</b>
+} -->
+
+<!-- @defer (on timer(3s)) {
+  <div>
+    <app-child-one></app-child-one>
+  </div>
+}
+@loading(after 1s) {
+  <i>loading</i>
+}
+@placeholder {
+  <b>Here we come in ...</b>
+} -->
+
+<!-- @defer (on hover; prefetch on idle) {
+  <div>
+    <app-child-one></app-child-one>
+  </div>
+}
+@placeholder {
+  <b>Hover me</b>
+} -->
+
+<!-- @placeholder (minimum 500ms) {
   <p>Placeholder content</p>
 }
+@loading (after 1s; minimum 2s){
+  <i>loading ...</i>
+}
+@error {
+  <b>oops error</b>
+} -->
 
+<button (click)="preload()">Preload</button>
+<button (click)="display()">Display</button>
+
+@defer (when isDisplay; prefetch when isPreload) {
+  <app-child-one></app-child-one>
+}
 
 <router-outlet></router-outlet>
