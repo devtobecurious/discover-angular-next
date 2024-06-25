@@ -1,20 +1,20 @@
 /* eslint-disable prettier/prettier */
+import { computed, inject } from '@angular/core';
+import { tapResponse } from '@ngrx/operators';
 import {
   patchState,
   signalStore,
   withComputed,
   withHooks,
   withMethods,
-  withState,
+  withState
 } from '@ngrx/signals';
+import { rxMethod } from '@ngrx/signals/rxjs-interop';
+import { concatMap, pipe, tap } from 'rxjs';
 import { NullOrUndefinedOrType } from '../../../core/types/customs';
 import { AuthenticateUser } from '../models';
-import { computed, inject } from '@angular/core';
 import { AuthenticateInfrastructure } from '../services/authenticate.infrastructure';
-import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { tapResponse } from '@ngrx/operators';
-import { concatMap, pipe, tap } from 'rxjs';
-import { LocalStorageAuthenticateInfrastructure } from '../services/localstorage.authenticate.infrastructure';
+import { LocalStorageAuthenticationInfrastructure, SurnameWithToken } from '../services/localstorage.authentication.infrastructure';
 
 export type AuthenticateUserState = {
   user: NullOrUndefinedOrType<AuthenticateUser>;
@@ -40,18 +40,20 @@ export const AuthenticateStore = signalStore(
     isLogged: computed(() => store.isAuthenticated()),
     isNotLogged: computed(() => !store.user() && !store.isAuthenticated()),
   })),
-  withMethods((store, infra = inject(AuthenticateInfrastructure),
-                      localInfra = inject(LocalStorageAuthenticateInfrastructure)) => ({
-
-    loadFromLocal(user: AuthenticateUser): void {
-      patchState(store, { user, isAuthenticated: true })
+  withMethods((store,
+               infra = inject(AuthenticateInfrastructure),
+               localInfra = inject(LocalStorageAuthenticationInfrastructure)) => ({
+    localLogin(user: SurnameWithToken): void {
+      if(user.token && user.surname) {
+        patchState(store, { isAuthenticated: true, user: { email: '', login: '', surname: user.surname, token: user.token } })
+      }
     },
     logIn: rxMethod<LoginState>(
       pipe(
         tap(() => patchState(store, { isLoading: true })),
         concatMap(input => {
           return infra.logIn(input.login, input.password).pipe(
-            tap(result => localInfra.createSession(result)),
+              tap(user => localInfra.startSession({ surname: user.surname, token: user.token })),
               tapResponse({
                 next: user =>
                   patchState(store, {
@@ -68,16 +70,11 @@ export const AuthenticateStore = signalStore(
     })
   ),
   withHooks({
-    onInit(store, localInfra = inject(LocalStorageAuthenticateInfrastructure)) {
-      const session = localInfra.getSession();
+    onInit(store, localInfra = inject(LocalStorageAuthenticationInfrastructure)) {
+      const userWithToken = localInfra.getSession();
 
-      if(session.surname && session.token) {
-        store.loadFromLocal({
-          email: '',
-          login: '',
-          surname: session.surname,
-          token: session.token
-        })
+      if(userWithToken.surname && userWithToken.token) {
+        store.localLogin(userWithToken);
       }
     }
   })
