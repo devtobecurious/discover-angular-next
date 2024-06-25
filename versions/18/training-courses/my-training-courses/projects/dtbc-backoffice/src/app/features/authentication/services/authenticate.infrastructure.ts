@@ -1,23 +1,29 @@
-import { Injectable } from '@angular/core';
-import { delay, Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { Observable, shareReplay } from 'rxjs';
 import { AuthenticateUser } from '../models';
-
-const fakeApi: AuthenticateInfrastructure = {
-  logIn(login, password): Observable<AuthenticateUser> {
-    const user: AuthenticateUser = {
-      surname: 'Chewie',
-    };
-
-    return of(user).pipe(delay(1500));
-  },
-}
 
 @Injectable({
   providedIn: 'root',
-  useFactory: () => import.meta.env.PROD ? new AuthenticateInfrastructure() : fakeApi,
+  //useFactory: () => import.meta.env.PROD ? new AuthenticateInfrastructure() : fakeApi,
 })
 export class AuthenticateInfrastructure {
+  private readonly http = inject(HttpClient);
+  private obs$: Observable<AuthenticateUser> | undefined;
+
   logIn(login: string, password: string): Observable<AuthenticateUser> {
-    throw new Error('Not implemented exception');
+    if (!this.obs$) {
+      this.obs$ = this.http
+        .post<AuthenticateUser>(
+          'https://localhost:7134/api/authenticate/login',
+          {
+            login,
+            password,
+          }
+        )
+        .pipe(shareReplay(1));
+    }
+
+    return this.obs$;
   }
 }

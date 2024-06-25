@@ -28,12 +28,7 @@
               "@angular/material/prebuilt-themes/cyan-orange.css",
               "projects/dtbc-backoffice/src/styles.css"
             ],
-            "scripts": [],
-            "server": "projects/dtbc-backoffice/src/main.server.ts",
-            "prerender": true,
-            "ssr": {
-              "entry": "projects/dtbc-backoffice/server.ts"
-            }
+            "scripts": []
           },
           "configurations": {
             "production": {
