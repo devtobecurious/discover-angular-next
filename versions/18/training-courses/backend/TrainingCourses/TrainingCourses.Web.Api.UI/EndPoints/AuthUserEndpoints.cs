@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using TrainingCourses.Web.Api.UI.Models;
+using TrainingCourses.Web.Api.UI.Tools;
 
 namespace TrainingCourses.Web.Api.UI.EndPoints
 {
     public static class AuthUserEndpoints
     {
-        public static void MapAuthUserEndpoints(this IEndpointRouteBuilder routes)
+        public static void MapAuthUserEndpoints(this IEndpointRouteBuilder routes, JwtOptions jwtOptions)
         {
             var group = routes.MapGroup("/api/authenticate").WithTags(nameof(User));
 
@@ -28,9 +29,9 @@ namespace TrainingCourses.Web.Api.UI.EndPoints
                 return Results.Ok(new AuthUser()
                 {
                     Login = result.Email,
-                    Token = "",
+                    Token = TokenEndpoint.CreateToken(jwtOptions),
                     Email = result.Email,
-                    Surname = result.UserName
+                    Surname = result.UserName,
                 });
             })
             .WithName("login")
@@ -55,7 +56,7 @@ namespace TrainingCourses.Web.Api.UI.EndPoints
                 var returnUser = new AuthUser()
                 {
                     Login = identityUser.Email,
-                    Token = "",
+                    Token = TokenEndpoint.CreateToken(jwtOptions),
                     Email = identityUser.Email,
                     Surname = identityUser.UserName
                 };
