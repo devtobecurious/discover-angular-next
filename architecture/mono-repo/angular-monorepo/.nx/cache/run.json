@@ -1,0 +1,21 @@
+{
+  "run": {
+    "command": "nx e2e angular-monorepo-e2e",
+    "startTime": "2024-07-03T09:50:25.694Z",
+    "endTime": "2024-07-03T09:51:09.521Z",
+    "inner": false
+  },
+  "tasks": [
+    {
+      "taskId": "angular-monorepo-e2e:e2e",
+      "target": "e2e",
+      "projectName": "angular-monorepo-e2e",
+      "hash": "14721890253320297792",
+      "startTime": "2024-07-03T09:50:25.708Z",
+      "endTime": "2024-07-03T09:51:09.520Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    }
+  ]
+}
