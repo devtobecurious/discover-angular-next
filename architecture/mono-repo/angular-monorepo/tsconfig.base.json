@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@angular-monorepo/players": ["features/players/src/index.ts"],
+      "@angular-monorepo/products": ["products/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
