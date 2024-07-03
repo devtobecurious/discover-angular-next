@@ -102,5 +102,37 @@
   "4637209792532431588": {},
   "5568631378704497468": {},
   "16809962592303743515": {},
-  "1209729273704285533": {}
+  "1209729273704285533": {},
+  "18328274578398729832": {},
+  "1730186179923447854": {},
+  "8597966410074641852": {},
+  "7187407719683237432": {},
+  "858672474614061759": {
+    "products": {
+      "targets": {
+        "lint": {
+          "command": "eslint .",
+          "cache": true,
+          "options": {
+            "cwd": "products"
+          },
+          "inputs": [
+            "default",
+            "^default",
+            "{workspaceRoot}/.eslintrc.json",
+            "{projectRoot}/.eslintrc.json",
+            "{workspaceRoot}/tools/eslint-rules/**/*",
+            {
+              "externalDependencies": [
+                "eslint"
+              ]
+            }
+          ],
+          "outputs": [
+            "{options.outputFile}"
+          ]
+        }
+      }
+    }
+  }
 }
