@@ -1,0 +1,17 @@
+<h1>Welcome</h1>
+
+<button (click)="display()">Display</button>
+
+<form (ngSubmit)="submitForm()">
+  <input type="text" [(ngModel)]="userName" name="name" placeholder="Name" required>
+  <input type="email" [(ngModel)]="userEmail" name="email" placeholder="Email" required>
+  <button type="submit">Submit</button>
+</form>
+
+@if(isDisplayed()) {
+  <i>Hello</i>
+}
+
+@if(confirmationMessage()) {
+  <p>{{ confirmationMessage() }}</p>
+}
