@@ -1,6 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +10,7 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+  private readonly router = inject(Router);
   userName = '';
   userEmail = '';
   confirmationMessage = signal('');
@@ -23,5 +24,6 @@ export class AppComponent {
 
   submitForm(): void {
     this.confirmationMessage.set('Thank you');
+    this.router.navigate(['/people']);
   }
 }

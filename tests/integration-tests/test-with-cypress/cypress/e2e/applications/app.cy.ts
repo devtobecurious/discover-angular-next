@@ -19,5 +19,8 @@ describe('App Component Form Test', () => {
     cy.get('input[name="email"]').type(typedEmail);
     cy.get('form').submit();
     cy.get('p').should('contain', `Thank you`);
+
+    cy.get('h2').should('contain', 'Personnes');
   });
+
 });
