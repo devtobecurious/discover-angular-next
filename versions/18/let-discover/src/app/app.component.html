@@ -1,3 +1,8 @@
-@let test = luke$$();
+@let test = obs$ | async;
 
-{{ test }}
+@let test2 = luke$$();
+
+@if(test2) {
+  <div>Que la force soit avec toi !</div>
+}
+
