@@ -2,7 +2,7 @@ import { defineConfig } from "cypress";
 
 export default defineConfig({
   e2e: {
-    baseUrl: 'http://localhost:57095',
+    baseUrl: 'http://localhost:4200',
 
     // Define where your tests are located
     specPattern: 'cypress/e2e/**/*.cy.{js,jsx,ts,tsx}',
