@@ -9,6 +9,6 @@ export class AppComponent {
   title = 'on-push-tree';
 
   constructor(public app: ApplicationRef) {
-
+    
   }
 }

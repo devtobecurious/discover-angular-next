@@ -1,0 +1,11 @@
+@for (item of movies$ | async; track item) {
+  <h2>{{item.title}}</h2>
+
+  @if(item.characters) {
+    <ul>
+    @for (char of item.characters; track char) {
+      <li>{{char.name}}</li>
+    }
+    </ul>
+  }
+}

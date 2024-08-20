@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, OnInit } from '@angular/core';
+import { of } from 'rxjs';
 import { hightlight } from 'src/shared/tools/hightlight';
 
 @Component({
@@ -8,9 +9,13 @@ import { hightlight } from 'src/shared/tools/hightlight';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TwoComponent implements OnInit {
+  // @Input() client !: {name: string, surname: string}
 
   ngOnInit(): void {
     //this.cd.detach();
+    // of([]).subscribe({
+    //   next: item => this.cd.markForCheck()
+    // })
   }
 
   constructor(private el: ElementRef, public cd: ChangeDetectorRef) { }
