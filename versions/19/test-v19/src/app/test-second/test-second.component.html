@@ -1,1 +1,19 @@
-<p>test-second works!</p>
+@let characters = characters$ | async;
+@let title = title$$();
+
+@if(characters) {
+  @for (char of characters; track char.id) {
+    <div>{{ char.name }}</div>
+  }
+}
+
+<b>Title : {{title}}</b>
+
+@if(characters) {
+  @for (char of characters; track char.id) {
+    <div>{{ char.name }}</div>
+  }
+}
+
+
+
