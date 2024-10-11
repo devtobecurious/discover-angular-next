@@ -6,7 +6,7 @@ import { Observable } from "rxjs/internal/Observable";
 @Injectable({
   providedIn: "root"
 })
-export class ShoppingCart {
+export class qqqShoppingCart {
   private _state = new BehaviorSubject<ProductType[]>([]);
 
   addTo(product: ProductType): void {

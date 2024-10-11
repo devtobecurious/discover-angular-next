@@ -1,20 +1,22 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, inject, NgZone, OnInit } from '@angular/core';
 import { hightlight } from 'src/shared/tools/hightlight';
 
 @Component({
   selector: 'app-one',
   templateUrl: './one.component.html',
-  styleUrls: ['./one.component.css']
+  styleUrls: ['./one.component.css'],
+  //changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OneComponent implements OnInit {
-
-  constructor(private el: ElementRef) {}
+  constructor(private el: ElementRef,private readonly zone: NgZone) {}
 
   ngOnInit(): void {
   }
 
   cdCheck() {
-    hightlight('OneComponent', this.el);
+    // this.zone.runOutsideAngular(() => {
+      hightlight('OneComponent', this.el);
+    // })
   }
 
 }

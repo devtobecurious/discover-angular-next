@@ -1,4 +1,4 @@
-import { patchState, signalStore, withComputed, withMethods, withState } from "@ngrx/signals";
+import { patchState, signalStore, withComputed, withHooks, withMethods, withState } from "@ngrx/signals";
 import { Book } from "../models"
 import { computed } from "@angular/core";
 
@@ -34,5 +34,10 @@ export const BookStore = signalStore(
 
       patchState(store, {isLoading: false});
     }
-  }))
+  })),
+  withHooks({
+    onInit() {
+      
+    }
+  })
 );

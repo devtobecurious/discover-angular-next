@@ -1,0 +1,9 @@
+@let films = films$ | async;
+
+<table>
+  @for (item of films; track item.id) {
+    <tr>
+      <td>{{item.title}}</td>
+    </tr>
+  }
+</table>
