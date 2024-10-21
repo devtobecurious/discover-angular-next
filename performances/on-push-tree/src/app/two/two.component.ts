@@ -17,6 +17,7 @@ export class TwoComponent implements OnInit {
     // of([]).subscribe({
     //   next: item => this.cd.markForCheck()
     // })
+    //this.cd.reattach()
   }
 
   constructor(private el: ElementRef, public cd: ChangeDetectorRef) { }
