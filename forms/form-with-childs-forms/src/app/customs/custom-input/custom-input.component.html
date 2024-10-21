@@ -1,0 +1,12 @@
+@let items = data();
+
+value : {{value }}
+
+<div>
+  <select [(ngModel)]="value" (change)="change($event)">
+    <option value="">[select]</option>
+    @for (item of items; track item.id) {
+      <option value="{{item.id}}">{{item.label}}</option>
+    }
+  </select>
+</div>

@@ -1,0 +1,6 @@
+<h1>Ajout d'un film</h1>
+<form [formGroup]="filmForm" (ngSubmit)="save()">
+  <app-custom-input [data]="directors()" formControlName="name"></app-custom-input>
+
+  <button [disabled]="! filmForm.valid">Ajouter</button>
+</form>
