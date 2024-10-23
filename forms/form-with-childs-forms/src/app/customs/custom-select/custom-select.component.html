@@ -1,8 +1,7 @@
 @let items = data();
 
-value : {{value }}
-
 <div>
+  <label>{{ label() }}</label>
   <select [(ngModel)]="value" (change)="change($event)">
     <option value="">[select]</option>
     @for (item of items; track item.id) {

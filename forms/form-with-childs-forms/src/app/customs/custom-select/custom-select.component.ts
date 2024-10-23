@@ -2,25 +2,26 @@ import { Component, forwardRef, input, model, signal } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, FormsModule, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
 
 @Component({
-  selector: 'app-custom-input',
+  selector: 'app-custom-select',
   standalone: true,
   imports: [FormsModule],
-  templateUrl: './custom-input.component.html',
-  styleUrl: './custom-input.component.css',
+  templateUrl: './custom-select.component.html',
+  styleUrl: './custom-select.component.css',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CustomInputComponent),
+      useExisting: forwardRef(() => CustomSelectComponent),
       multi: true
     },
     {
       provide: NG_VALIDATORS,
-      useExisting: forwardRef(() => CustomInputComponent),
+      useExisting: forwardRef(() => CustomSelectComponent),
       multi: true
     }
   ]
 })
-export class CustomInputComponent implements ControlValueAccessor, Validator {
+export class CustomSelectComponent implements ControlValueAccessor, Validator {
+  label = input.required<string>()
   value = '';
   data = input.required<{id: number, label: string}[]>()
 
@@ -30,7 +31,7 @@ export class CustomInputComponent implements ControlValueAccessor, Validator {
   validate(control: AbstractControl): ValidationErrors | null {
     let result: ValidationErrors | null = null
 
-    if(! control.value) {
+    if(! this.value) {
       result =  { required: true }
 
       console.info(result)
