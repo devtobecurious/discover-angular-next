@@ -22,7 +22,21 @@ import { AbstractControl, ControlValueAccessor, FormsModule, NG_VALIDATORS, NG_V
 })
 export class CustomSelectComponent implements ControlValueAccessor, Validator {
   label = input.required<string>()
-  value = '';
+  private _value = '';
+  get value() {
+    return this._value
+  }
+  set value(item: string) {
+    this._value = item
+
+    if(this.onChange) {
+      this.onChange(this._value)
+    }
+    if(this.onTouched) {
+      this.onTouched()
+    }
+  }
+
   data = input.required<{id: number, label: string}[]>()
 
   private onChange: undefined | ((value: string) => void)
@@ -53,17 +67,14 @@ export class CustomSelectComponent implements ControlValueAccessor, Validator {
     if(this.onTouched) {
       this.onTouched()
     }
-    console.info('change', this.value)
   }
 
   writeValue(obj: any): void {
-    console.info('writeValue 1', this.value)
     this.value = obj
-    console.info('writeValue 2', this.value)
   }
 
   registerOnChange(fn: any): void {
-    this.change = fn
+    this.onChange = fn
   }
 
   registerOnTouched(fn: any): void {

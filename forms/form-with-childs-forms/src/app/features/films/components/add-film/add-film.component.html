@@ -1,7 +1,8 @@
 <h1>Ajout d'un film</h1>
 <form [formGroup]="filmForm" (ngSubmit)="save()">
-  <app-custom-select label="Directeur" [data]="directors()" formControlName="directorId"></app-custom-select>
-  <app-custom-select label="Type" [data]="types()" formControlName="typeId"></app-custom-select>
+  <app-custom-group [data1]="directors()" [data2]="types()" formControlName="address" ></app-custom-group>
 
   <button [disabled]="! filmForm.valid">Ajouter</button>
 </form>
+
+{{filmForm.value | json}}
