@@ -5,7 +5,6 @@ import { hightlight } from 'src/shared/tools/hightlight';
   selector: 'app-one',
   templateUrl: './one.component.html',
   styleUrls: ['./one.component.css'],
-  //changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OneComponent implements OnInit {
   constructor(private el: ElementRef,private readonly zone: NgZone) {}

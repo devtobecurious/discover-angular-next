@@ -6,7 +6,7 @@ import { hightlight } from 'src/shared/tools/hightlight';
   selector: 'app-two',
   templateUrl: './two.component.html',
   styleUrls: ['./two.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class TwoComponent implements OnInit {
 
