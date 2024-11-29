@@ -21,7 +21,7 @@ export class ChildComponent {
 
   //index = signal(-1)
 
-  state = computed(() => ({ // Every time options changer, all the state is changing, so index is new signal, même comportement qu'un switch map
+  state = computed(() => ({ // Every time options change, all the state is changing, so index is new signal, same behavior as switch map
     options: this.options(),
     index: signal(-1)
   }))
