@@ -1,10 +1,10 @@
-import { Component, effect, inject, input, signal } from '@angular/core';
+import { Component, computed, effect, inject, input, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-child',
   template: `
-  <h1>Child {{ index() }}</h1>
+  <h1>Child {{ state().index() }}</h1>
     <ul>
       @for (option of options(); track option) {
         <li (click)="select($index)">{{option}}</li>
@@ -15,21 +15,30 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 })
 export class ChildComponent {
   options = input.required<string[]>() // How we can update the index to -1
-  index = signal(-1)
+
+  title = input.required<string>()
+  resultTitle = computed(() => signal(this.title()))
+
+  //index = signal(-1)
+
+  state = computed(() => ({ // Every time options changer, all the state is changing, so index is new signal, même comportement qu'un switch map
+    options: this.options(),
+    index: signal(-1)
+  }))
 
   // DON'T DO THAT
-  updateIndex = effect(() => {
-    console.info('ici')
-    this.options();
-    this.index.set(-1)
-  })
+  // updateIndex = effect(() => {
+  //   console.info('ici')
+  //   this.options();
+  //   this.index.set(-1)
+  // })
 
   // setOptions(options: string[]): void {
   //   this.options.set([...options]) // we can't set the values : readonly
   //   this.index.set(-1)
   // }
 
-  select(i: number): void {
-    this.index.set(i)
+  select(id: number): void {
+    this.state().index.set(id)
   }
 }

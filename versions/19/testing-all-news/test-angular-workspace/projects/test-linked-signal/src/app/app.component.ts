@@ -8,11 +8,15 @@ import { ChildComponent } from './child/child.component';
     ChildComponent
   ],
   template: `
-    <app-child [options]="['test', 'test 1']"></app-child>
+    <button (click)="changeOptions()">New options</button>
+    <app-child [options]="options()"  title="hello"></app-child>
   `,
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  //options = signal<string[]>([])
+  options = signal<string[]>(['essai 1'])
 
+  changeOptions(): void {
+    this.options.set([...this.options(), `essai ${this.options().length + 1}`])
+  }
 }
