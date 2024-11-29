@@ -1,10 +1,10 @@
-import { Component, computed, effect, inject, input, signal } from '@angular/core';
+import { Component, computed, effect, inject, input, linkedSignal, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-child',
   template: `
-  <h1>Child {{ state().index() }}</h1>
+  <h1>Child {{ index() }}</h1>
     <ul>
       @for (option of options(); track option) {
         <li (click)="select($index)">{{option}}</li>
@@ -21,10 +21,13 @@ export class ChildComponent {
 
   //index = signal(-1)
 
-  state = computed(() => ({ // Every time options change, all the state is changing, so index is new signal, same behavior as switch map
-    options: this.options(),
-    index: signal(-1)
-  }))
+  // state = computed(() => ({ // Every time options change, all the state is changing, so index is new signal, same behavior as switch map
+  //   options: this.options(),
+  //   index: signal(-1)
+  // }))
+
+  // state = linkedSignal(() => ({source: this.options(), value: signal(-1)}))
+  index = linkedSignal(() => this.options()[0])
 
   // DON'T DO THAT
   // updateIndex = effect(() => {
@@ -39,6 +42,6 @@ export class ChildComponent {
   // }
 
   select(id: number): void {
-    this.state().index.set(id)
+    this.index.set(this.options()[id])
   }
 }
