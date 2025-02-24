@@ -6,18 +6,18 @@ import { hightlight } from 'src/shared/tools/hightlight';
   selector: 'app-two',
   templateUrl: './two.component.html',
   styleUrls: ['./two.component.css'],
-
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TwoComponent implements OnInit {
 
   // @Input() client !: {name: string, surname: string}
 
   ngOnInit(): void {
-    //this.cd.detach();
+    this.cd.detach();
     // of([]).subscribe({
     //   next: item => this.cd.markForCheck()
     // })
-    //this.cd.reattach()
+    this.cd.reattach()
   }
 
   constructor(private el: ElementRef, public cd: ChangeDetectorRef) { }

@@ -1,0 +1,9 @@
+<!-- {{ title() }} -->
+
+@for (person of peopleResource.value()?.results; track person) {
+  <i>{{ person.name }}</i>
+}
+
+{{ info() }}
+
+
