@@ -1,0 +1,14 @@
+@let weather = weatherResource.value();
+@let isLoading = weatherResource.isLoading();
+
+{{ weather?.current| json }}
+
+@if(isLoading) {
+  <i>Loading ...</i>
+}
+
+@if(weather) {
+  Temps actuel : <b>{{weather?.current?.temperature_2m}}</b>
+}
+
+
