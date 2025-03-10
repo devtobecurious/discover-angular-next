@@ -1,0 +1,35 @@
+<h1>Resource - rxJs {{ loadPerson.status() }}</h1>
+@let persons = loadPerson.value();
+
+@if(loadPerson.error()) {
+  <i><b>Error ! {{loadMovies.error() }}</b></i>
+}
+
+@if(loadPerson.isLoading()) {
+  <i>Loading ...</i>
+}
+
+@for (person of persons; track person.name) {
+  <div>{{person.name}}</div>
+}
+
+
+
+<h1>Resource - Promise {{ loadMovies.status() }}</h1>
+
+@let movies = loadMovies.value();
+
+@if(loadMovies.error()) {
+  <i><b>Error ! {{loadMovies.error() }}</b></i>
+}
+
+<div [style]="{ opacity: loadMovies.isLoading() ? 0.1 : 1}">
+  Filtre : <input type="text" [(ngModel)]="searchValue">
+
+  @for (movie of movies; track movie.title) {
+    <div>{{movie.title}}</div>
+  }
+</div>
+
+<button (click)="reloadData()" [disabled]="loadMovies.isLoading()">Reload</button>
+
