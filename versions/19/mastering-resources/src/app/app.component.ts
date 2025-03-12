@@ -1,10 +1,9 @@
-import { Component, EnvironmentInjector, inject, OnInit, resource, runInInjectionContext, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { GetAllMovie, OneMovie } from './services/get-all-movie';
+import { Component, EnvironmentInjector, inject, OnInit, resource, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { GetAllPerson } from './services/get-all-people';
+import { GetAllMovie } from './services/get-all-movie';
 import { rxResource } from '@angular/core/rxjs-interop';
-import { finalize, map } from 'rxjs';
+import { GetAllPersonList } from './services/get-all-person';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -13,25 +12,18 @@ import { finalize, map } from 'rxjs';
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
-  private service = inject(GetAllMovie)
-  private personService = inject(GetAllPerson)
-  private environmentInjector = inject(EnvironmentInjector);
+  private readonly service = inject(GetAllMovie)
+  private readonly personService = inject(GetAllPersonList)
+  private environmentInjector = inject(EnvironmentInjector)
+  private readonly persons$ = this.personService.getAll().pipe(finalize(() => console.info('FINALIZE')))
   searchValue = signal('')
-  private getAllPerson$ = this.personService.getAll().pipe(
-    map((data) => {
-      return data.map((d) => d.name)
-    }),
-    finalize(() => {
-      console.info('finalize')
-    })
-  )
 
-  loadPerson = rxResource({
+  loadPersons = rxResource({
     defaultValue: [],
     request: () => ({filter: this.searchValue()}),
     loader: () => {
-      console.info('loader rxResource')
-      return this.getAllPerson$
+      console.info('===> rxResource')
+      return this.persons$
     }
   })
 

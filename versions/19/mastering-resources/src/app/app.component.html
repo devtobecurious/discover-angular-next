@@ -1,18 +1,15 @@
-<h1>Resource - rxJs {{ loadPerson.status() }}</h1>
-@let persons = loadPerson.value();
+<h1>Resource - Rxjs {{ loadPersons.status() }}</h1>
 
-@if(loadPerson.error()) {
-  <i><b>Error ! {{loadMovies.error() }}</b></i>
+@let persons = loadPersons.value();
+@if(loadPersons.error()) {
+  <i><b>Error ! {{loadPersons.error() }}</b></i>
 }
 
-@if(loadPerson.isLoading()) {
-  <i>Loading ...</i>
-}
-
-@for (person of persons; track person) {
-  <div>{{person}}</div>
-}
-
+<div [style]="{ opacity: loadPersons.isLoading() ? 0.1 : 1}">
+  @for (person of persons; track person.name) {
+    <div>{{person.name}}</div>
+  }
+</div>
 
 
 <h1>Resource - Promise {{ loadMovies.status() }}</h1>
@@ -31,5 +28,6 @@
   }
 </div>
 
-<button (click)="reloadData()" [disabled]="loadMovies.isLoading()">Reload</button>
+<button (click)="reloadData()" [disabled]="loadMovies.isLoading()">Reload movies</button>
+<button (click)="reloadData()" [disabled]="loadMovies.isLoading()">Reload persons</button>
 
