@@ -1,3 +1,13 @@
+<h1>Http Resource - {{ loadPersons.status() }}</h1>
+@let animalResult  = loadAnimals.value();
+@if(loadAnimals.error()) {
+  <i><b>Error ! {{loadAnimals.error() }}</b></i>
+}
+
+@for (animal of animalResult?.results; track animal.name) {
+  <div>{{animal.name}}</div>
+}
+<!--
 <h1>Resource - Rxjs {{ loadPersons.status() }}</h1>
 
 @let persons = loadPersons.value();
@@ -26,7 +36,7 @@
   @for (movie of movies; track movie.title) {
     <div>{{movie.title}}</div>
   }
-</div>
+</div> -->
 
 <button (click)="reloadData()" [disabled]="loadMovies.isLoading()">Reload movies</button>
 <button (click)="reloadData()" [disabled]="loadMovies.isLoading()">Reload persons</button>

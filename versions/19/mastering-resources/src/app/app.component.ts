@@ -4,6 +4,14 @@ import { GetAllMovie } from './services/get-all-movie';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { GetAllPersonList } from './services/get-all-person';
 import { finalize } from 'rxjs';
+import { httpResource } from '@angular/common/http';
+
+type Specy = {
+  name: string
+}
+type SpeciesApiResult = {
+  results: Specy[]
+}
 
 @Component({
   selector: 'app-root',
@@ -17,6 +25,19 @@ export class AppComponent implements OnInit {
   private environmentInjector = inject(EnvironmentInjector)
   private readonly persons$ = this.personService.getAll().pipe(finalize(() => console.info('FINALIZE')))
   searchValue = signal('')
+
+  // loadAnimals = httpResource<SpeciesApiResult>('https://swapi.dev/api/species', {
+  //   defaultValue: undefined,
+  // })
+
+  loadAnimals = httpResource<SpeciesApiResult>(() => ({
+    url: 'https://swapi.dev/api/species',
+    params: {
+      search: this.searchValue()
+    },
+    method: 'GET',
+  }))
+
 
   loadPersons = rxResource({
     defaultValue: [],
