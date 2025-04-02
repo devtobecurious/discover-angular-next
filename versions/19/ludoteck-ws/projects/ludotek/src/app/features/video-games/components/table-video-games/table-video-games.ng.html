@@ -1,0 +1,5 @@
+@for (item of items(); track item.title) {
+  <div>
+    {{item.title}} <button (click)="clickToEdit(item)">[...]</button>
+  </div>
+}

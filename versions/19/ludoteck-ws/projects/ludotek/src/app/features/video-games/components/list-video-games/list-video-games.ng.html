@@ -1,0 +1,18 @@
+@let videoGamesResult = videoGamesResult$ | async;
+
+<h1>{{ title() }}</h1>
+<button (click)="changeTitle()">Change</button>
+
+@if(videoGamesResult) {
+  <ldk-table-video-games [items]="videoGamesResult.results" (toEdit)="editOne($event)" />
+}
+
+@let editItem = videoGameToBeEditable();
+@if(editItem) {
+  {{ editItem | json }}
+
+  <form>
+    <input type="text" required name="title" [(ngModel)]="editItem.title" >
+    <button type="submit" (click)="saveOne(editItem)">Save</button>
+  </form>
+}
