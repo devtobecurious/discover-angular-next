@@ -1,0 +1,29 @@
+@let stats = items();
+
+<h1>Les stats</h1>
+<table>
+  <tbody>
+    @for (stat of stats; track stat) {
+      <tr>
+        <td>{{stat.year}}</td>
+        <td>{{stat.month}}</td>
+        <td>{{stat.nbSuccess}}</td>
+        <td>{{stat.nbFailed}}</td>
+      </tr>
+    }
+    @empty {
+      <tr>
+        <td>Rien</td>
+        <td>ici</td>
+        <td>pour </td>
+        <td>l'instant</td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+<br>
+<h2>Graph nb success par annee</h2>
+<canvas baseChart
+        [data]="lineChartData()"
+        [options]="chartOptions" [type]="'line'"> </canvas>
