@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "test-ngrx-signal-reactive-form": {
+    "ngrx-signal-without-effect": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -57,10 +57,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "test-ngrx-signal-reactive-form:build:production"
+              "buildTarget": "ngrx-signal-without-effect:build:production"
             },
             "development": {
-              "buildTarget": "test-ngrx-signal-reactive-form:build:development"
+              "buildTarget": "ngrx-signal-without-effect:build:development"
             }
           },
           "defaultConfiguration": "development"

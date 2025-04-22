@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, RouterLink],
   templateUrl: './app.ng.html',
   styleUrl: './app.css'
 })
 export class App {
-  title = 'test-ngrx-signal-reactive-form';
+  title = 'ngrx-signal-without-effect';
 }

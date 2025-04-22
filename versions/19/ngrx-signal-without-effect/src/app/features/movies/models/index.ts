@@ -3,8 +3,8 @@ export interface Movie {
   title: string;
   poster_path?: string;
   overview: string;
-  release_date: Date;
+  release_date?: string;
   vote_average?: number;
 }
 
-export type MovieList = Movie[];
+export type Movies = Movie[];

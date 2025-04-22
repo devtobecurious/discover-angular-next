@@ -14,16 +14,16 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'test-ngrx-signal-reactive-form' title`, () => {
+  it(`should have the 'ngrx-signal-without-effect' title`, () => {
     const fixture = TestBed.createComponent(App);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('test-ngrx-signal-reactive-form');
+    expect(app.title).toEqual('ngrx-signal-without-effect');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, test-ngrx-signal-reactive-form');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, ngrx-signal-without-effect');
   });
 });

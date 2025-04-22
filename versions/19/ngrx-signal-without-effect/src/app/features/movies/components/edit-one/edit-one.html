@@ -1,0 +1,18 @@
+<h1>Edition du film d'id : {{ id() }}</h1>
+
+@let loading = isLoading();
+@if(loading) {
+  <i>Loading ...</i>
+}
+
+@let movieForm = movieFormSignal();
+
+@if(movieForm) {
+  <form [formGroup]="movieForm">
+    <input type="text" formControlName="title">
+
+    <button (click)="saveOne()">Sauvegarder</button>
+  </form>
+}
+
+
