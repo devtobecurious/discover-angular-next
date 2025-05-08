@@ -13,6 +13,7 @@ export class EditOne implements OnInit {
   private readonly formBuilder = inject(FormBuilder)
   isLoading = this.store.loading
   id = input<number>()
+  categoryId = input<number>()
 
   movieFormSignal = computed(() => {
     const movie = this.store.selectedMovie()
