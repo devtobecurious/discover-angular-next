@@ -1,0 +1,38 @@
+{{ today() | date }}
+
+<h1 i18n="An intro boy">
+  Hello plouf !
+</h1>
+
+<h2>{{title()}}</h2>
+
+<h3 i18n="site h3|girl way">Hello girl</h3>
+
+
+<h5>{{ girl }}</h5>
+
+<button (click)="changeToggle()">
+  {{ toggle()}}
+</button>
+
+<div i18n [attr.aria-label]="toggleAriaLabel()">
+  {{ toggle()}}
+</div>
+
+<ng-container i18n>Welcome !</ng-container>
+
+<img i18n-alt alt="Evan Cool" src="https://custom-images.strikinglycdn.com/res/hrscywv4p/image/upload/c_limit,fl_lossy,h_630,w_1200,f_auto,q_auto/6642427/309800_334962.png" alt="Evan Boissonnot" />
+
+<p i18n>
+  { count(), plural,
+    =0 {No count}
+    =1 {One count}
+    other { {{count()}} counts }
+  }
+</p>
+
+<button (click)="add(1)">[+1]</button>
+<button (click)="add(-1)">[-1]</button>
+
+<router-outlet></router-outlet>
+
