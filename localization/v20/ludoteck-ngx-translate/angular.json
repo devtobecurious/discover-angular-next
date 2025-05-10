@@ -3,21 +3,26 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ludoteck-multi-languages-ngx-translate": {
+    "ludoteck-multi-languages-v1": {
       "projectType": "application",
       "schematics": {},
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "i18n": {
+        "sourceLocale": "en",
+        "locales": {
+          "fr": "src/locale/messages.fr.json",
+          "es": "src/locale/messages.es.json"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "index": "src/index.html",
             "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "localize": ["fr"],
+            "aot": true,
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
@@ -27,6 +32,9 @@
             ],
             "styles": [
               "src/styles.css"
+            ],
+            "polyfills": [
+              "@angular/localize/init"
             ]
           },
           "configurations": {
@@ -57,10 +65,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "ludoteck-multi-languages-ngx-translate:build:production"
+              "buildTarget": "ludoteck-multi-languages-v1:build:production"
             },
             "development": {
-              "buildTarget": "ludoteck-multi-languages-ngx-translate:build:development"
+              "buildTarget": "ludoteck-multi-languages-v1:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,10 +79,6 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
               {
@@ -84,6 +88,9 @@
             ],
             "styles": [
               "src/styles.css"
+            ],
+            "polyfills": [
+              "@angular/localize/init"
             ]
           }
         }

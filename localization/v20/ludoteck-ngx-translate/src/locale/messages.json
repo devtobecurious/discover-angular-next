@@ -1,0 +1,16 @@
+{
+  "locale": "en",
+  "translations": {
+    "3061894021458325504": " Hello plouf !\n",
+    "7769220670591552038": "Hello girl",
+    "718664953917016933": " {$INTERPOLATION}\n",
+    "363692139305564434": "Welcome !",
+    "4809151404549304318": "Evan Cool",
+    "5880830791099489734": "Evan Boissonnot",
+    "2380939390102386148": " {$ICU}\n",
+    "9123206923148543890": "{VAR_PLURAL, plural, =0 {No count} =1 {One count} other {{INTERPOLATION} counts }}",
+    "4124194553723193301": "Hello {$PH} !",
+    "5355811507477828639": "Show",
+    "5355346251098498999": "Hide"
+  }
+}

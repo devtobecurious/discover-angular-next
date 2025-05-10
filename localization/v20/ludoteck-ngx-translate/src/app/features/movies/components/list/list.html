@@ -1,0 +1,7 @@
+<select #select (change)="onChange(select.value)">
+    @for (lang of langs(); track lang) {
+      <option value="{{ lang }}">{{ lang }}</option>
+    }
+</select>
+
+<div>{{ 'app-list.hello' | translate:param }}</div>

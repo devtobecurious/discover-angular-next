@@ -1,0 +1,17 @@
+<select #select (change)="onChange(select.value)">
+  @for (lang of langs(); track lang) {
+    <option value="{{ lang }}">{{ lang }}</option>
+  }
+</select>
+
+<button (click)="changeParam()">Change param</button>
+
+<div>{{ 'app-list.hello' | translate:param() }}</div>
+
+bis
+
+<div [translate]="'app-list.hello'" [translateParams]="param()" ></div>
+
+@let helloValue = helloComputed() | async;
+
+<h3>{{ helloValue }}</h3>
