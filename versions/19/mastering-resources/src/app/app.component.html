@@ -20,7 +20,7 @@
     <div>{{person.name}}</div>
   }
 </div>
-
+-->
 
 <h1>Resource - Promise {{ loadMovies.status() }}</h1>
 
@@ -31,12 +31,12 @@
 }
 
 <div [style]="{ opacity: loadMovies.isLoading() ? 0.1 : 1}">
-  Filtre : <input type="text" [(ngModel)]="searchValue">
+
 
   @for (movie of movies; track movie.title) {
     <div>{{movie.title}}</div>
   }
-</div> -->
+</div>
 
 <button (click)="reloadData()" [disabled]="loadMovies.isLoading()">Reload movies</button>
 <button (click)="reloadData()" [disabled]="loadMovies.isLoading()">Reload persons</button>

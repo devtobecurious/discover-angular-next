@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, inject, Input, NgZone, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, inject, Input, NgZone, OnInit, ViewEncapsulation } from '@angular/core';
 import { of } from 'rxjs';
 import { hightlight } from 'src/shared/tools/hightlight';
 
@@ -6,7 +6,8 @@ import { hightlight } from 'src/shared/tools/hightlight';
   selector: 'app-two',
   templateUrl: './two.component.html',
   styleUrls: ['./two.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.ShadowDom
 })
 export class TwoComponent implements OnInit {
 

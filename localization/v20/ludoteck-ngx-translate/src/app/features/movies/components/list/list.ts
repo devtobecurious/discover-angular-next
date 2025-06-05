@@ -16,12 +16,14 @@ import translationsFR from "../../../../../../public/i18n/fr.json";
   styleUrl: './list.css'
 })
 export class List {
+
   private readonly translate = inject(TranslateService)
   param = {value: 'world'};
   langs = signal<string[]>([])
 
   constructor() {
     this.translate.addLangs(['fr', 'en'])
+
     this.langs.set(this.translate.getLangs())
     this.translate.setTranslation('en', translationsEN)
     this.translate.setTranslation('fr', translationsFR)
