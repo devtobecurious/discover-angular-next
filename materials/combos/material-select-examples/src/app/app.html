@@ -1,0 +1,14 @@
+<form [formGroup]="foodForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <mat-label>Favorite food</mat-label>
+    <mat-select multiple formControlName="favoriteFoodsValues">
+
+        <mat-checkbox (change)="change($event)">-- ALL --</mat-checkbox>
+      @for (food of foods(); track food) {
+        <mat-option [value]="food.value">{{food.title}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <button type="submit">Save</button>
+</form>
