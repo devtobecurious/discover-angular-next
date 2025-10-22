@@ -1,1 +1,224 @@
-<p>create-one-game-session works!</p>
+<div class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 py-8">
+  <div class="container mx-auto px-4">
+    <!-- Header du formulaire -->
+    <div class="bg-slate-800/50 backdrop-blur-sm rounded-xl border border-purple-500/20 p-6 mb-8">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-4">
+          <div class="w-12 h-12 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center">
+            <span class="text-2xl">🚀</span>
+          </div>
+          <div>
+            <h1 class="text-3xl font-bold text-white">Créer une Session</h1>
+            <p class="text-gray-400">Configure ta prochaine session de jeu épique !</p>
+          </div>
+        </div>
+        <button
+          (click)="onCancel()"
+          class="cancel-btn"
+          type="button">
+          <span class="mr-2">✕</span>
+          Annuler
+        </button>
+      </div>
+    </div>
+
+    <!-- Formulaire principal -->
+    <form [formGroup]="sessionForm" (ngSubmit)="onSubmit()" class="space-y-8">
+
+      <!-- Section Date et Heure -->
+      <div class="form-section">
+        <h2 class="section-title">
+          <span class="mr-3">📅</span>
+          Quand jouer ?
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Date de début -->
+          <div class="form-group">
+            <label for="startDate" class="form-label">
+              <span class="mr-2">📆</span>
+              Date de début
+            </label>
+            <input
+              id="startDate"
+              type="date"
+              formControlName="startDate"
+              class="form-input"
+              [class.error]="isFieldInvalid('startDate')">
+            <div *ngIf="isFieldInvalid('startDate')" class="error-message">
+              📍 La date est obligatoire
+            </div>
+          </div>
+
+          <!-- Heure de début -->
+          <div class="form-group">
+            <label for="startTime" class="form-label">
+              <span class="mr-2">⏰</span>
+              Heure de début
+            </label>
+            <input
+              id="startTime"
+              type="time"
+              formControlName="startTime"
+              class="form-input"
+              [class.error]="isFieldInvalid('startTime')">
+            <div *ngIf="isFieldInvalid('startTime')" class="error-message">
+              📍 L'heure est obligatoire
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section Amis -->
+      <div class="form-section">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="section-title">
+            <span class="mr-3">👥</span>
+            Qui va jouer ?
+          </h2>
+          <button
+            type="button"
+            (click)="addFriend()"
+            class="add-btn">
+            <span class="mr-2">➕</span>
+            Ajouter un ami
+          </button>
+        </div>
+
+        <div formArrayName="friends" class="space-y-4">
+          <div
+            *ngFor="let friend of friendsArray.controls; let i = index"
+            [formGroupName]="i"
+            class="friend-card">
+
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-lg font-bold text-white flex items-center">
+                <span class="mr-2">🎮</span>
+                Joueur {{ i + 1 }}
+              </h3>
+              <button
+                *ngIf="friendsArray.length > 1"
+                type="button"
+                (click)="removeFriend(i)"
+                class="remove-btn">
+                <span>🗑️</span>
+              </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <!-- Surnom -->
+              <div class="form-group">
+                <label [for]="'surname-' + i" class="form-label">
+                  <span class="mr-2">🏷️</span>
+                  Surnom
+                </label>
+                <input
+                  [id]="'surname-' + i"
+                  type="text"
+                  formControlName="surname"
+                  placeholder="ex: DragonSlayer"
+                  class="form-input"
+                  [class.error]="isArrayFieldInvalid('friends', i, 'surname')">
+                <div *ngIf="isArrayFieldInvalid('friends', i, 'surname')" class="error-message">
+                  📍 Le surnom est obligatoire (min. 2 caractères)
+                </div>
+              </div>
+
+              <!-- Prénom -->
+              <div class="form-group">
+                <label [for]="'firstname-' + i" class="form-label">
+                  <span class="mr-2">👤</span>
+                  Prénom
+                </label>
+                <input
+                  [id]="'firstname-' + i"
+                  type="text"
+                  formControlName="firstname"
+                  placeholder="ex: Alex"
+                  class="form-input"
+                  [class.error]="isArrayFieldInvalid('friends', i, 'firstname')">
+                <div *ngIf="isArrayFieldInvalid('friends', i, 'firstname')" class="error-message">
+                  📍 Le prénom est obligatoire (min. 2 caractères)
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section Jeu -->      <div class="form-section">
+        <h2 class="section-title">
+          <span class="mr-3">🎮</span>
+          À quel jeu jouer ?
+        </h2>
+
+        <div class="game-card">
+          <div class="flex items-center mb-4">
+            <h3 class="text-lg font-bold text-white flex items-center">
+              <span class="mr-2">🕹️</span>
+              Sélection du jeu
+            </h3>
+          </div>
+
+          <div class="grid grid-cols-1 gap-4">
+            <!-- Sélection du jeu -->
+            <div class="form-group">
+              <label for="gameName" class="form-label">
+                <span class="mr-2">🎯</span>
+                Choisir un jeu
+              </label>
+              <select
+                id="gameName"
+                formControlName="gameName"
+                class="form-input game-select"
+                [class.error]="isFieldInvalid('gameName')">
+                <option value="">Sélectionne ton jeu...</option>
+                <optgroup *ngFor="let category of gameCategories" [label]="category.label">
+                  <option
+                    *ngFor="let game of getGamesByCategory(category.value)"
+                    [value]="game.name"
+                    [attr.data-category]="game.category">
+                    {{ game.icon }} {{ game.name }}
+                  </option>
+                </optgroup>
+              </select>
+              <div *ngIf="isFieldInvalid('gameName')" class="error-message">
+                📍 Sélectionne un jeu pour ta session
+              </div>
+
+              <!-- Info sur le jeu sélectionné -->
+              <div *ngIf="sessionForm.get('gameName')?.value" class="game-info">
+                <span class="game-selected-indicator">
+                  ✨ Parfait ! Prêt pour une session épique !
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="form-section">
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button
+            type="button"
+            (click)="onCancel()"
+            class="cancel-btn-large"
+            [disabled]="isSubmitting()">
+            <span class="mr-2">↩️</span>
+            Retour
+          </button>
+
+          <button
+            type="submit"
+            class="submit-btn"
+            [disabled]="isSubmitting()">
+            <span *ngIf="!isSubmitting()" class="mr-2">🚀</span>
+            <span *ngIf="isSubmitting()" class="mr-2 animate-spin">⚡</span>
+            {{ isSubmitting() ? 'Création en cours...' : 'Créer la Session' }}
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
