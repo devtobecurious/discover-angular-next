@@ -741,3 +741,6 @@ dist
 /routes/using-data/.angular/cache/14.2.7/babel-webpack/fed625bf37fcd56a63aed38746546131.json
 
 .codegpt
+
+#Ignore vscode AI rules
+.github\instructions\codacy.instructions.md

@@ -5,11 +5,12 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckbox, MatCheckboxChange } from '@angular/material/checkbox';
+import { TestItems } from './test-items/test-items';
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatCheckbox, MatFormFieldModule, MatSelectModule, MatInputModule, ReactiveFormsModule],
+  imports: [TestItems, RouterOutlet, MatCheckbox, MatFormFieldModule, MatSelectModule, MatInputModule, ReactiveFormsModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

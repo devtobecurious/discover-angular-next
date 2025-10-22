@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "kmTT1fKIZxg=",
+  "dgSpecHash": "EEnp2vQ134Y=",
   "success": true,
   "projectFilePath": "D:\\Works\\Formations\\Templates\\angular\\level-200\\discover-angular-next\\versions\\18\\training-courses\\backend\\TrainingCourses\\TrainingCourses.Web.Api.UI\\TrainingCourses.Web.Api.UI.csproj",
   "expectedPackageFiles": [
@@ -140,7 +140,11 @@
     "C:\\Users\\evan\\.nuget\\packages\\system.runtime.caching\\6.0.0\\system.runtime.caching.6.0.0.nupkg.sha512",
     "C:\\Users\\evan\\.nuget\\packages\\system.security.cryptography.protecteddata\\7.0.0\\system.security.cryptography.protecteddata.7.0.0.nupkg.sha512",
     "C:\\Users\\evan\\.nuget\\packages\\system.security.permissions\\7.0.0\\system.security.permissions.7.0.0.nupkg.sha512",
-    "C:\\Users\\evan\\.nuget\\packages\\system.windows.extensions\\7.0.0\\system.windows.extensions.7.0.0.nupkg.sha512"
+    "C:\\Users\\evan\\.nuget\\packages\\system.windows.extensions\\7.0.0\\system.windows.extensions.7.0.0.nupkg.sha512",
+    "C:\\Users\\evan\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.17\\microsoft.netcore.app.ref.8.0.17.nupkg.sha512",
+    "C:\\Users\\evan\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.17\\microsoft.windowsdesktop.app.ref.8.0.17.nupkg.sha512",
+    "C:\\Users\\evan\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.17\\microsoft.aspnetcore.app.ref.8.0.17.nupkg.sha512",
+    "C:\\Users\\evan\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.17\\microsoft.netcore.app.host.win-x64.8.0.17.nupkg.sha512"
   ],
   "logs": []
 }
