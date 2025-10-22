@@ -1,0 +1,174 @@
+
+<div class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+  <!-- Header avec navigation -->
+  <header class="bg-slate-800/90 backdrop-blur-sm border-b border-purple-500/20 sticky top-0 z-50">
+    <nav class="container mx-auto px-4 py-4">
+      <div class="flex items-center justify-between">
+        <!-- Logo / Brand -->
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+            <span class="text-white font-bold text-xl">🎮</span>
+          </div>
+          <h1 class="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            GameHub
+          </h1>
+        </div>
+
+        <!-- Menu principal -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="#" class="nav-link">
+            <span class="mr-2">🏠</span>
+            Accueil
+          </a>
+          <a href="#" class="nav-link">
+            <span class="mr-2">🎯</span>
+            Sessions
+          </a>
+          <a href="#" class="nav-link">
+            <span class="mr-2">👥</span>
+            Équipes
+          </a>
+          <a href="#" class="nav-link">
+            <span class="mr-2">🏆</span>
+            Tournois
+          </a>
+          <a href="#" class="nav-link">
+            <span class="mr-2">📊</span>
+            Stats
+          </a>
+        </div>
+
+        <!-- Actions utilisateur -->
+        <div class="flex items-center space-x-4">
+          <!-- Notifications -->
+          <button  class="relative p-2 text-gray-300 hover:text-white transition-colors duration-200">
+            <span class="text-xl">🔔</span>
+            <span class="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></span>
+          </button>
+
+          <!-- Profil utilisateur -->
+          <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center">
+              <span class="text-white text-sm font-bold">P</span>
+            </div>
+            <span class="text-gray-300 hidden sm:inline">Player</span>
+          </div>
+
+          <!-- Menu mobile -->
+          <button class="md:hidden p-2 text-gray-300 hover:text-white">
+            <span class="text-xl">☰</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Contenu principal -->
+  <main class="container mx-auto px-4 py-8">
+    <!-- Zone de statut en temps réel -->
+    <div class="mb-8">
+      <div class="bg-slate-800/50 backdrop-blur-sm rounded-xl border border-purple-500/20 p-6">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-xl font-bold text-white flex items-center">
+            <span class="mr-2">⚡</span>
+            Statut Live
+          </h2>
+          <div class="flex items-center space-x-2">
+            <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+            <span class="text-green-400 text-sm font-medium">En ligne</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="stat-card">
+            <span class="text-2xl mb-2">👥</span>
+            <div class="text-2xl font-bold text-white">24</div>
+            <div class="text-gray-400 text-sm">Joueurs connectés</div>
+          </div>
+
+          <div class="stat-card">
+            <span class="text-2xl mb-2">🎮</span>
+            <div class="text-2xl font-bold text-white">8</div>
+            <div class="text-gray-400 text-sm">Sessions actives</div>
+          </div>
+
+          <div class="stat-card">
+            <span class="text-2xl mb-2">🏆</span>
+            <div class="text-2xl font-bold text-white">3</div>
+            <div class="text-gray-400 text-sm">Tournois en cours</div>
+          </div>
+        </div>
+
+        <!-- Bouton pour créer une nouvelle session -->
+        <div class="mt-6 flex justify-center">
+          <button (click)="goTo('/sessions/create')" class="create-session-btn group">
+            <div class="flex items-center space-x-3">
+              <div class="flex items-center justify-center w-12 h-12 bg-gradient-to-r from-green-400 to-blue-500 rounded-full group-hover:scale-110 transition-transform duration-300">
+                <span class="text-2xl">🚀</span>
+              </div>
+              <div class="text-left">
+                <div class="text-xl font-bold text-white group-hover:text-green-400 transition-colors">
+                  Créer une Session
+                </div>
+                <div class="text-sm text-gray-400 group-hover:text-gray-300">
+                  Lance une nouvelle partie maintenant !
+                </div>
+              </div>
+              <div class="ml-4">
+                <span class="text-2xl text-purple-400 group-hover:text-white transition-colors">→</span>
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contenu des routes -->
+    <div class="min-h-96">
+      <router-outlet />
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-slate-800/50 border-t border-purple-500/20 mt-16">
+    <div class="container mx-auto px-4 py-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-lg font-bold text-white mb-4">GameHub</h3>
+          <p class="text-gray-400 text-sm">La plateforme ultime pour organiser tes sessions de jeu entre potes !</p>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold mb-3">Jeux</h4>
+          <ul class="space-y-2 text-gray-400 text-sm">
+            <li><a href="#" class="hover:text-purple-400 transition-colors">FPS</a></li>
+            <li><a href="#" class="hover:text-purple-400 transition-colors">MOBA</a></li>
+            <li><a href="#" class="hover:text-purple-400 transition-colors">Battle Royale</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold mb-3">Communauté</h4>
+          <ul class="space-y-2 text-gray-400 text-sm">
+            <li><a href="#" class="hover:text-purple-400 transition-colors">Discord</a></li>
+            <li><a href="#" class="hover:text-purple-400 transition-colors">Forums</a></li>
+            <li><a href="#" class="hover:text-purple-400 transition-colors">Support</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold mb-3">Suivez-nous</h4>
+          <div class="flex space-x-4 text-2xl">
+            <a href="#" class="text-gray-400 hover:text-purple-400 transition-colors">🐦</a>
+            <a href="#" class="text-gray-400 hover:text-purple-400 transition-colors">📺</a>
+            <a href="#" class="text-gray-400 hover:text-purple-400 transition-colors">📸</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-purple-500/20 mt-8 pt-8 text-center text-gray-400 text-sm">
+        <p>&copy; 2025 GameHub. Fait avec ❤️ pour les gamers.</p>
+      </div>
+    </div>
+  </footer>
+</div>

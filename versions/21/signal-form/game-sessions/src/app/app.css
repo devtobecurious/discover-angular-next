@@ -1,0 +1,162 @@
+/* Styles personnalisés pour l'application gaming */
+
+/* Navigation */
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  color: rgb(209 213 219);
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.nav-link:hover {
+  color: white;
+  background-color: rgba(168, 85, 247, 0.2);
+  transform: scale(1.05);
+}
+
+/* Cartes de statistiques */
+.stat-card {
+  background-color: rgba(51, 65, 85, 0.5);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  text-align: center;
+  border: 1px solid rgba(168, 85, 247, 0.1);
+  transition: all 0.3s;
+}
+
+.stat-card:hover {
+  transform: scale(1.05);
+  background-color: rgba(51, 65, 85, 0.7);
+  border-color: rgba(168, 85, 247, 0.3);
+}
+
+/* Animations personnalisées */
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 10px 15px -3px rgba(168, 85, 247, 0.2);
+  }
+  50% {
+    box-shadow: 0 20px 25px -5px rgba(168, 85, 247, 0.4);
+  }
+}
+
+.glow-animation {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Scrollbar personnalisée */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgb(30 41 59);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(168 85 247);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(196 125 249);
+}
+
+/* Effets de survol pour les boutons */
+button:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s;
+}
+
+/* Styles pour les badges de notification */
+.notification-badge {
+  position: absolute;
+  top: -0.25rem;
+  right: -0.25rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: rgb(239 68 68);
+  border-radius: 9999px;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Bouton de création de session */
+.create-session-btn {
+  background: linear-gradient(45deg, rgba(168, 85, 247, 0.8), rgba(59, 130, 246, 0.8));
+  border: 2px solid rgba(168, 85, 247, 0.3);
+  border-radius: 1rem;
+  padding: 1.5rem 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.create-session-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.create-session-btn:hover::before {
+  left: 100%;
+}
+
+.create-session-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px rgba(168, 85, 247, 0.4);
+  border-color: rgba(168, 85, 247, 0.6);
+  background: linear-gradient(45deg, rgba(168, 85, 247, 1), rgba(59, 130, 246, 1));
+}
+
+.create-session-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 10px 20px rgba(168, 85, 247, 0.3);
+}
+
+/* Animation de pulsation pour attirer l'attention */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(168, 85, 247, 0.8);
+  }
+}
+
+.create-session-btn {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Media queries pour le responsive */
+@media (max-width: 768px) {
+  .stat-card {
+    padding: 0.75rem;
+  }
+
+  .nav-link {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+
+  .create-session-btn {
+    padding: 1rem 1.5rem;
+    border-radius: 0.75rem;
+  }
+
+  .create-session-btn .text-xl {
+    font-size: 1.125rem;
+  }
+
+  .create-session-btn .text-sm {
+    font-size: 0.75rem;
+  }
+}
