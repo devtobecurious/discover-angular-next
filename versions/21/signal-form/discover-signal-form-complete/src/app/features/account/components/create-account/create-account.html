@@ -1,0 +1,196 @@
+<div class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 py-8">
+  <div class="container mx-auto px-4 max-w-2xl">
+    <!-- Header du formulaire -->
+    <div class="bg-slate-800/50 backdrop-blur-sm rounded-xl border border-purple-500/20 p-6 mb-8">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-4">
+          <div class="w-12 h-12 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full flex items-center justify-center">
+            <span class="text-2xl">👤</span>
+          </div>
+          <div>
+            <h1 class="text-3xl font-bold text-white">Créer un Compte</h1>
+            <p class="text-gray-400">Rejoins la communauté GameHub !</p>
+          </div>
+        </div>
+        <button
+          type="button"
+          class="bg-gray-600/80 border-2 border-gray-600/30 rounded-xl px-6 py-3 text-white font-semibold hover:bg-gray-600 transition-all duration-300 flex items-center text-sm">
+          <span class="mr-2">✕</span>
+          Fermer
+        </button>
+      </div>
+    </div>
+
+    <!-- Formulaire principal -->
+    <form class="space-y-8">
+
+      <!-- Section Informations personnelles -->
+      <div class="bg-slate-700/50 backdrop-blur-sm rounded-xl border border-purple-500/20 p-8 transition-all duration-300 hover:border-purple-500/40 hover:shadow-[0_10px_25px_rgba(168,85,247,0.1)]">
+        <h2 class="text-2xl font-bold text-white flex items-center mb-6 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+          <span class="mr-3">📝</span>
+          Tes Informations
+        </h2>
+
+        <div class="space-y-6">
+          <!-- Prénom -->
+          <div class="flex flex-col gap-2">
+            <label for="firstname" class="flex items-center font-semibold text-gray-300 text-sm mb-2">
+              <span class="mr-2">👤</span>
+              Prénom
+            </label>
+            <input
+              id="firstname"
+              type="text"
+              placeholder="ex: Alex"
+              class="bg-slate-800/80 border-2 border-purple-500/30 rounded-xl px-4 py-3.5 text-white text-sm transition-all duration-300 backdrop-blur-sm placeholder:text-gray-400 focus:outline-none focus:border-purple-500/80 focus:shadow-[0_0_20px_rgba(168,85,247,0.3)] focus:bg-slate-800/90 hover:border-purple-500/50">
+            <div class="text-gray-400 text-xs italic mt-1 flex items-center">
+              💡 Ton vrai prénom pour que tes potes te reconnaissent
+            </div>
+          </div>
+
+          <!-- Surnom -->
+          <div class="flex flex-col gap-2">
+            <label for="surname" class="flex items-center font-semibold text-gray-300 text-sm mb-2">
+              <span class="mr-2">🏷️</span>
+              Surnom de joueur
+            </label>
+            <input
+              id="surname"
+              type="text"
+              placeholder="ex: DragonSlayer"
+              class="bg-slate-800/80 border-2 border-purple-500/30 rounded-xl px-4 py-3.5 text-white text-sm transition-all duration-300 backdrop-blur-sm placeholder:text-gray-400 focus:outline-none focus:border-purple-500/80 focus:shadow-[0_0_20px_rgba(168,85,247,0.3)] focus:bg-slate-800/90 hover:border-purple-500/50">
+            <div class="text-gray-400 text-xs italic mt-1 flex items-center">
+              🎮 Choisis ton pseudo de gamer légendaire !
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section Sécurité -->
+      <div class="bg-gradient-to-br from-slate-700/50 to-purple-900/30 backdrop-blur-sm rounded-xl border border-orange-500/20 p-8 transition-all duration-300 hover:border-orange-500/40 hover:shadow-[0_10px_25px_rgba(251,146,60,0.1)]">
+        <h2 class="text-2xl font-bold text-white flex items-center mb-6 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+          <span class="mr-3">🔒</span>
+          Sécurité du Compte
+        </h2>
+
+        <div class="space-y-6">
+          <!-- Mot de passe -->
+          <div class="flex flex-col gap-2">
+            <label for="password" class="flex items-center font-semibold text-gray-300 text-sm mb-2">
+              <span class="mr-2">🔑</span>
+              Mot de passe
+            </label>
+            <div class="relative flex items-center">
+              <input
+                id="password"
+                type="password"
+                placeholder="••••••••"
+                class="bg-slate-800/80 border-2 border-purple-500/30 rounded-xl px-4 py-3.5 pr-12 text-white text-sm transition-all duration-300 backdrop-blur-sm placeholder:text-gray-400 focus:outline-none focus:border-purple-500/80 focus:shadow-[0_0_20px_rgba(168,85,247,0.3)] focus:bg-slate-800/90 hover:border-purple-500/50 w-full">
+              <button
+                type="button"
+                class="absolute right-3 bg-purple-500/20 border border-purple-500/30 rounded-lg p-2 flex items-center justify-center transition-all duration-300 hover:bg-purple-500/40 hover:border-purple-500/60 hover:scale-110">
+                <span class="text-base">👁️</span>
+              </button>
+            </div>
+            <div class="mt-3 flex flex-col gap-2">
+              <div class="flex gap-2">
+                <div class="flex-1 h-1 bg-gray-600/30 rounded"></div>
+                <div class="flex-1 h-1 bg-gray-600/30 rounded"></div>
+                <div class="flex-1 h-1 bg-gray-600/30 rounded"></div>
+                <div class="flex-1 h-1 bg-gray-600/30 rounded"></div>
+              </div>
+              <span class="text-gray-400 text-xs font-semibold">Sécurité : À définir</span>
+            </div>
+            <div class="text-gray-400 text-xs italic mt-1 flex items-center">
+              🛡️ Minimum 8 caractères, avec majuscules, minuscules et chiffres
+            </div>
+          </div>
+
+          <!-- Confirmation mot de passe -->
+          <div class="flex flex-col gap-2">
+            <label for="confirmPassword" class="flex items-center font-semibold text-gray-300 text-sm mb-2">
+              <span class="mr-2">✅</span>
+              Confirmer le mot de passe
+            </label>
+            <div class="relative flex items-center">
+              <input
+                id="confirmPassword"
+                type="password"
+                placeholder="••••••••"
+                class="bg-slate-800/80 border-2 border-purple-500/30 rounded-xl px-4 py-3.5 pr-12 text-white text-sm transition-all duration-300 backdrop-blur-sm placeholder:text-gray-400 focus:outline-none focus:border-purple-500/80 focus:shadow-[0_0_20px_rgba(168,85,247,0.3)] focus:bg-slate-800/90 hover:border-purple-500/50 w-full">
+              <button
+                type="button"
+                class="absolute right-3 bg-purple-500/20 border border-purple-500/30 rounded-lg p-2 flex items-center justify-center transition-all duration-300 hover:bg-purple-500/40 hover:border-purple-500/60 hover:scale-110">
+                <span class="text-base">👁️</span>
+              </button>
+            </div>
+            <div class="text-gray-400 text-xs italic mt-1 flex items-center">
+              🔄 Ressaisis ton mot de passe pour être sûr
+            </div>
+          </div>
+
+          <!-- Match indicator -->
+          <div class="hidden mt-4">
+            <div class="text-green-500 font-semibold text-sm flex items-center bg-green-500/10 border border-green-500/30 px-4 py-3 rounded-lg">
+              <span class="mr-2">✨</span>
+              Les mots de passe correspondent !
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="bg-slate-700/50 backdrop-blur-sm rounded-xl border border-purple-500/20 p-8 transition-all duration-300 hover:border-purple-500/40 hover:shadow-[0_10px_25px_rgba(168,85,247,0.1)]">
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button
+            type="button"
+            class="bg-gray-600/80 border-2 border-gray-600/30 rounded-xl px-8 py-4 text-white font-semibold hover:bg-gray-600 transition-all duration-300 flex items-center justify-center text-base min-w-[150px] hover:transform hover:-translate-y-0.5 hover:shadow-[0_10px_25px_rgba(107,114,128,0.3)]">
+            <span class="mr-2">↩️</span>
+            Retour
+          </button>
+
+          <button
+            type="submit"
+            class="bg-gradient-to-r from-purple-500/90 to-pink-500/90 border-2 border-purple-500/50 rounded-xl px-8 py-4 text-white font-bold hover:from-purple-500 hover:to-pink-500 transition-all duration-300 flex items-center justify-center text-lg min-w-[200px] relative overflow-hidden hover:transform hover:-translate-y-0.5 hover:shadow-[0_15px_35px_rgba(168,85,247,0.4)] hover:border-purple-500/80">
+            <span class="mr-2">🚀</span>
+            Créer mon Compte
+          </button>
+        </div>
+
+        <!-- Lien vers connexion -->
+        <div class="mt-6 text-center flex gap-2 justify-center items-center">
+          <span class="text-gray-400">Déjà un compte ?</span>
+          <a href="#" class="text-purple-400 font-semibold transition-all duration-300 flex items-center hover:text-pink-400 hover:translate-x-1">
+            <span class="mr-1">🎯</span>
+            Se connecter
+          </a>
+        </div>
+      </div>
+    </form>
+
+    <!-- Bénéfices de création de compte -->
+    <div class="mt-12 bg-slate-700/30 border border-purple-500/15 rounded-xl p-8">
+      <h3 class="text-xl font-bold text-white mb-6 flex items-center justify-center">
+        <span class="mr-2">⭐</span>
+        Pourquoi créer un compte ?
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-slate-800/50 border border-purple-500/20 rounded-xl p-6 text-center transition-all duration-300 hover:border-purple-500/40 hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(168,85,247,0.15)]">
+          <span class="text-4xl block mb-4">🎮</span>
+          <h4 class="text-base font-bold text-white mb-2">Sessions illimitées</h4>
+          <p class="text-sm text-gray-400 leading-relaxed">Organise autant de parties que tu veux</p>
+        </div>
+        <div class="bg-slate-800/50 border border-purple-500/20 rounded-xl p-6 text-center transition-all duration-300 hover:border-purple-500/40 hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(168,85,247,0.15)]">
+          <span class="text-4xl block mb-4">👥</span>
+          <h4 class="text-base font-bold text-white mb-2">Réseau d'amis</h4>
+          <p class="text-sm text-gray-400 leading-relaxed">Connecte-toi avec tes potes gamers</p>
+        </div>
+        <div class="bg-slate-800/50 border border-purple-500/20 rounded-xl p-6 text-center transition-all duration-300 hover:border-purple-500/40 hover:-translate-y-1 hover:shadow-[0_10px_25px_rgba(168,85,247,0.15)]">
+          <span class="text-4xl block mb-4">🏆</span>
+          <h4 class="text-base font-bold text-white mb-2">Stats & Achievements</h4>
+          <p class="text-sm text-gray-400 leading-relaxed">Suis tes performances et débloques des badges</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

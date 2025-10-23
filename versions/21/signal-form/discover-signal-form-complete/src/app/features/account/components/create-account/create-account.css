@@ -1,0 +1,16 @@
+/* Styles minimaux - presque tout est géré par Tailwind */
+
+/* Animation pour le bouton submit */
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Classe utilitaire pour le pseudo-élément de la checkbox */
+.checkbox-input:checked + .checkbox-custom::after {
+  content: '✓';
+}
