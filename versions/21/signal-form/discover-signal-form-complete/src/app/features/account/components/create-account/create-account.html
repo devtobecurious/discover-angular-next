@@ -1,3 +1,5 @@
+
+
 <div class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 py-8">
   <div class="container mx-auto px-4 max-w-2xl">
     <!-- Header du formulaire -->
@@ -22,7 +24,7 @@
     </div>
 
     <!-- Formulaire principal -->
-    <form class="space-y-8">
+    <form class="space-y-8" (submit)="saveOne($event)">
 
       <!-- Section Informations personnelles -->
       <div class="bg-slate-700/50 backdrop-blur-sm rounded-xl border border-purple-500/20 p-8 transition-all duration-300 hover:border-purple-500/40 hover:shadow-[0_10px_25px_rgba(168,85,247,0.1)]">
@@ -41,6 +43,7 @@
             <input
               id="firstname"
               type="text"
+              [field]="accountForm.firstName"
               placeholder="ex: Alex"
               class="bg-slate-800/80 border-2 border-purple-500/30 rounded-xl px-4 py-3.5 text-white text-sm transition-all duration-300 backdrop-blur-sm placeholder:text-gray-400 focus:outline-none focus:border-purple-500/80 focus:shadow-[0_0_20px_rgba(168,85,247,0.3)] focus:bg-slate-800/90 hover:border-purple-500/50">
             <div class="text-gray-400 text-xs italic mt-1 flex items-center">
@@ -57,6 +60,7 @@
             <input
               id="surname"
               type="text"
+              [field]="accountForm.nickName"
               placeholder="ex: DragonSlayer"
               class="bg-slate-800/80 border-2 border-purple-500/30 rounded-xl px-4 py-3.5 text-white text-sm transition-all duration-300 backdrop-blur-sm placeholder:text-gray-400 focus:outline-none focus:border-purple-500/80 focus:shadow-[0_0_20px_rgba(168,85,247,0.3)] focus:bg-slate-800/90 hover:border-purple-500/50">
             <div class="text-gray-400 text-xs italic mt-1 flex items-center">
@@ -84,6 +88,7 @@
               <input
                 id="password"
                 type="password"
+                [field]="accountForm.password"
                 placeholder="••••••••"
                 class="bg-slate-800/80 border-2 border-purple-500/30 rounded-xl px-4 py-3.5 pr-12 text-white text-sm transition-all duration-300 backdrop-blur-sm placeholder:text-gray-400 focus:outline-none focus:border-purple-500/80 focus:shadow-[0_0_20px_rgba(168,85,247,0.3)] focus:bg-slate-800/90 hover:border-purple-500/50 w-full">
               <button
@@ -116,6 +121,7 @@
               <input
                 id="confirmPassword"
                 type="password"
+                [field]="accountForm.confirmPassword"
                 placeholder="••••••••"
                 class="bg-slate-800/80 border-2 border-purple-500/30 rounded-xl px-4 py-3.5 pr-12 text-white text-sm transition-all duration-300 backdrop-blur-sm placeholder:text-gray-400 focus:outline-none focus:border-purple-500/80 focus:shadow-[0_0_20px_rgba(168,85,247,0.3)] focus:bg-slate-800/90 hover:border-purple-500/50 w-full">
               <button
@@ -125,7 +131,9 @@
               </button>
             </div>
             <div class="text-gray-400 text-xs italic mt-1 flex items-center">
-              🔄 Ressaisis ton mot de passe pour être sûr
+              @for (error of accountForm.confirmPassword().errors(); track error.kind) {
+                <i>🔄{{ error.message }}</i>
+              }
             </div>
           </div>
 
@@ -151,7 +159,8 @@
 
           <button
             type="submit"
-            class="bg-gradient-to-r from-purple-500/90 to-pink-500/90 border-2 border-purple-500/50 rounded-xl px-8 py-4 text-white font-bold hover:from-purple-500 hover:to-pink-500 transition-all duration-300 flex items-center justify-center text-lg min-w-[200px] relative overflow-hidden hover:transform hover:-translate-y-0.5 hover:shadow-[0_15px_35px_rgba(168,85,247,0.4)] hover:border-purple-500/80">
+            [disabled]="accountForm().invalid()"
+            class="bg-gradient-to-r from-purple-500/90 to-pink-500/90 border-2 border-purple-500/50 rounded-xl px-8 py-4 text-white font-bold hover:from-purple-500 hover:to-pink-500 transition-all duration-300 flex items-center justify-center text-lg min-w-[200px] relative overflow-hidden hover:transform hover:-translate-y-0.5 hover:shadow-[0_15px_35px_rgba(168,85,247,0.4)] hover:border-purple-500/80 disabled:bg-gray-600/50 disabled:border-gray-600/30 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none disabled:from-gray-600/50 disabled:to-gray-600/50">
             <span class="mr-2">🚀</span>
             Créer mon Compte
           </button>
