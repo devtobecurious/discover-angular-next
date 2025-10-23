@@ -1,10 +1,19 @@
-import { customError, minLength, required, schema, validate } from "@angular/forms/signals"
+import { applyEach, customError, minLength, required, schema, validate } from "@angular/forms/signals"
+
+export interface Friend {
+  nickName: string,
+}
+
+export const friendSchema = schema<Friend>(context => {
+  required(context.nickName, { message: 'Le surnom est obligatoire pour un ami.'});
+});
 
 export interface CreateAccount {
   firstName: string,
   nickName: string,
   password: string,
-  confirmPassword: string
+  confirmPassword: string,
+  friends: Friend[]
 }
 
 export const createAccountSchema = schema<CreateAccount>(context => {
@@ -14,6 +23,9 @@ export const createAccountSchema = schema<CreateAccount>(context => {
   minLength(context.password, 8);
   required(context.confirmPassword);
   minLength(context.confirmPassword, 8);
+
+  applyEach(context.friends, friendSchema);
+
   validate(context.confirmPassword, confPaswwordContext => {
     const confPasswordValue = confPaswwordContext.value();
     const paswordValue = confPaswwordContext.valueOf(context.password);

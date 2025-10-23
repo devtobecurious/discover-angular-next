@@ -34,6 +34,15 @@
         </h2>
 
         <div class="space-y-6">
+          @for (error of accountForm().errors(); track error.kind) {
+            <div class="text-red-500 font-semibold text-sm flex items-center bg-red-500/10 border border-red-500/30 px-4 py-3 rounded-lg mb-2">
+              <span class="mr-2">⚠️</span>
+              {{ error.message }}
+            </div>
+          }
+        </div>
+
+        <div class="space-y-6">
           <!-- Prénom -->
           <div class="flex flex-col gap-2">
             <label for="firstname" class="flex items-center font-semibold text-gray-300 text-sm mb-2">
@@ -67,6 +76,52 @@
               🎮 Choisis ton pseudo de gamer légendaire !
             </div>
           </div>
+        </div>
+      </div>
+
+      <!-- Section Amis -->
+      <div class="form-section">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="section-title">
+            <span class="mr-3">👥</span>
+            Qu sont tes amis de jeu ?
+          </h2>
+          <button
+            type="button"
+            (click)="addFriend()"
+            class="add-btn">
+            <span class="mr-2">➕</span>
+            Ajouter un ami
+          </button>
+        </div>
+
+        <div  class="space-y-4">
+          @for (friend of accountForm.friends; track friend; let i = $index) {
+            <div
+              class="friend-card">
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-bold text-white flex items-center">
+                  <span class="mr-2">🎮</span>
+                  Joueur {{ i + 1 }}
+                </h3>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Surnom -->
+                <div class="form-group">
+                  <label [for]="'nickName-' + i" class="form-label">
+                    <span class="mr-2">🏷️</span>
+                    Surnom
+                  </label>
+                  <input
+                    [id]="'nickName-' + i"
+                    [field]="friend.nickName"
+                    type="text"
+                    placeholder="ex: DragonSlayer"
+                    class="form-input">
+                </div>
+              </div>
+            </div>
+          }
         </div>
       </div>
 
