@@ -1,8 +1,8 @@
 import { Component, inject, signal } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Form, FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { applyEach, Field, form, required, schema } from '@angular/forms/signals';
+import { applyEach, Field, FieldTree, form, required, schema } from '@angular/forms/signals';
 
 interface Friend {
   surname: string;
@@ -28,6 +28,9 @@ const userSchema = schema<Friend>(context => {
   required(context.surname);
   required(context.firstname);
 });
+
+type GameSessionForm = typeof form<GameSession>
+type From<T extends GameSessionForm> = T[keyof T] extends FieldTree<Friend[], string> ? T[keyof T] : never;
 
 @Component({
   selector: 'app-create-one-game-session',
@@ -167,6 +170,11 @@ export class CreateOneGameSession {
   }
 
   private markFormGroupTouched(): void {
+    Object.keys(this.sessionForm).forEach(key => {
+      const control = this.sessionForm[key as keyof GameSession];
+      control().markAsTouched();
+    });
+
     // Object.keys(this.sessionForm.controls).forEach(key => {
     //   const control = this.sessionForm.get(key);
     //   control?.markAsTouched();
@@ -196,10 +204,17 @@ export class CreateOneGameSession {
     return field().value();
   }
 
-  isArrayFieldInvalid(arrayName: string, index: number, fieldName: string): boolean {
+
+  isArrayFieldInvalid(friend: FieldTree<Friend, number>, field: keyof Friend): boolean {
+    const isInvalid = friend[field]().invalid() && friend[field]().touched();
+
+
     // const array = this.sessionForm.get(arrayName) as FormArray;
     // const field = array.at(index)?.get(fieldName);
     // return !!(field && field.invalid && field.touched);
-    return false;
+    return isInvalid;
   }
 }
+
+
+

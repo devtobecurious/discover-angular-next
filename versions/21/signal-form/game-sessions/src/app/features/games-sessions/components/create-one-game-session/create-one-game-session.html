@@ -120,8 +120,8 @@
                     [field]="friend.surname"
                     placeholder="ex: DragonSlayer"
                     class="form-input"
-                    [class.error]="isArrayFieldInvalid('friends', i, 'surname')">
-                  @if (isArrayFieldInvalid('friends', i, 'surname')) {
+                    [class.error]="isArrayFieldInvalid(friend, 'surname')">
+                  @if (isArrayFieldInvalid(friend, 'surname')) {
                     <div class="error-message">
                       📍 Le surnom est obligatoire (min. 2 caractères)
                     </div>
@@ -139,8 +139,8 @@
                     [field]="friend.firstname"
                     placeholder="ex: Alex"
                     class="form-input"
-                    [class.error]="isArrayFieldInvalid('friends', i, 'firstname')">
-                  @if (isArrayFieldInvalid('friends', i, 'firstname')) {
+                    [class.error]="isArrayFieldInvalid(friend, 'firstname')">
+                  @if (isArrayFieldInvalid(friend, 'firstname')) {
                     <div class="error-message">
                       📍 Le prénom est obligatoire (min. 2 caractères)
                     </div>
