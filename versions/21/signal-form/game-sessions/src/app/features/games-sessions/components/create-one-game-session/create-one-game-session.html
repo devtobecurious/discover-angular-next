@@ -4,7 +4,8 @@
     <div class="bg-slate-800/50 backdrop-blur-sm rounded-xl border border-purple-500/20 p-6 mb-8">
       <div class="flex items-center justify-between">
         <div class="flex items-center space-x-4">
-          <div class="w-12 h-12 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center">
+          <div
+            class="w-12 h-12 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center">
             <span class="text-2xl">🚀</span>
           </div>
           <div>
@@ -12,10 +13,7 @@
             <p class="text-gray-400">Configure ta prochaine session de jeu épique !</p>
           </div>
         </div>
-        <button
-          (click)="onCancel()"
-          class="cancel-btn"
-          type="button">
+        <button (click)="onCancel()" class="cancel-btn" type="button">
           <span class="mr-2">✕</span>
           Annuler
         </button>
@@ -23,7 +21,7 @@
     </div>
 
     <!-- Formulaire principal -->
-    <form [formGroup]="sessionForm" (ngSubmit)="onSubmit()" class="space-y-8">
+    <form class="space-y-8" novalidate>
 
       <!-- Section Date et Heure -->
       <div class="form-section">
@@ -39,15 +37,13 @@
               <span class="mr-2">📆</span>
               Date de début
             </label>
-            <input
-              id="startDate"
-              type="date"
-              formControlName="startDate"
-              class="form-input"
+            <input id="startDate" type="date" [field]="sessionForm.startDate" class="form-input"
               [class.border-red-500]="isFieldInvalid('startDate')">
-            <div *ngIf="isFieldInvalid('startDate')" class="text-red-400 text-sm mt-1">
+            @if(isFieldInvalid('startDate')) {
+            <div class="text-red-400 text-sm mt-1">
               La date de début est requise
             </div>
+            }
           </div>
 
           <!-- Heure de début -->
@@ -56,163 +52,147 @@
               <span class="mr-2">⏰</span>
               Heure de début
             </label>
-            <input
-              id="startTime"
-              type="time"
-              formControlName="startTime"
-              class="form-input"
+            <input id="startTime" type="time" [field]="sessionForm.startTime" class="form-input"
               [class.border-red-500]="isFieldInvalid('startTime')">
-            <div *ngIf="isFieldInvalid('startTime')" class="text-red-400 text-sm mt-1">
+            @if(isFieldInvalid('startTime')) {
+            <div class="text-red-400 text-sm mt-1">
               L'heure de début est requise
             </div>
+            }
           </div>
         </div>
       </div>
 
       <!-- Section Jeu -->
-    <div class="form-section">
-      <h2 class="section-title">
-        <span class="mr-3">🎮</span>
-        À quel jeu jouer ?
-      </h2>
+      <div class="form-section">
+        <h2 class="section-title">
+          <span class="mr-3">🎮</span>
+          À quel jeu jouer ?
+        </h2>
 
-      <div class="game-card">
-        <div class="flex items-center mb-4">
-          <h3 class="text-lg font-bold text-white flex items-center">
-            <span class="mr-2">🕹️</span>
-            Sélection du jeu
-          </h3>
-        </div>
-
-        <div class="grid grid-cols-1 gap-4">
-          <!-- Sélection du jeu -->
-          <div class="form-group">
-            <label for="gameName" class="form-label">
-              <span class="mr-2">🎯</span>
-              Choisir un jeu
-            </label>
-            <select
-              id="gameName"
-              formControlName="gameName"
-              class="form-input game-select"
-              [class.border-red-500]="isFieldInvalid('gameName')">
-              <option value="">Sélectionne ton jeu...</option>
-              <optgroup *ngFor="let category of gameCategories" [label]="category.label">
-                <option
-                  *ngFor="let game of getGamesByCategory(category.value)"
-                  [value]="game.name"
-                  [attr.data-category]="game.category">
-                  {{ game.icon }} {{ game.name }}
-                </option>
-              </optgroup>
-            </select>
-            <div *ngIf="isFieldInvalid('gameName')" class="text-red-400 text-sm mt-1">
-              Veuillez sélectionner un jeu
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Section Amis -->
-    <div class="form-section">
-      <h2 class="section-title">
-        <span class="mr-3">👥</span>
-        Qui va jouer ?
-      </h2>
-
-      <div formArrayName="friends" class="space-y-4">
-        <div
-          *ngFor="let friend of friendsArray.controls; let i = index"
-          [formGroupName]="i"
-          class="friend-card bg-slate-800/30 backdrop-blur-sm rounded-lg border border-purple-500/10 p-4">
-
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-lg font-semibold text-white flex items-center">
-              <span class="mr-2">👤</span>
-              Ami {{ i + 1 }}
+        <div class="game-card">
+          <div class="flex items-center mb-4">
+            <h3 class="text-lg font-bold text-white flex items-center">
+              <span class="mr-2">🕹️</span>
+              Sélection du jeu
             </h3>
-            <button
-              type="button"
-              (click)="removeFriend(i)"
-              [disabled]="friendsArray.length <= 1"
-              class="text-red-400 hover:text-red-300 disabled:opacity-50 disabled:cursor-not-allowed">
-              <span class="text-xl">🗑️</span>
-            </button>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <!-- Nom -->
+          <div class="grid grid-cols-1 gap-4">
+            <!-- Sélection du jeu -->
             <div class="form-group">
-              <label [for]="'surname-' + i" class="form-label">
-                <span class="mr-2">📝</span>
-                Nom
+              <label for="gameName" class="form-label">
+                <span class="mr-2">🎯</span>
+                Choisir un jeu
               </label>
-              <input
-                [id]="'surname-' + i"
-                type="text"
-                formControlName="surname"
-                placeholder="Nom de famille"
-                class="form-input"
-                [class.border-red-500]="isArrayFieldInvalid(i, 'surname')">
-              <div *ngIf="isArrayFieldInvalid(i, 'surname')" class="text-red-400 text-sm mt-1">
-                Le nom est requis (min. 2 caractères)
-              </div>
-            </div>
+              <select id="gameName" [field]="sessionForm.gameName" class="form-input game-select"
+                [class.border-red-500]="isFieldInvalid('gameName')">
+                <option value="">Sélectionne ton jeu...</option>
+                @for (category of gameCategories; track category.value) {
+                <optgroup [label]="category.label">
+                  @for (game of getGamesByCategory(category.value); track game.name) {
+                  <option [value]="game.name" [attr.data-category]="game.category">
+                    {{ game.icon }} {{ game.name }}
+                  </option>
+                  }
 
-            <!-- Prénom -->
-            <div class="form-group">
-              <label [for]="'firstname-' + i" class="form-label">
-                <span class="mr-2">👋</span>
-                Prénom
-              </label>
-              <input
-                [id]="'firstname-' + i"
-                type="text"
-                formControlName="firstname"
-                placeholder="Prénom"
-                class="form-input"
-                [class.border-red-500]="isArrayFieldInvalid(i, 'firstname')">
-              <div *ngIf="isArrayFieldInvalid(i, 'firstname')" class="text-red-400 text-sm mt-1">
-                Le prénom est requis (min. 2 caractères)
+                </optgroup>
+                }
+              </select>
+              @if(isFieldInvalid('gameName')) {
+              <div class="text-red-400 text-sm mt-1">
+                Veuillez sélectionner un jeu
               </div>
+              }
+
             </div>
           </div>
         </div>
-
-        <!-- Bouton pour ajouter un ami -->
-        <button
-          type="button"
-          (click)="addFriend()"
-          class="w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white font-medium py-3 px-4 rounded-lg transition-all duration-200 flex items-center justify-center">
-          <span class="mr-2">➕</span>
-          Ajouter un ami
-        </button>
       </div>
-    </div>
 
-    <!-- Actions -->
-    <div class="form-section">
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <button
-          type="button"
-          (click)="onCancel()"
-          class="cancel-btn-large"
-          [disabled]="isSubmitting()">
-          <span class="mr-2">↩️</span>
-          Retour
-        </button>
+      <!-- Section Amis -->
+      <div class="form-section">
+        <h2 class="section-title">
+          <span class="mr-3">👥</span>
+          Qui va jouer ?
+        </h2>
 
-        <button
-          type="submit"
-          class="submit-btn"
-          [disabled]="!sessionForm.valid || isSubmitting()">
-          <span class="mr-2" *ngIf="!isSubmitting()">🚀</span>
-          <span class="mr-2 animate-spin" *ngIf="isSubmitting()">⚡</span>
-          {{ isSubmitting() ? 'Création en cours...' : 'Créer la Session' }}
-        </button>
+        <div class="space-y-4">
+          @for (friend of sessionForm.friends; track friend; let i = $index) {
+          <div class="friend-card bg-slate-800/30 backdrop-blur-sm rounded-lg border border-purple-500/10 p-4">
+
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-lg font-semibold text-white flex items-center">
+                <span class="mr-2">👤</span>
+                Ami {{ i + 1 }}
+              </h3>
+              <button type="button" (click)="removeFriend(i)" [disabled]="friendsArray.length <= 1"
+                class="text-red-400 hover:text-red-300 disabled:opacity-50 disabled:cursor-not-allowed">
+                <span class="text-xl">🗑️</span>
+              </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <!-- Nom -->
+              <div class="form-group">
+                <label [for]="'surname-' + i" class="form-label">
+                  <span class="mr-2">📝</span>
+                  Nom
+                </label>
+
+                <input [id]="'surname-' + i" type="text" [field]="friend.surname" placeholder="Nom de famille"
+                  class="form-input" [class.border-red-500]="isArrayFieldInvalid(friend, 'surname')">
+                   @if(isArrayFieldInvalid(friend, 'surname')) {
+                    <div class="text-red-400 text-sm mt-1">
+                      Le nom est requis (min. 2 caractères)
+                    </div>
+                  }
+              </div>
+
+              <!-- Prénom -->
+              <div class="form-group">
+                <label [for]="'firstname-' + i" class="form-label">
+                  <span class="mr-2">👋</span>
+                  Prénom
+                </label>
+                <input [id]="'firstname-' + i" type="text" [field]="friend.firstname" placeholder="Prénom"
+                  class="form-input" [class.border-red-500]="isArrayFieldInvalid(friend, 'firstname')">
+                @if(isArrayFieldInvalid(friend, 'firstname')) {
+                  <div class="text-red-400 text-sm mt-1">
+                    Le prénom est requis (min. 2 caractères)
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+          }
+
+          <!-- Bouton pour ajouter un ami -->
+          <button type="button" (click)="addFriend()"
+            class="w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white font-medium py-3 px-4 rounded-lg transition-all duration-200 flex items-center justify-center">
+            <span class="mr-2">➕</span>
+            Ajouter un ami
+          </button>
+        </div>
       </div>
-    </div>
-  </form>
-</div>
+
+      <!-- Actions -->
+      <div class="form-section">
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button type="button" (click)="onCancel()" class="cancel-btn-large" [disabled]="isSubmitting()">
+            <span class="mr-2">↩️</span>
+            Retour
+          </button>
+
+          <button type="button" (click)="onSubmit($event)" class="submit-btn" [disabled]="disableToSubmit()">
+            @if(isSubmitting()) {
+            <span class="mr-2">🚀</span>
+            <span class="mr-2 animate-spin">⚡</span>
+            }
+            {{ isSubmitting() ? 'Création en cours...' : 'Créer la Session' }}
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>

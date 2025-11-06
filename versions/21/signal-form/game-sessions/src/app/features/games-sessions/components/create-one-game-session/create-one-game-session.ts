@@ -1,29 +1,24 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Field, FieldTree, form } from '@angular/forms/signals';
+import { createEmptySession, GameSession, sessionSchema } from '../../models/game-session';
+import { createEmptyFriend, Friend } from '../../models/friend';
 
-interface Friend {
-  surname: string;
-  firstname: string;
-}
 
-interface GameSession {
-  startDate: string;
-  startTime: string;
-  friends: Friend[];
-  gameName: string;
-}
+
+
 
 @Component({
   selector: 'app-create-one-game-session',
   templateUrl: './create-one-game-session.html',
   styleUrl: './create-one-game-session.css',
-  standalone: true,
-  imports: [ReactiveFormsModule, CommonModule]
+  //imports: [ReactiveFormsModule, CommonModule]
+  imports: [Field]
 })
 export class CreateOneGameSession {
-  protected readonly sessionForm: FormGroup;
+  //protected readonly sessionForm: FormGroup;
   protected readonly isSubmitting = signal(false);
   protected readonly gameCategories = [
     { value: 'fps', label: '🔫 FPS' },
@@ -81,48 +76,33 @@ export class CreateOneGameSession {
     { name: 'Tetris Effect', category: 'puzzle', icon: '🧩' }
   ];
 
-  constructor(
-    private fb: FormBuilder,
-    private router: Router
-  ) {
-    this.sessionForm = this.fb.nonNullable.group({
-      startDate: ['', [Validators.required]],
-      startTime: ['', [Validators.required]],
-      friends: this.fb.array([]),
-      gameName: ['', [Validators.required]]
-    });
+  private readonly router = inject(Router);
+  private readonly sessionState = signal(createEmptySession());
+  protected readonly sessionForm = form(this.sessionState, sessionSchema);
 
-    // Ajouter un ami par défaut
-    this.addFriend();
-  }
-
-  get friendsArray(): FormArray {
-    return this.sessionForm.get('friends') as FormArray;
-  }
+  protected readonly disableToSubmit = computed(() => this.sessionForm().invalid() || this.isSubmitting())
 
   getGamesByCategory(category: string) {
     return this.availableGames.filter(game => game.category === category);
   }
 
   addFriend(): void {
-    const friendGroup = this.fb.group({
-      surname: ['', [Validators.required, Validators.minLength(2)]],
-      firstname: ['', [Validators.required, Validators.minLength(2)]]
-    });
-    this.friendsArray.push(friendGroup);
+    this.sessionForm.friends().value.update(oldValue => [...oldValue, createEmptyFriend()]);
   }
 
   removeFriend(index: number): void {
     if (this.friendsArray.length > 1) {
-      this.friendsArray.removeAt(index);
+      this.sessionForm.friends().value.update(oldValue => oldValue.filter((_, i) => i !== index));
     }
   }
 
-  onSubmit(): void {
-    if (this.sessionForm.valid) {
+  onSubmit(event: Event): void {
+    event.preventDefault(); // Empêche le comportement par défaut du formulaire
+
+    if (this.sessionForm().valid()) {
       this.isSubmitting.set(true);
 
-      const formData: GameSession = this.sessionForm.value;
+      const formData: GameSession = this.sessionForm().value();
       console.log('Session créée:', formData);
 
       // Simulation d'une sauvegarde
@@ -141,36 +121,28 @@ export class CreateOneGameSession {
   }
 
   private markFormGroupTouched(): void {
-    Object.keys(this.sessionForm.controls).forEach(key => {
-      const control = this.sessionForm.get(key);
-      control?.markAsTouched();
+    Object.keys(this.sessionForm).forEach(key => {
+      const field = this.sessionForm[key as keyof GameSession];
+      field().markAsTouched();
+    })
+  }
 
-      if (control instanceof FormArray) {
-        control.controls.forEach(group => {
-          if (group instanceof FormGroup) {
-            Object.keys(group.controls).forEach(groupKey => {
-              group.get(groupKey)?.markAsTouched();
-            });
-          }
-        });
-      }
-    });
+  get friendsArray(): Friend[] {
+    return this.sessionForm.friends().value();
   }
 
   isFieldInvalid(fieldName: keyof GameSession): boolean {
-    const field = this.sessionForm.get(fieldName);
-    return !!(field && field.invalid && field.touched);
+    const field = this.sessionForm[fieldName];
+    return field().invalid() && field().touched();
   }
 
-  getValueOfField(fieldName: keyof GameSession): any {
-    const field = this.sessionForm.get(fieldName);
-    return field?.value;
+  getValueOfField(fieldName: keyof GameSession): string | Friend[] {
+    const field = this.sessionForm[fieldName];
+    return field().value();
   }
 
-  isArrayFieldInvalid(index: number, fieldName: keyof Friend): boolean {
-    const array = this.sessionForm.get('friends') as FormArray;
-    const field = array.at(index)?.get(fieldName);
-    return !!(field && field.invalid && field.touched);
+  isArrayFieldInvalid(friend: FieldTree<Friend, number>, fieldName: keyof Friend): boolean {
+    return friend[fieldName]().invalid() && friend[fieldName]().touched();
   }
 }
 
