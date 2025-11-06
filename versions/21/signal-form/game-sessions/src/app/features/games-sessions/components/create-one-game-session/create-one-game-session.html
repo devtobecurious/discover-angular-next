@@ -23,7 +23,7 @@
     </div>
 
     <!-- Formulaire principal -->
-    <form (ngSubmit)="onSubmit()" class="space-y-8">
+    <form [formGroup]="sessionForm" (ngSubmit)="onSubmit()" class="space-y-8">
 
       <!-- Section Date et Heure -->
       <div class="form-section">
@@ -42,7 +42,12 @@
             <input
               id="startDate"
               type="date"
-              class="form-input">
+              formControlName="startDate"
+              class="form-input"
+              [class.border-red-500]="isFieldInvalid('startDate')">
+            <div *ngIf="isFieldInvalid('startDate')" class="text-red-400 text-sm mt-1">
+              La date de début est requise
+            </div>
           </div>
 
           <!-- Heure de début -->
@@ -54,7 +59,12 @@
             <input
               id="startTime"
               type="time"
-              class="form-input">
+              formControlName="startTime"
+              class="form-input"
+              [class.border-red-500]="isFieldInvalid('startTime')">
+            <div *ngIf="isFieldInvalid('startTime')" class="text-red-400 text-sm mt-1">
+              L'heure de début est requise
+            </div>
           </div>
         </div>
       </div>
@@ -83,22 +93,101 @@
             </label>
             <select
               id="gameName"
-              class="form-input game-select">
+              formControlName="gameName"
+              class="form-input game-select"
+              [class.border-red-500]="isFieldInvalid('gameName')">
               <option value="">Sélectionne ton jeu...</option>
-              @for (category of gameCategories; track category) {
-                <optgroup [label]="category.label">
-                  @for (game of getGamesByCategory(category.value); track game) {
-                    <option
-                      [value]="game.name"
-                      [attr.data-category]="game.category">
-                      {{ game.icon }} {{ game.name }}
-                    </option>
-                  }
-                </optgroup>
-              }
+              <optgroup *ngFor="let category of gameCategories" [label]="category.label">
+                <option
+                  *ngFor="let game of getGamesByCategory(category.value)"
+                  [value]="game.name"
+                  [attr.data-category]="game.category">
+                  {{ game.icon }} {{ game.name }}
+                </option>
+              </optgroup>
             </select>
+            <div *ngIf="isFieldInvalid('gameName')" class="text-red-400 text-sm mt-1">
+              Veuillez sélectionner un jeu
+            </div>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- Section Amis -->
+    <div class="form-section">
+      <h2 class="section-title">
+        <span class="mr-3">👥</span>
+        Qui va jouer ?
+      </h2>
+
+      <div formArrayName="friends" class="space-y-4">
+        <div
+          *ngFor="let friend of friendsArray.controls; let i = index"
+          [formGroupName]="i"
+          class="friend-card bg-slate-800/30 backdrop-blur-sm rounded-lg border border-purple-500/10 p-4">
+
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg font-semibold text-white flex items-center">
+              <span class="mr-2">👤</span>
+              Ami {{ i + 1 }}
+            </h3>
+            <button
+              type="button"
+              (click)="removeFriend(i)"
+              [disabled]="friendsArray.length <= 1"
+              class="text-red-400 hover:text-red-300 disabled:opacity-50 disabled:cursor-not-allowed">
+              <span class="text-xl">🗑️</span>
+            </button>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Nom -->
+            <div class="form-group">
+              <label [for]="'surname-' + i" class="form-label">
+                <span class="mr-2">📝</span>
+                Nom
+              </label>
+              <input
+                [id]="'surname-' + i"
+                type="text"
+                formControlName="surname"
+                placeholder="Nom de famille"
+                class="form-input"
+                [class.border-red-500]="isArrayFieldInvalid(i, 'surname')">
+              <div *ngIf="isArrayFieldInvalid(i, 'surname')" class="text-red-400 text-sm mt-1">
+                Le nom est requis (min. 2 caractères)
+              </div>
+            </div>
+
+            <!-- Prénom -->
+            <div class="form-group">
+              <label [for]="'firstname-' + i" class="form-label">
+                <span class="mr-2">👋</span>
+                Prénom
+              </label>
+              <input
+                [id]="'firstname-' + i"
+                type="text"
+                formControlName="firstname"
+                placeholder="Prénom"
+                class="form-input"
+                [class.border-red-500]="isArrayFieldInvalid(i, 'firstname')">
+              <div *ngIf="isArrayFieldInvalid(i, 'firstname')" class="text-red-400 text-sm mt-1">
+                Le prénom est requis (min. 2 caractères)
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bouton pour ajouter un ami -->
+        <button
+          type="button"
+          (click)="addFriend()"
+          class="w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white font-medium py-3 px-4 rounded-lg transition-all duration-200 flex items-center justify-center">
+          <span class="mr-2">➕</span>
+          Ajouter un ami
+        </button>
       </div>
     </div>
 
@@ -117,13 +206,9 @@
         <button
           type="submit"
           class="submit-btn"
-          [disabled]="isSubmitting()">
-          @if (!isSubmitting()) {
-            <span class="mr-2">🚀</span>
-          }
-          @if (isSubmitting()) {
-            <span class="mr-2 animate-spin">⚡</span>
-          }
+          [disabled]="!sessionForm.valid || isSubmitting()">
+          <span class="mr-2" *ngIf="!isSubmitting()">🚀</span>
+          <span class="mr-2 animate-spin" *ngIf="isSubmitting()">⚡</span>
           {{ isSubmitting() ? 'Création en cours...' : 'Créer la Session' }}
         </button>
       </div>
