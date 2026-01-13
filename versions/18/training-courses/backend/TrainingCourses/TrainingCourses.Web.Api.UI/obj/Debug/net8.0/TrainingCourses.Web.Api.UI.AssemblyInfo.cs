@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TrainingCourses.Web.Api.UI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+30b1928d99b2e51ebc4f64125c568ab8ac60765d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+299718e391ef84425b179bef51d650b42a162553")]
 [assembly: System.Reflection.AssemblyProductAttribute("TrainingCourses.Web.Api.UI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TrainingCourses.Web.Api.UI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
