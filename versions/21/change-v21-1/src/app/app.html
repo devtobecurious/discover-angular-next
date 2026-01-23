@@ -1,0 +1,22 @@
+<app-main-menu></app-main-menu>
+
+Gestion des tempêtes :
+Nom de la tempête :
+<input [formField]="stormForm.name" type="text" />
+
+@let types = [...stormTypes];
+Type :
+@for (key of types; track key) {
+  <label>
+    <input type="radio" [formField]="stormForm.name" [value]="key" />
+    {{ key }}
+  </label>
+}
+
+@switch(stormForm.location().value()) {
+  @case('countryside')
+  @case('city') {
+    <b>Attention aux dégâts matériels en zone urbaine !</b>
+  }
+}
+
