@@ -1,0 +1,266 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import 'tailwindcss';
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+@theme {
+  --font-retro: 'Press Start 2P', monospace;
+  --font-terminal: 'VT323', monospace;
+
+  --color-retro-bg: #1a1a2e;
+  --color-retro-surface: #16213e;
+  --color-retro-card: #0f3460;
+  --color-retro-accent: #e94560;
+  --color-retro-cyan: #00fff5;
+  --color-retro-yellow: #ffd700;
+  --color-retro-green: #39ff14;
+  --color-retro-orange: #ff6f00;
+  --color-retro-purple: #bf00ff;
+  --color-retro-text: #e0e0e0;
+  --color-retro-muted: #7a7a9a;
+}
+
+/* ---- Base ---- */
+body {
+  font-family: var(--font-terminal);
+  background-color: var(--color-retro-bg);
+  color: var(--color-retro-text);
+  min-height: 100dvh;
+  margin: 0;
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(233, 69, 96, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(0, 255, 245, 0.06) 0%, transparent 50%);
+}
+
+/* ---- Scanline overlay ---- */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.15) 2px,
+    rgba(0, 0, 0, 0.15) 4px
+  );
+  z-index: 9999;
+}
+
+/* ---- Pixel-style headings ---- */
+h1, h2, h3 {
+  font-family: var(--font-retro);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+h1 {
+  font-size: 1.5rem;
+  background: linear-gradient(90deg, var(--color-retro-cyan), var(--color-retro-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+  filter: drop-shadow(0 0 8px rgba(0, 255, 245, 0.4));
+}
+
+h2 {
+  font-size: 1rem;
+  color: var(--color-retro-yellow);
+  text-shadow: 0 0 6px rgba(255, 215, 0, 0.5);
+}
+
+h3 {
+  font-size: 0.75rem;
+  color: var(--color-retro-green);
+}
+
+/* ---- Card / Panel ---- */
+.card, .panel {
+  background: var(--color-retro-card);
+  border: 2px solid var(--color-retro-cyan);
+  border-radius: 4px;
+  padding: 1.5rem;
+  box-shadow:
+    0 0 10px rgba(0, 255, 245, 0.15),
+    inset 0 0 30px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.card::before, .panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-retro-cyan), var(--color-retro-accent), var(--color-retro-yellow));
+}
+
+/* ---- Temperature display ---- */
+.temp-display {
+  font-family: var(--font-retro);
+  font-size: 3rem;
+  color: var(--color-retro-yellow);
+  text-shadow:
+    0 0 10px rgba(255, 215, 0, 0.6),
+    0 0 30px rgba(255, 215, 0, 0.3);
+}
+
+/* ---- Neon glow text utilities ---- */
+.glow-cyan {
+  color: var(--color-retro-cyan);
+  text-shadow: 0 0 8px rgba(0, 255, 245, 0.6);
+}
+
+.glow-red {
+  color: var(--color-retro-accent);
+  text-shadow: 0 0 8px rgba(233, 69, 96, 0.6);
+}
+
+.glow-green {
+  color: var(--color-retro-green);
+  text-shadow: 0 0 8px rgba(57, 255, 20, 0.6);
+}
+
+.glow-yellow {
+  color: var(--color-retro-yellow);
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+}
+
+/* ---- Retro button ---- */
+button, .btn {
+  font-family: var(--font-retro);
+  font-size: 0.7rem;
+  background: var(--color-retro-surface);
+  color: var(--color-retro-cyan);
+  border: 2px solid var(--color-retro-cyan);
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+  box-shadow: 0 0 5px rgba(0, 255, 245, 0.2);
+}
+
+button:hover, .btn:hover {
+  background: var(--color-retro-cyan);
+  color: var(--color-retro-bg);
+  box-shadow: 0 0 15px rgba(0, 255, 245, 0.5);
+}
+
+button:active, .btn:active {
+  transform: scale(0.96);
+}
+
+/* ---- Input field ---- */
+input[type="text"],
+input[type="search"],
+input[type="number"] {
+  font-family: var(--font-terminal);
+  font-size: 1.25rem;
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid var(--color-retro-muted);
+  color: var(--color-retro-green);
+  padding: 0.5rem 1rem;
+  border-radius: 2px;
+  caret-color: var(--color-retro-green);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="search"]:focus,
+input[type="number"]:focus {
+  outline: none;
+  border-color: var(--color-retro-cyan);
+  box-shadow: 0 0 10px rgba(0, 255, 245, 0.3);
+}
+
+input::placeholder {
+  color: var(--color-retro-muted);
+  font-style: italic;
+}
+
+/* ---- Weather icon bounce ---- */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.weather-icon {
+  animation: float 3s ease-in-out infinite;
+  font-size: 4rem;
+}
+
+/* ---- Blinking cursor effect ---- */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* ---- Loading bar retro ---- */
+.retro-loader {
+  height: 6px;
+  background: var(--color-retro-surface);
+  border: 1px solid var(--color-retro-muted);
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.retro-loader-bar {
+  height: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-retro-cyan) 0px,
+    var(--color-retro-cyan) 8px,
+    transparent 8px,
+    transparent 12px
+  );
+  animation: load 2s linear infinite;
+}
+
+@keyframes load {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-retro-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-retro-muted);
+  border: 1px solid var(--color-retro-cyan);
+}
+
+/* ---- Status indicator ---- */
+.status-online {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--color-retro-green);
+  box-shadow: 0 0 6px var(--color-retro-green);
+  border-radius: 50%;
+  animation: blink 2s ease-in-out infinite;
+}
+
+/* ---- Utility: pixel border ---- */
+.pixel-border {
+  border: 3px solid;
+  border-image: repeating-linear-gradient(
+    90deg,
+    var(--color-retro-cyan) 0 4px,
+    transparent 4px 8px
+  ) 3;
+}
