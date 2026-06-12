@@ -1,0 +1,8 @@
+<form [formRoot]="userForm()">
+  <input [formField]="userForm.surname">
+  @if(userForm().errors().length > 0) {
+    <div *for="let error of userForm().errors()">
+      {{ error }}
+    </div>
+  }
+</form>

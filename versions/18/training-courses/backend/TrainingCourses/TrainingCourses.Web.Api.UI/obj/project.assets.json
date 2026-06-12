@@ -8959,19 +8959,19 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[8.0.26, 8.0.26]"
+            "version": "[8.0.28, 8.0.28]"
           },
           {
             "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[8.0.26, 8.0.26]"
+            "version": "[8.0.28, 8.0.28]"
           },
           {
             "name": "Microsoft.NETCore.App.Ref",
-            "version": "[8.0.26, 8.0.26]"
+            "version": "[8.0.28, 8.0.28]"
           },
           {
             "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[8.0.26, 8.0.26]"
+            "version": "[8.0.28, 8.0.28]"
           }
         ],
         "frameworkReferences": {
@@ -8982,7 +8982,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.107/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.109/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
