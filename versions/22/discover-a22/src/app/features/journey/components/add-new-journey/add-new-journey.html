@@ -8,45 +8,56 @@
             </p>
         </header>
 
-        @if (journeyForm().invalid()) {
-            <p class="form-error-global" role="alert">
-                {{ journeyForm().errorSummary() }}
-            </p>
+        @if (journeyForm().invalid() && journeyForm().touched()) {
+        <p class="form-error-global" role="alert">
+            @for (item of journeyForm().errorSummary(); track $index) {
+            {{ item.message }}
+            }
+        </p>
         }
 
         <form class="journey-form" [formRoot]="journeyForm" (ngSubmit)="saveOne()">
             <div class="field-group">
                 <label for="journey-title">Journey title</label>
-                <input
-                    id="journey-title"
-                    type="text"
-                    [formField]="journeyForm.title"
-                    placeholder="Lisbon, Corsica roadtrip, Bali surf..."
-                    autocomplete="off"
-                    [class.input-invalid]="journeyForm.title().invalid()"
-                />
+                <input id="journey-title" type="text" [formField]="journeyForm.title"
+                    placeholder="Lisbon, Corsica roadtrip, Bali surf..." autocomplete="off"
+                    [class.input-invalid]="journeyForm.title().invalid()" />
 
-                @if (journeyForm.title().invalid()) {
-                    <p class="field-error" role="alert">{{ journeyForm.title().errorSummary() }}</p>
+                @if (journeyForm.title().invalid() && journeyForm.title().touched()) {
+                <p class="field-error" role="alert">
+                    @for (item of journeyForm.title().errorSummary(); track $index) {
+                    {{ item.message }}
+                    }
+                </p>
                 }
             </div>
 
             <div class="field-group">
                 <label for="journey-description">Description</label>
-                <textarea
-                    id="journey-description"
-                    [formField]="journeyForm.description"
-                    placeholder="What do you want to discover, taste, and experience?"
-                    rows="5"
-                    [class.input-invalid]="journeyForm.description().invalid()"
-                ></textarea>
+                <textarea id="journey-description" [formField]="journeyForm.description"
+                    placeholder="What do you want to discover, taste, and experience?" rows="5"
+                    [class.input-invalid]="journeyForm.description().invalid()"></textarea>
 
-                @if (journeyForm.description().invalid()) {
-                    <p class="field-error" role="alert">{{ journeyForm.description().errorSummary() }}</p>
+                @if (journeyForm.description().invalid() && journeyForm.description().touched()) {
+                <p class="field-error" role="alert">
+                    @for (item of journeyForm.description().errorSummary(); track $index) {
+                    {{ item.message }}
+                    }
+                </p>
                 }
             </div>
 
-            <button class="save-button" type="submit">Save journey</button>
+            <button
+                class="save-button"
+                [disabled]="journeyForm().invalid()"
+                [attr.aria-disabled]="journeyForm().invalid()"
+                type="submit">
+                Save journey
+            </button>
+
+            @if (journeyForm().invalid()) {
+            <p class="submit-hint">Fill in all required fields to enable saving.</p>
+            }
         </form>
     </section>
 </main>
