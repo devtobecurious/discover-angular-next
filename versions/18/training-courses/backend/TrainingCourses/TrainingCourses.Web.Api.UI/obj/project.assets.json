@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "targets": {
     "net8.0": {
       "Azure.Core/1.35.0": {
@@ -8840,27 +8840,24 @@
   },
   "packageFolders": {
     "C:\\Users\\evan\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Works\\Formations\\Templates\\angular\\level-200\\discover-angular-next\\versions\\18\\training-courses\\backend\\TrainingCourses\\TrainingCourses.Web.Api.UI\\TrainingCourses.Web.Api.UI.csproj",
+      "projectUniqueName": "D:\\Works\\Formations\\veilles\\angular\\discover-angular-next\\versions\\18\\training-courses\\backend\\TrainingCourses\\TrainingCourses.Web.Api.UI\\TrainingCourses.Web.Api.UI.csproj",
       "projectName": "TrainingCourses.Web.Api.UI",
-      "projectPath": "D:\\Works\\Formations\\Templates\\angular\\level-200\\discover-angular-next\\versions\\18\\training-courses\\backend\\TrainingCourses\\TrainingCourses.Web.Api.UI\\TrainingCourses.Web.Api.UI.csproj",
+      "projectPath": "D:\\Works\\Formations\\veilles\\angular\\discover-angular-next\\versions\\18\\training-courses\\backend\\TrainingCourses\\TrainingCourses.Web.Api.UI\\TrainingCourses.Web.Api.UI.csproj",
       "packagesPath": "C:\\Users\\evan\\.nuget\\packages\\",
-      "outputPath": "D:\\Works\\Formations\\Templates\\angular\\level-200\\discover-angular-next\\versions\\18\\training-courses\\backend\\TrainingCourses\\TrainingCourses.Web.Api.UI\\obj\\",
+      "outputPath": "D:\\Works\\Formations\\veilles\\angular\\discover-angular-next\\versions\\18\\training-courses\\backend\\TrainingCourses\\TrainingCourses.Web.Api.UI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
         "C:\\Users\\evan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -8872,6 +8869,7 @@
       },
       "frameworks": {
         "net8.0": {
+          "framework": "net8.0",
           "targetAlias": "net8.0",
           "projectReferences": {}
         }
@@ -8886,10 +8884,11 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "10.0.100"
+      "SdkAnalysisLevel": "10.0.300"
     },
     "frameworks": {
       "net8.0": {
+        "framework": "net8.0",
         "targetAlias": "net8.0",
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.JwtBearer": {
@@ -8982,7 +8981,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.109/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.301/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

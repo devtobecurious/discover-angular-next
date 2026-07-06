@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wz8qRV6N/kw=",
+  "dgSpecHash": "ZqRuPQ6Kzjc=",
   "success": true,
-  "projectFilePath": "D:\\Works\\Formations\\Templates\\angular\\level-200\\discover-angular-next\\versions\\18\\training-courses\\backend\\TrainingCourses\\TrainingCourses.Web.Api.UI\\TrainingCourses.Web.Api.UI.csproj",
+  "projectFilePath": "D:\\Works\\Formations\\veilles\\angular\\discover-angular-next\\versions\\18\\training-courses\\backend\\TrainingCourses\\TrainingCourses.Web.Api.UI\\TrainingCourses.Web.Api.UI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\evan\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\evan\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
