@@ -1,0 +1,17 @@
+@let isInvalid = invalid?.() ?? false;
+@let isTouched = touched?.() ?? false;
+
+<div class="field-group">
+    <label for="{{ for?.() }}">{{ label?.() }}</label>
+    <input id="{{ for?.() }}" type="text"
+        placeholder="{{ placeHolder?.() }}" autocomplete="off"
+        [class.input-invalid]="isInvalid" />
+
+    @if (isInvalid && isTouched) {
+    <p class="field-error" role="alert">
+        @for (item of errors?.() ?? []; track $index) {
+        {{ item.message }}
+        }
+    </p>
+    }
+</div>
