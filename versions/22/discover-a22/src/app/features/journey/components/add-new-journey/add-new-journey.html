@@ -1,0 +1,52 @@
+<main class="summer-journey-page">
+    <section class="summer-card" aria-labelledby="add-journey-title">
+        <header class="hero-header">
+            <p class="hero-badge">Summer trip planner</p>
+            <h1 id="add-journey-title">Create a joyful journey</h1>
+            <p class="hero-subtitle">
+                Plan your next escape with a clear and mobile-friendly form.
+            </p>
+        </header>
+
+        @if (journeyForm().invalid()) {
+            <p class="form-error-global" role="alert">
+                {{ journeyForm().errorSummary() }}
+            </p>
+        }
+
+        <form class="journey-form" [formRoot]="journeyForm" (ngSubmit)="saveOne()">
+            <div class="field-group">
+                <label for="journey-title">Journey title</label>
+                <input
+                    id="journey-title"
+                    type="text"
+                    [formField]="journeyForm.title"
+                    placeholder="Lisbon, Corsica roadtrip, Bali surf..."
+                    autocomplete="off"
+                    [class.input-invalid]="journeyForm.title().invalid()"
+                />
+
+                @if (journeyForm.title().invalid()) {
+                    <p class="field-error" role="alert">{{ journeyForm.title().errorSummary() }}</p>
+                }
+            </div>
+
+            <div class="field-group">
+                <label for="journey-description">Description</label>
+                <textarea
+                    id="journey-description"
+                    [formField]="journeyForm.description"
+                    placeholder="What do you want to discover, taste, and experience?"
+                    rows="5"
+                    [class.input-invalid]="journeyForm.description().invalid()"
+                ></textarea>
+
+                @if (journeyForm.description().invalid()) {
+                    <p class="field-error" role="alert">{{ journeyForm.description().errorSummary() }}</p>
+                }
+            </div>
+
+            <button class="save-button" type="submit">Save journey</button>
+        </form>
+    </section>
+</main>
