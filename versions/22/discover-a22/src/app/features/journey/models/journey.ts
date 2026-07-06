@@ -11,11 +11,11 @@ export interface Journey {
 export const journeySchema = schema<Journey>(ctx => {
     required(ctx.title, { message: "Title is required" });
     required(ctx.description, { message: "Description is required" });
-    applyEach(ctx.steps, stepSchema);
+    //applyEach(ctx.steps, stepSchema);
 
     validate(ctx, childCtx => {
-        if (childCtx.valueOf(ctx.steps).length === 0) {
-            return { kind: 'main' , message: "At least one step is required" };
+        if (childCtx.valueOf(ctx.steps).length === 1) {
+            return { kind: 'main' , message: "At least two steps are required" };
         }
 
         return null;
